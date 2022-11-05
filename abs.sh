@@ -5,11 +5,11 @@ while :; do
 case $answer in
 	test )
 		echo "okay, building test iso"
-		bash buildScripts/testBuild.sh
+		bash abs/buildScripts/testBuild.sh
 		;;
 	release )
 		echo "okay, build release iso"
-		bash buildScripts/releaseBuild.sh
+		bash abs/buildScripts/releaseBuild.sh
 		;;
 	* )
 		echo "made no sense, try again"
