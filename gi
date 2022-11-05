@@ -4,3 +4,5 @@ PKGBUILD.proto
 PKGBUILD1
 proto.install
 ignore/
+gi
+.gitignore

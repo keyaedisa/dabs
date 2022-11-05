@@ -4,37 +4,32 @@
 # then please put 'unknown'.
 
 # Maintainer: Your Name <youremail@domain.com>
-pkgname="Archiso-Build-Scripts"
+pkgname="Archiso Build Scripts"
 pkgver=0.0.1
-pkgrel=1
+pkgrel=A
 epoch=
 pkgdesc="Set of scripts designed to automate the archiso build process after making updates to the provided archiso profile."
 arch=('x86_64')
 url="https://github.com/keyaedisa"
-#license=('')
+license=('')
 #groups=()
-depends=("git"
-		"gawk"
-		"sed"
-		"archiso"
-		"bash")
+depends=('git','gawk','sed','archiso','bash')
 makedepends=('git')
 #checkdepends=()
 #optdepends=()
-provides=('Archiso-Build-Scripts')
+provides=('Archiso Build Scripts')
 conflicts=('Archiso-Build-Scripts')
-#replaces=()
-#backup=()
-#options=()
-#install=
-#changelog=
-source=(${pkgname}::"git+https://github.com/keyaedisa/archisoBuildScripts"
+replaces=()
+backup=()
+options=()
+install=
+changelog=
+source=("https://github.com/keyaedisa/archisoBuildScripts/"
 #		"buildScripts/*"
 #        "misc/.bashFormatting"
 )
 #noextract=()
 #md5sums=()
-sha256sums=('SKIP')
 #validpgpkeys=()
 
 #prepare() {
@@ -52,11 +47,10 @@ sha256sums=('SKIP')
 #}
 
 package() {
-	mkdir -p "${pkgdir}/usr/local/bin/"
-	cp "${srcdir}/${pkgname}/abs.sh" "${pkgdir}/usr/local/bin/abs"
-	mkdir -p "${pkgdir}/etc/abs"
-	cp -r  "${srcdir}/${pkgname}/buildScripts/" "${srcdir}/${pkgname}/misc/" "${pkgdir}/etc/abs"
-	chmod +x "${pkgdir}/usr/local/bin/abs"
+	mkdir -p "${pkgdir}/usr/local/bin"
+	cp -r  "${srcdir}/buildScripts/" "${srcdir}/misc/
+	"${pkgdir}/usr/local/bin/abs"
+	chmod +x ${srcdir}/usr/local/bin/help.sh"
 #	cd "$pkgname-$pkgver"
 #	make DESTDIR="$pkgdir/" install
 }

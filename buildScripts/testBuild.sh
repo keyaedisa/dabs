@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [[ -d logs ]]; then
-	rm -rf logs
-fi
-mkdir logs
-exec >  >(tee -ia logs/stdout.log)
-exec 2> >(tee -ia logs/err.log >&2)
+#if [[ -d logs ]]; then
+#	rm -rf logs
+#fi
+#mkdir logs
+#exec >  >(tee -ia logs/stdout.log)
+#exec 2> >(tee -ia logs/err.log >&2)
 
 
 # Written by Keyaedisa
