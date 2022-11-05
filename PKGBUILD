@@ -4,20 +4,20 @@
 # then please put 'unknown'.
 
 # Maintainer: Your Name <youremail@domain.com>
-pkgname="Archiso Build Scripts"
+pkgname="Archiso-Build-Scripts"
 pkgver=0.0.1
-pkgrel=A
+pkgrel=1
 epoch=
 pkgdesc="Set of scripts designed to automate the archiso build process after making updates to the provided archiso profile."
 arch=('x86_64')
 url="https://github.com/keyaedisa"
 license=('')
 #groups=()
-depends=('git','gawk','sed','archiso','bash')
+depends=('git''gawk''sed''archiso''bash')
 makedepends=('git')
 #checkdepends=()
 #optdepends=()
-provides=('Archiso Build Scripts')
+provides=('Archiso-Build-Scripts')
 conflicts=('Archiso-Build-Scripts')
 replaces=()
 backup=()
