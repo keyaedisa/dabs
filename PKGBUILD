@@ -28,7 +28,7 @@ backup=()
 options=()
 install=
 changelog=
-source=("https://github.com/keyaedisa/archisoBuildScripts/*"
+source=("git@github.com:keyaedisa/archisoBuildScripts.git"
 #		"buildScripts/*"
 #        "misc/.bashFormatting"
 )
