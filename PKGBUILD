@@ -13,7 +13,11 @@ arch=('x86_64')
 url="https://github.com/keyaedisa"
 license=('')
 #groups=()
-depends=("git""gawk""sed""archiso""bash")
+depends=("git"
+		"gawk"
+		"sed"
+		"archiso"
+		"bash")
 makedepends=('git')
 #checkdepends=()
 #optdepends=()
