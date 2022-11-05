@@ -52,9 +52,10 @@ sha256sums=('SKIP')
 #}
 
 package() {
-	mkdir -p "${pkgdir}/usr/local/bin/abs"
+	mkdir -p "${pkgdir}/usr/local/bin/"
 	cp "${srcdir}/${pkgname}/abs.sh" "${pkgdir}/usr/local/bin/abs"
-	cp -r  "${srcdir}/${pkgname}/buildScripts/" "${srcdir}/${pkgname}/misc/" "${pkgdir}/usr/local/bin/abs"
+	mkdir -p "${pkgdir}/etc/abs"
+	cp -r  "${srcdir}/${pkgname}/buildScripts/" "${srcdir}/${pkgname}/misc/" "${pkgdir}/etc/abs"
 	chmod +x "${pkgdir}/usr/local/bin/abs.sh"
 #	cd "$pkgname-$pkgver"
 #	make DESTDIR="$pkgdir/" install

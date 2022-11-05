@@ -7,12 +7,12 @@ while [ finished != 1 ]; do
 case $answer in
 	test )
 		echo "okay, building test iso"
-		bash abs/buildScripts/testBuild.sh
+		bash /etc/abs/buildScripts/testBuild.sh
 		finished='1'
 		;;
 	release )
 		echo "okay, build release iso"
-		bash abs/buildScripts/releaseBuild.sh
+		bash /etc/abs/buildScripts/releaseBuild.sh
 		finished='1'
 		;;
 	* )
