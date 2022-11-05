@@ -11,7 +11,7 @@ epoch=
 pkgdesc="Set of scripts designed to automate the archiso build process after making updates to the provided archiso profile."
 arch=('x86_64')
 url="https://github.com/keyaedisa"
-license=('')
+#license=('')
 #groups=()
 depends=("git"
 		"gawk"
@@ -23,17 +23,18 @@ makedepends=('git')
 #optdepends=()
 provides=('Archiso-Build-Scripts')
 conflicts=('Archiso-Build-Scripts')
-replaces=()
-backup=()
-options=()
-install=
-changelog=
-source=("git@github.com:keyaedisa/archisoBuildScripts.git"
+#replaces=()
+#backup=()
+#options=()
+#install=
+#changelog=
+source=(${pkgname}::"git+https://github.com/keyaedisa/archisoBuildScripts"
 #		"buildScripts/*"
 #        "misc/.bashFormatting"
 )
 #noextract=()
 #md5sums=()
+sha256sums=('SKIP')
 #validpgpkeys=()
 
 #prepare() {
