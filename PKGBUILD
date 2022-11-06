@@ -6,7 +6,7 @@
 # Maintainer: Your Name <youremail@domain.com>
 pkgname="Archiso-Build-Scripts"
 pkgver=0.0.1
-pkgrel=1
+pkgrel=2
 epoch=
 pkgdesc="Set of scripts designed to automate the archiso build process after making updates to the provided archiso profile."
 arch=('x86_64')
@@ -29,27 +29,11 @@ conflicts=('Archiso-Build-Scripts')
 #install=
 #changelog=
 source=(${pkgname}::"git+https://github.com/keyaedisa/archisoBuildScripts"
-#		"buildScripts/*"
-#        "misc/.bashFormatting"
 )
 #noextract=()
 #md5sums=()
 sha256sums=('SKIP')
 #validpgpkeys=()
-
-#prepare() {
-#	cd "$pkgname-$pkgver"
-#	patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
-#}
-
-#build() {
-#	
-#}
-
-#check() {
-#	cd "$pkgname-$pkgver"
-#	make -k check
-#}
 
 package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
@@ -59,6 +43,4 @@ package() {
 	chmod +x "${pkgdir}/usr/local/bin/abs"
 	rm -r "../Archiso-Build-Scripts"
 	rm -r "${srcdir}"
-#cd "$pkgname-$pkgver"
-#	make DESTDIR="$pkgdir/" install
 }
