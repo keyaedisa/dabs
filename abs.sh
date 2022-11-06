@@ -3,16 +3,12 @@
 read -p "Are you looking to build a test iso or a release iso? " answer
 
 finished='0'
-while [ finished != 1 ]; do
+while [ finished != 1 && $? -ne 1 ]; do
 case $answer in
 	test )
-		if [ $? -ne 1 ]; then
-			echo "okay, building test iso"
-			bash /etc/abs/buildScripts/testBuild.sh
-			finished='1'
-		else
-			exit
-		fi
+		echo "okay, building test iso"
+		bash /etc/abs/buildScripts/testBuild.sh
+		finished='1'
 		;;
 	release )
 		echo "okay, build release iso"
