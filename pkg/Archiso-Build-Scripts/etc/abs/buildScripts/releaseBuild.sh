@@ -16,6 +16,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/../misc/.bashFormatting"
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo "${fgCyan}Step 1${txReset}: Getting ready to ${fgCyan}build!"
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 read -p "Please enter the name of your ${fgCyan}archiso${txReset} profile: " archisoProfile
 if [[ ! -d $archisoProfile ]]; then
 	echo "Couldn't find ${fgRed}${archisoProfile}${txReset}! Are you sure you're in the correct directory?"
@@ -31,6 +32,7 @@ echo "Oki! ${fgCyan}${buildFolder}${txReset} will be where the build takes place
 	profiledef=$archisoProfile/profiledef.sh
 	user=$(whoami)
 
+echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo "${fgCyan}Step 2${txReset}: Making sure you have latest ${fgCyan}archiso!"
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset

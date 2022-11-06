@@ -16,10 +16,11 @@ source "$(dirname "${BASH_SOURCE[0]}")/../misc/.bashFormatting"
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo "${fgCyan}Step 1${txReset}: Getting ready to ${fgCyan}build!"
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 read -p "Please enter the name of your ${fgCyan}archiso${txReset} profile: " archisoProfile
 if [[ ! -d $archisoProfile ]]; then
 	echo "Couldn't find ${fgRed}${archisoProfile}${txReset}! Are you sure you're in the correct directory?"
-	exit 1
+	exit
 fi
 echo "Oki! Preparing iso build using ${fgCyan}${archisoProfile}${txReset}!" && sleep 1.3
 read -p "Where do you want the outFolder to be? (Full path. Unfortunately ~/ expansion ${fgRed}doesn't${txReset} work) : " outFolder
@@ -31,6 +32,7 @@ echo "Oki! ${fgCyan}${buildFolder}${txReset} will be where the build takes place
 	profiledef=$archisoProfile/profiledef.sh
 	user=$(whoami)
 
+echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo "${fgCyan}Step 2${txReset}: Making sure you have latest ${fgCyan}archiso!"
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
@@ -188,16 +190,19 @@ n | N | no | No | NO )
 	;;
 esac
 done
+
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo "Adding ${fgCyan}build time${txReset} to /etc/dev-rel"
 dateBuild=$(date -d now)
+TESTBUILD="TESTBUILD"
 echo "ISO built on : "$dateBuild
 sed -i "s/\(^ISO_BUILD=\).*/\1$dateBuild/" $profile/airootfs/etc/dev-rel
-read -p "What would you like to set ISO_RELEASE to in dev-rel for ${fgCyan}release${txReset}? : " release
-echo "Oki. ISO_RELEASE will now be set to ${fgCyan}${release}${txReset}!"
-isoRelease=$(sed -n "s/\(^ISO_RELEASE=\)//p" $profile/airootfs/etc/dev-rel)
-awk -v nR="$release" -v iR="$isoRelease" 'NR==2, NR==2 {sub(iR, nR)}1' $profile/airootfs/etc/dev-rel >> dev-rel
-mv dev-rel $profile/airootfs/etc/dev-rel
+sed -i "s/\(^ISO_RELEASE=\).*/\1$TESTBUILD/" $profile/airootfs/etc/dev-rel
+echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+echo "${fgCyan}Step 4${txReset}: Time to build ${fgCyan}ISO${txReset}. This ${txUnderline}will${txReset} take a while. Go grab a drink or something!"
+echo "Build ${fgCyan}starts${txReset} in ${fgRed}5 seconds!"
+echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 sleep 5
 
 sudo mkarchiso -v -w $buildFolder -o $outFolder $profile
