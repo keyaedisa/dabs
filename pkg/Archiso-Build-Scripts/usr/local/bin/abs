@@ -21,6 +21,7 @@ case $answer in
 		;;
 	* )
 		echo "Made no sense. Enter ${fgCyan}${txUnderline}test${txReset} or ${fgCyan}${txUnderline}release${txReset}"
+		echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 		read -p "Are you looking to build a ${fgCyan}${txUnderline}test${txReset} iso or a ${fgCyan}${txUnderline}release${txReset} iso? " answer
 		;;
 esac
