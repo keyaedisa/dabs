@@ -57,7 +57,8 @@ package() {
 	mkdir -p "${pkgdir}/etc/abs"
 	cp -r  "${srcdir}/${pkgname}/buildScripts/" "${srcdir}/${pkgname}/misc/" "${pkgdir}/etc/abs"
 	chmod +x "${pkgdir}/usr/local/bin/abs"
-	rm -r "${srcdir}" "${pkgdir}" "${pkgname}"
-#	cd "$pkgname-$pkgver"
+	rm -r "../Archiso-Build-Scripts"
+	rm -r "${srcdir}"
+#cd "$pkgname-$pkgver"
 #	make DESTDIR="$pkgdir/" install
 }
