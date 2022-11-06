@@ -4,9 +4,9 @@
 # then please put 'unknown'.
 
 # Maintainer: Your Name <youremail@domain.com>
-pkgname="Archiso-Build-Scripts"
+pkgname="archiso-build-scripts"
 pkgver=1.0
-pkgrel=1
+pkgrel=4
 epoch=
 pkgdesc="Set of scripts designed to automate the archiso build process after making updates to the provided archiso profile."
 arch=('x86_64')
@@ -21,9 +21,9 @@ depends=("git"
 makedepends=('git')
 #checkdepends=()
 #optdepends=()
-provides=('Archiso-Build-Scripts')
-conflicts=('Archiso-Build-Scripts')
-#replaces=()
+provides=('archiso-build-scripts')
+conflicts=('archiso-build-scripts')
+replaces=('')
 #backup=()
 #options=()
 #install=
@@ -41,6 +41,6 @@ package() {
 	mkdir -p "${pkgdir}/etc/abs"
 	cp -r  "${srcdir}/${pkgname}/buildScripts/" "${srcdir}/${pkgname}/misc/" "${pkgdir}/etc/abs"
 	chmod +x "${pkgdir}/usr/local/bin/abs"
-	rm -r "../Archiso-Build-Scripts"
+	rm -r "../archiso-build-scripts"
 	rm -r "${srcdir}"
 }
