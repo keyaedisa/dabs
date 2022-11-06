@@ -20,8 +20,6 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 read -p "Please enter the name of your ${fgCyan}archiso${txReset} profile: " archisoProfile
 if [[ ! -d $archisoProfile ]]; then
 	echo "Couldn't find ${fgRed}${archisoProfile}${txReset}! Are you sure you're in the correct directory?"
-	failed=1
-	export $failed
 	exit
 fi
 echo "Oki! Preparing iso build using ${fgCyan}${archisoProfile}${txReset}!" && sleep 1.3
