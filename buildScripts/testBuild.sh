@@ -24,8 +24,8 @@ echo "Oki! When iso build is ${fgMagenta}done${txReset} you can find the iso in 
 read -p "Where would you like the ${fgCyan}build${txReset} folder to be? : " buildFolder
 echo "Oki! ${fgCyan}${buildFolder}${txReset} will be where the build takes place!" && sleep 1.3
 
-	profile=../$archisoProfile
-	profiledef=../$archisoProfile/profiledef.sh
+	profile=$archisoProfile
+	profiledef=$archisoProfile/profiledef.sh
 	user=$(whoami)
 
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
