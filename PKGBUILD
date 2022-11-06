@@ -33,7 +33,6 @@ source=(${pkgname}::"git+https://github.com/keyaedisa/archisoBuildScripts"
 #noextract=()
 #md5sums=()
 sha256sums=('SKIP')
-#validpgpkeys=()
 
 package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
