@@ -6,7 +6,7 @@
 # Maintainer: Your Name <youremail@domain.com>
 pkgname="Archiso-Build-Scripts"
 pkgver=0.0.1
-pkgrel=3
+pkgrel=6
 epoch=
 pkgdesc="Set of scripts designed to automate the archiso build process after making updates to the provided archiso profile."
 arch=('x86_64')
