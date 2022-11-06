@@ -1,24 +1,24 @@
 #!/bin/bash
 
-read -p "Are you looking to build a test iso or a release iso? " answer
+source misc/.bashFormatting
+
+read -p "Are you looking to build a ${fgCyan}${txUnderline}test${txReset} iso or a ${fgCyan}${txUnderline}release${txReset} iso? " answer
 
 finished='0'
 while [ finished != 1 ]; do
 case $answer in
 	test )
-		echo "okay, building test iso"
+		echo "Oki, building ${fgCyan}test${txReset} iso"
 		finished='1'
 		bash /etc/abs/buildScripts/testBuild.sh && exit
 		;;
 	release )
-		echo "okay, build release iso"
-		bash /etc/abs/buildScripts/releaseBuild.sh
+		echo "Oki, building ${fgCyan}release${txReset} iso"
 		finished='1'
+		bash /etc/abs/buildScripts/releaseBuild.sh && exit
 		;;
 	* )
-		echo "made no sense, try again"
+		echo "Made no sense. Enter ${fgCyan}${txUnderline}test${txReset} or ${fgCyan}${txUnderline}release${txReset}"
 		;;
 esac
 done
-
-unset failed
