@@ -6,7 +6,7 @@
 # Maintainer: Your Name <youremail@domain.com>
 pkgname="abs"
 pkgver=2.0
-pkgrel=1
+pkgrel=2
 epoch=
 pkgdesc="Set of scripts designed to automate the archiso build process after making updates to the provided archiso profile. Bundled together as a command line utility that can be called by entering abs in your terminal!"
 arch=('x86_64')
@@ -23,12 +23,12 @@ makedepends=('git')
 #optdepends=()
 provides=('abs')
 conflicts=('archiso-build-scripts')
-replaces=('archiso-build-scripts')
+#replaces=('archiso-build-scripts')
 #backup=()
 #options=()
 #install=
 #changelog=
-source=(${pkgname}::"git+https://github.com/keyaedisa/abs"
+source=("gclone"::"git+https://github.com/keyaedisa/abs"
 )
 #noextract=()
 #md5sums=()
@@ -36,11 +36,11 @@ sha256sums=('SKIP')
 
 package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
-	cp "${srcdir}/${pkgname}/abs" "${pkgdir}/usr/local/bin/abs"
+	cp "${srcdir}/gclone/abs" "${pkgdir}/usr/local/bin/abs"
 	mkdir -p "${pkgdir}/etc/abs/"
-	cp -r  "${srcdir}/${pkgname}/misc/" "${pkgdir}/etc/abs"
+	cp -r  "${srcdir}/gclone/misc/" "${pkgdir}/etc/abs"
 	chmod +x "${pkgdir}/usr/local/bin/abs"
-	rm -r "../archiso-build-scripts"
+	rm -r "../gclone"
 	rm -r "${srcdir}" && sleep 1.7
 }
 
