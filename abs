@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source /etc/abs/misc/.bashFormatting
-source /etc/abs/misc/errCodes
+#source /etc/abs/misc/errCodes
 
 # This bit handles abs being called with options passed in through terminal
 
@@ -21,14 +21,16 @@ if [[ $1 == "help" ]]; then
 	echo "In the future I may make abs smart enough to ask where you want the cloned repo to end up and clone to your chosen destination."
 	echo "If you tell abs that you have already cloned the xero_iso git repo, abs will look for the xero profile."
 	echo "If abs cannot find the xero profile in the directory it's been called, abs will ${fgRed}exit${txReset} and ask that you ${txUnderline}cd to the cloned xero_iso repo and call abs again${txReset}."
-	echo
+	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+#	echo "${txBold}last-error${txReset}"
+#	echo "Adding this option to abs will print last exit/err code abs set when last ran."
+#	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+	echo "{txBold}Passing options to abs in terminal${txReset}"
 	echo "abs can also be called with either of these options directly from terminal"
 	echo "If abs is called with the xero option however, abs will ask you if you need to git clone the xero_iso build repo or if you have already"
 	echo "Once again, if abs is told you've already cloned the xero_iso build repo and it cannot find the xerolinux profile it will exit and ask to be called in the cloned repo directory."
 	echo "That is all for now. abs help will now ${fgRed}exit${txReset}. I hope this has been helpful."
 	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
-	sed '$d' /etc/abs/misc/lastErr && echo \$err4 > /etc/abs/misc/lastErr
-	exit 4
 elif [[ $1 == "custom" || $1 == "Custom" || $1 == "CUSTOM" ]]; then
 	echo "Oki, let's get ready to build a custom iso using a user provided profile."
 	read -p "What is the name of the archiso profile abs will be building your iso with? : " archisoProfile
@@ -37,8 +39,8 @@ elif [[ $1 == "custom" || $1 == "Custom" || $1 == "CUSTOM" ]]; then
 	if [[ ! -d $archisoProfile ]]; then
 		echo "Couldn't find the archiso profile you provided in the current directory."
 		echo "Please change to the proper directory and call abs once more."
-		sed '$d' /etc/abs/misc/lastErr && echo \$err1 > /etc/abs/misc/lastErr
-		exit 1
+#		sed -i '/lastErr/c lastErr=$err1' /etc/abs/misc/lastErr
+		exit
 	else
 		echo "abs found your archiso profile. abs will now begin your iso's build process."
 		/etc/abs/misc/options/custom
@@ -50,8 +52,8 @@ elif [[ $1 == "xero" || $1 == "Xero" || $1 == "XERO" || $1 == "xerolinux" || $1 
 	if [[ ! -d xerolinux ]]; then
 		echo "Couldn't find the xerolinux profile in the current directory."
 		echo "Please change to the proper directory and call abs once more."
-		sed '$d' /etc/abs/misc/lastErr && echo \$err2 > /etc/abs/misc/lastErr
-		exit 2
+#		sed -i '/lastErr/c lastErr=$err2' /etc/abs/misc/lastErr
+		exit
 	else
 		echo "abs found the xerolinux profile. abs will now begin the xero build process."
 		/etc/abs/misc/options/xero
@@ -60,8 +62,7 @@ elif [[ $1 == "last-error" ]]; then
 	cat /etc/abs/misc/lastErr
 else
 	echo "Sorry, abs does not recognize this option. Run ${fgCyan}abs help${txReset} for a list of accepted options and their brief descriptions."
-	sed '$d' /etc/abs/misc/lastErr && echo \$err3 > /etc/abs/misc/lastErr
-	exit 3
+	exit
 fi
 
 # This bit handles abs being called with no options passed in through terminal
@@ -75,15 +76,15 @@ fi
 			echo "Oki, building ${fgCyan}test${txReset} iso"
 			finished='1'
 			bash /etc/abs/buildScripts/testBuild.sh
-			sed '$d' /etc/abs/misc/lastErr && echo \$err0 > /etc/abs/misc/lastErr
-			exit 0
+#			sed '3d' /etc/abs/misc/lastErr && echo \$err0 > /etc/abs/misc/lastErr
+			exit 
 			;;
 		xero | XERO | xerolinux | XeroLinux | Xerolinux | xeroLinux | XEROLINUX )
 			echo "Oki, building ${fgCyan}release${txReset} iso"
 			finished='1'
 			bash /etc/abs/buildScripts/releaseBuild.sh
-			sed '$d' /etc/abs/misc/lastErr && echo \$err0 > /etc/abs/misc/lastErr
-			exit 0
+#			sed '3d' /etc/abs/misc/lastErr && echo \$err0 > /etc/abs/misc/lastErr
+			exit
 			;;
 		* )
 			echo "Not a valid abs option. Enter ${fgCyan}${txUnderline}custom${txReset} or ${fgCyan}${txUnderline}xero${txReset}"

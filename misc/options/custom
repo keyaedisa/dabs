@@ -7,8 +7,8 @@ source /etc/misc/.bashFormatting
 
 trap_ctrlc() {
     echo "Ctrl-C detected. Setting lastErr to Code 5"
-    sed '$d' /etc/abs/misc/lastErr && echo \$err5 > /etc/abs/misc/lastErr
-    exit 5
+#    sed -i '/lastErr/c lastErr=$err5' /etc/abs/misc/lastErr
+    exit
 }
 
 trap "trap_ctrlc" 2
@@ -17,16 +17,16 @@ checkSudo() {
     if [[ ${UID} -eq 0 ]]; then
         echo "Must ${txBold}${fgRed}NOT${txReset} run abs as root!"
         echo "Exiting now!"
-        sed '$d' /etc/abs/misc/lastErr && echo \$err6 > /etc/abs/misc/lastErr
-        exit 6
+#        sed '3d' /etc/abs/misc/lastErr && echo \$err6 > /etc/abs/misc/lastErr
+        exit
     fi
 }
 
 checkInternetConnection() {
 	ping -c 1 -q xerolinux.xyz >&/dev/null; if [[ $? != 0 ]]; then
 	echo "${fgRed}Not connected to the internet${txReset}! Fix that and try again."
-	sed '$d' /etc/abs/misc/lastErr && echo \$err7 > /etc/abs/misc/lastErr
-	exit 7
+#	sed '3d' /etc/abs/misc/lastErr && echo \$err7 > /etc/abs/misc/lastErr
+	exit
 	fi
 }
 
@@ -40,8 +40,8 @@ isArchisoUpToDate () {
 		echo "Latest archiso check ${fgRed}failed${txReset}!"
 		echo "Exiting now!"
 		sudo rm stfu.txt
-		sed '$d' /etc/abs/misc/lastErr && echo \$err8 > /etc/abs/misc/lastErr
-		exit 8
+#		sed '3d' /etc/abs/misc/lastErr && echo \$err8 > /etc/abs/misc/lastErr
+		exit
 	fi
 }
 
@@ -53,8 +53,8 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 read -p "Please enter the name of your ${fgCyan}archiso${txReset} profile: " archisoProfile
 if [[ ! -d $archisoProfile ]]; then
 	echo "Couldn't find ${fgRed}${archisoProfile}${txReset}! Are you sure you're in the correct directory?"
-	sed '$d' /etc/abs/misc/lastErr && echo \$err1 > /etc/abs/misc/lastErr
-	exit 1
+#	sed '3d' /etc/abs/misc/lastErr && echo \$err1 > /etc/abs/misc/lastErr
+	exit
 fi
 echo "Oki! Preparing iso build using ${fgCyan}${archisoProfile}${txReset}!" && sleep 1.3
 read -p "Where do you want the outFolder to be? (Full path. Unfortunately ~/ expansion ${fgRed}doesn't${txReset} work) : " outDir
