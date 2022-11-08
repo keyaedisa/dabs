@@ -5,12 +5,12 @@
 
 # Maintainer: Your Name <youremail@domain.com>
 pkgname="archiso-build-scripts"
-pkgver=1.0
-pkgrel=5
+pkgver=1.1
+pkgrel=7
 epoch=
 pkgdesc="Set of scripts designed to automate the archiso build process after making updates to the provided archiso profile."
 arch=('x86_64')
-url="https://github.com/keyaedisa"
+url="https://github.com/keyaedisa/archisoBuildScripts"
 #license=('')
 #groups=()
 depends=("git"
@@ -38,8 +38,10 @@ package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
 	cp "${srcdir}/${pkgname}/abs.sh" "${pkgdir}/usr/local/bin/abs"
 	mkdir -p "${pkgdir}/etc/abs"
-	cp -r  "${srcdir}/${pkgname}/buildScripts/" "${srcdir}/${pkgname}/misc/" "${pkgdir}/etc/abs"
+	cp -r  "${srcdir}/${pkgname}/misc/" "${pkgdir}/etc/abs"
 	chmod +x "${pkgdir}/usr/local/bin/abs"
 	rm -r "../archiso-build-scripts"
-	rm -r "${srcdir}"
+	rm -r "${srcdir}" && sleep 1.7
 }
+
+
