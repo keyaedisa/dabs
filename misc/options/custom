@@ -5,13 +5,13 @@
 
 source /etc/abs/misc/.bashFormatting
 
-trap_ctrlc() {
-    echo "Ctrl-C detected. Setting lastErr to Code 5"
+#trap_ctrlc() {
+#    echo "Ctrl-C detected. Setting lastErr to Code 5"
 #    sed -i '/lastErr/c lastErr=$err5' /etc/abs/misc/lastErr
-    exit
-}
+#    exit
+#}
 
-trap "trap_ctrlc" 2
+#trap "trap_ctrlc" 2
 
 checkSudo() {
     if [[ ${UID} -eq 0 ]]; then
