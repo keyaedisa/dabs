@@ -61,11 +61,7 @@ elif [[ $1 == "xero" || $1 == "Xero" || $1 == "XERO" || $1 == "xerolinux" || $1 
 elif [[ $1 == "last-error" ]]; then
 	cat /etc/abs/misc/lastErr
 else
-	echo "Sorry, abs does not recognize this option. Run ${fgCyan}abs help${txReset} for a list of accepted options and their brief descriptions."
-	exit
-fi
-
-# This bit handles abs being called with no options passed in through terminal
+#	echo "Sorry, abs does not recognize this option. Run ${fgCyan}abs help${txReset} for a list of accepted options and their brief descriptions."
 	read -p "Are you looking to build a ${fgCyan}${txUnderline}custom${txReset} iso or ${fgCyan}${txUnderline}xero${txReset} iso? " answer
 	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 
@@ -73,18 +69,16 @@ fi
 	while [ finished != 1 ]; do
 	case $answer in
 		custom | Custom | CUSTOM )
-			echo "Oki, building ${fgCyan}test${txReset} iso"
+			echo "Oki, building ${fgCyan}custom${txReset} iso"
 			finished='1'
-			bash /etc/abs/buildScripts/testBuild.sh
+			bash /etc/abs/misc/options/custom
 #			sed '3d' /etc/abs/misc/lastErr && echo \$err0 > /etc/abs/misc/lastErr
-			exit 
 			;;
 		xero | XERO | xerolinux | XeroLinux | Xerolinux | xeroLinux | XEROLINUX )
-			echo "Oki, building ${fgCyan}release${txReset} iso"
+			echo "Oki, building ${fgCyan}xerolinux${txReset} iso"
 			finished='1'
-			bash /etc/abs/buildScripts/releaseBuild.sh
+			bash /etc/abs/misc/options/xero
 #			sed '3d' /etc/abs/misc/lastErr && echo \$err0 > /etc/abs/misc/lastErr
-			exit
 			;;
 		* )
 			echo "Not a valid abs option. Enter ${fgCyan}${txUnderline}custom${txReset} or ${fgCyan}${txUnderline}xero${txReset}"
@@ -93,3 +87,9 @@ fi
 			;;
 	esac
 	done
+
+	exit
+fi
+
+# This bit handles abs being called with no options passed in through terminal
+
