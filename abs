@@ -1,0 +1,94 @@
+#!/bin/bash
+
+source /etc/abs/misc/.bashFormatting
+source /etc/abs/misc/errCodes
+
+# This bit handles abs being called with options passed in through terminal
+
+if [[ $1 == "help" ]]; then
+	echo "Currently abs only has two options: custom or xero. Read below for a brief description of each."
+	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+	echo "${txBold}custom${txReset}"
+	echo "The custom option for the building of ${txBold}any${txReset} ${txUnderline}archiso${txReset} profile you may be working on."
+	echo "${txUnderline}It is not tied to or dependent on any arch iso or distribution${txReset}."
+	echo "This option is flexible and once again supports the building of basically any archiso profile you provide."
+	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+	echo "${txBold}xero${txReset}"
+	echo "The xero option is dedicated to the build of ${fgCyan}XeroLinux${txReset} using the the ${txUnderline}xero_iso git repo${txReset} as its source."
+	echo "This option will ask you if you need to clone the xero_iso git repo or ask you if you have already done so."
+	echo "If you tell abs to clone the xero_iso git repo for you it will do so and place it in your ${txUnderline}home directory${txReset}."
+	echo "The home directory is chosen so that you can easily move the cloned xero_iso build repo directory wherever you desire if need be."
+	echo "In the future I may make abs smart enough to ask where you want the cloned repo to end up and clone to your chosen destination."
+	echo "If you tell abs that you have already cloned the xero_iso git repo, abs will look for the xero profile."
+	echo "If abs cannot find the xero profile in the directory it's been called, abs will ${fgRed}exit${txReset} and ask that you ${txUnderline}cd to the cloned xero_iso repo and call abs again${txReset}."
+	echo
+	echo "abs can also be called with either of these options directly from terminal"
+	echo "If abs is called with the xero option however, abs will ask you if you need to git clone the xero_iso build repo or if you have already"
+	echo "Once again, if abs is told you've already cloned the xero_iso build repo and it cannot find the xerolinux profile it will exit and ask to be called in the cloned repo directory."
+	echo "That is all for now. abs help will now ${fgRed}exit${txReset}. I hope this has been helpful."
+	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+	sed '$d' /etc/abs/misc/lastErr && echo \$err4 > /etc/abs/misc/lastErr
+	exit 4
+elif [[ $1 == "custom" || $1 == "Custom" || $1 == "CUSTOM" ]]; then
+	echo "Oki, let's get ready to build a custom iso using a user provided profile."
+	read -p "What is the name of the archiso profile abs will be building your iso with? : " archisoProfile
+	echo
+	echo "Scanning for provided archiso profile."
+	if [[ ! -d $archisoProfile ]]; then
+		echo "Couldn't find the archiso profile you provided in the current directory."
+		echo "Please change to the proper directory and call abs once more."
+		sed '$d' /etc/abs/misc/lastErr && echo \$err1 > /etc/abs/misc/lastErr
+		exit 1
+	else
+		echo "abs found your archiso profile. abs will now begin your iso's build process."
+		/etc/abs/misc/options/custom
+	fi
+elif [[ $1 == "xero" || $1 == "Xero" || $1 == "XERO" || $1 == "xerolinux" || $1 == "XeroLinux" || $1 == "Xerolinux" || $1 == "xeroLinux" ]]; then
+	echo "Oki, let's get ready to build a xero iso from the current up to date git build repo."
+	echo
+	echo "Scanning for xerolinux profile."
+	if [[ ! -d xerolinux ]]; then
+		echo "Couldn't find the xerolinux profile in the current directory."
+		echo "Please change to the proper directory and call abs once more."
+		sed '$d' /etc/abs/misc/lastErr && echo \$err2 > /etc/abs/misc/lastErr
+		exit 2
+	else
+		echo "abs found the xerolinux profile. abs will now begin the xero build process."
+		/etc/abs/misc/options/xero
+	fi
+elif [[ $1 == "last-error" ]]; then
+	cat /etc/abs/misc/lastErr
+else
+	echo "Sorry, abs does not recognize this option. Run ${fgCyan}abs help${txReset} for a list of accepted options and their brief descriptions."
+	sed '$d' /etc/abs/misc/lastErr && echo \$err3 > /etc/abs/misc/lastErr
+	exit 3
+fi
+
+# This bit handles abs being called with no options passed in through terminal
+	read -p "Are you looking to build a ${fgCyan}${txUnderline}custom${txReset} iso or ${fgCyan}${txUnderline}xero${txReset} iso? " answer
+	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+
+	finished='0'
+	while [ finished != 1 ]; do
+	case $answer in
+		custom | Custom | CUSTOM )
+			echo "Oki, building ${fgCyan}test${txReset} iso"
+			finished='1'
+			bash /etc/abs/buildScripts/testBuild.sh
+			sed '$d' /etc/abs/misc/lastErr && echo \$err0 > /etc/abs/misc/lastErr
+			exit 0
+			;;
+		xero | XERO | xerolinux | XeroLinux | Xerolinux | xeroLinux | XEROLINUX )
+			echo "Oki, building ${fgCyan}release${txReset} iso"
+			finished='1'
+			bash /etc/abs/buildScripts/releaseBuild.sh
+			sed '$d' /etc/abs/misc/lastErr && echo \$err0 > /etc/abs/misc/lastErr
+			exit 0
+			;;
+		* )
+			echo "Not a valid abs option. Enter ${fgCyan}${txUnderline}custom${txReset} or ${fgCyan}${txUnderline}xero${txReset}"
+			echo "Additionally you can run ${fgCyan}abs help${txReset} for abs options and descriptions."
+			read -p "Are you looking to build a ${fgCyan}${txUnderline}custom${txReset} iso or a ${fgCyan}${txUnderline}xero${txReset} iso? " answer
+			;;
+	esac
+	done
