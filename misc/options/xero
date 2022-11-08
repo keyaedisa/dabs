@@ -1,19 +1,18 @@
 #!/bin/bash
 
-
 # Written by Keyaedisa
 # Website in the works
 # Made specific to XeroLinuxKDE
 
 source /etc/abs/misc/.bashFormatting
 
-#trap_ctrlc() {
-#    echo "Ctrl-C detected. Exiting "
+trap_ctrlc() {
+    echo "Ctrl-C detected. Ending current abs session."
 #    sed '$d' /etc/abs/misc/lastErr && echo \$err5 > /etc/abs/misc/lastErr
-#    exit
-#}
+    exit
+}
 
-#trap "trap_ctrlc" 2
+trap "trap_ctrlc" 2
 
 checkSudo() {
     if [[ ${UID} -eq 0 ]]; then
