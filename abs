@@ -9,7 +9,7 @@ if [[ $1 == "help" ]]; then
 	echo "Currently abs only has two options: custom or xero. Read below for a brief description of each."
 	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 	echo "${txBold}custom${txReset}"
-	echo "The custom option for the building of ${txBold}any${txReset} ${txUnderline}archiso${txReset} profile you may be working on."
+	echo "The custom option is for the building of ${txBold}any${txReset} ${txUnderline}archiso${txReset} profile you may be working on."
 	echo "${txUnderline}It is not tied to or dependent on any arch iso or distribution${txReset}."
 	echo "This option is flexible and once again supports the building of basically any archiso profile you provide."
 	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
