@@ -3,7 +3,7 @@
 # NOTE: Please fill out the license field for your package! If it is unknown,
 # then please put 'unknown'.
 
-# Maintainer: Your Name <youremail@domain.com>
+# Maintainer: Your Name <keyaedisa>
 pkgname="abs"
 pkgver=2.0
 pkgrel=12
