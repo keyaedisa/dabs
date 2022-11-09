@@ -18,6 +18,8 @@ case may be? Reach out to me and we discuss the possibility of creating  an
 option in abs meant specifically for the build of your iso! A simplified,
 automated, and intelligent build process can be made for you!
 
+Instructions on how to install can be found at the bottom of this readme!
+
 # XeroLinux
 
 https://xerolinux.xyz
@@ -86,3 +88,10 @@ Good Luck and have fun!
 
 abs 3.0 is already on the drawing board and will be a massive leap in
 functionality from abs 2.0!
+
+# How to install
+Either download the latest release and install it using 'sudo pacman -U'
+or
+Go to https://github.com/keyaedisa/valen_repo and copy the the install command in the read to to automatically add Valen Reposity to your arch install!
+This method is preferred as it means you will always get latest updates as they are pushed, where as releases will be updated typically only on major updates!
+Once install script is ran, simpky run 'sudo pacman -S abs' to download the latest scripts!
