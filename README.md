@@ -18,6 +18,10 @@ case may be? Reach out to me and we discuss the possibility of creating  an
 option in abs meant specifically for the build of your iso! A simplified,
 automated, and intelligent build process can be made for you!
 
+# XeroLinux
+
+https://xerolinux.xyz
+
 I am proud to say that XeroLinux is abs's first example of this!
 XeroLinux is a reliably stable arch distro known for being eye candy!
 Formerly built with Arco's build scripts, it is now built with an abs option
