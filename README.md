@@ -1,7 +1,7 @@
 # abs Repo
 
-Welcome to the Official abs Source Repository! The latest built version of abs is hosted on my package repo called Valen and
-hosted at https:github.com/keyaedisa/valen_repo!
+Welcome to the Official abs Source Repository! The most recent compiled version of abs is hosted on my package repo called Valen and
+can be found at https:github.com/keyaedisa/valen_repo!
 
 abs is a terminual utility I wrote in bash meant to not only automate the build
 process of any archiso profile it is provided, but to also make it an
@@ -33,7 +33,7 @@ started! This functioniality and more provided by abs!
 
 # Features
 
-- abs is capable of updating your interactively updating your archiso profiles
+- abs is capable of updating your archiso profile interactively! updating your archiso profiles
   profiledef.sh!
 - abs can also update your dev-rel in your airootfs/etc/ directory!
 
@@ -45,19 +45,23 @@ Some of these checks include:
 - Making sure archiso is up to date
 - Making sure sudo permissions are not used innappropriately
 - Checking if you are in the correct directory
-- Ensuring that Valen Repo is avaiable  in both of your profiles pacman.conf's!
+- Ensuring that Valen Repo is present in both of the pacman.conf's in your archiso profile!
   Both for the live iso and what will become the post install system!
 - This and so much more!
+
+# Feature Request
 
 Have a feature you want to request? Reach out to me and I will see if I can get
 it on a priority list depending on it's ease of implementation of and
 usefulness!
 
-#Yes that's right
+# Yes that's right!
 
 abs CAN be used for your iso!
 
 If you don't have build scripts of your own do not fret, abs was made for you!
+
+If you have build scripts you dislike do not fret, abs was made for you!
 
 At last abs is production ready.
 
@@ -65,6 +69,8 @@ At last abs is production ready.
 
 abs can be ran with no options and it will list available options for you to
 choose!
+
+Or once you're familiar with abs you can simply pass it the option you want when first starting it!
 
 Since abs is still in it's infancy, currently there are only 3 available options.
 - custom : this option is to be used with your custom archiso profile!
