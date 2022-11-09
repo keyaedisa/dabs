@@ -1,7 +1,6 @@
 # abs Repo
 
-Welcome to the Official abs Source Repository! is the official abs repository!
-The latest built version of abs is hosted on my package repo called Valen and
+Welcome to the Official abs Source Repository! The latest built version of abs is hosted on my package repo called Valen and
 hosted at https:github.com/keyaedisa/valen_repo!
 
 abs is a terminual utility I wrote in bash meant to not only automate the build
