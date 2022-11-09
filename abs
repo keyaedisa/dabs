@@ -2,12 +2,11 @@
 set -e
 
 source /etc/abs/misc/.bashFormatting
-#source /etc/abs/misc/errCodes
-
-# This bit handles abs being called with options passed in through terminal
 
 if [[ $1 == "help" ]]; then
-	echo "Currently abs only has two options: custom or xero. Read below for a brief description of each."
+	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+	echo "Currently abs only has two options besides help: ${fgCyan}custom${txReset} or ${fgCyan}xero${txReset}."
+	echo "Read below for a brief description of each."
 	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 	echo "${txBold}custom${txReset}"
 	echo "The custom option is for the building of ${txBold}any${txReset} ${txUnderline}archiso${txReset} profile you may be working on."
@@ -63,7 +62,7 @@ elif [[ $1 == "xero" || $1 == "Xero" || $1 == "XERO" || $1 == "xerolinux" || $1 
 #	cat /etc/abs/misc/lastErr
 else
 #	echo "Sorry, abs does not recognize this option. Run ${fgCyan}abs help${txReset} for a list of accepted options and their brief descriptions."
-	read -p "Are you looking to build a ${fgCyan}${txUnderline}custom${txReset} iso or ${fgCyan}${txUnderline}xero${txReset} iso? " answer
+	read -p "Are you looking to build a ${fgCyan}${txUnderline}custom${txReset} iso or ${fgCyan}${txUnderline}xero${txReset} iso? or do you need ${fgPurple}help${txReset}? " answer
 	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 
 	finished='0'
@@ -91,6 +90,4 @@ else
 	esac
 	done
 fi
-
-# This bit handles abs being called with no options passed in through terminal
 

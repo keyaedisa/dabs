@@ -49,6 +49,7 @@ Some of these checks include:
 Have a feature you want to request? Reach out to me and I will see if I can get
 it on a priority list depending on it's ease of implementation of and
 usefulness!
+
 #Yes that's right
 
 abs CAN be used for your iso!
@@ -56,12 +57,13 @@ abs CAN be used for your iso!
 If you don't have build scripts of your own do not fret, abs was made for you!
 
 At last abs is production ready.
+
 # How to use abs
 
 abs can be ran with no options and it will list available options for you to
 choose!
 
-Since abs is still in it's infancy, there are only 3 available options.
+Since abs is still in it's infancy, currently there are only 3 available options.
 - custom : this option is to be used with your custom archiso profile!
 - xero : this option starts an interactive process to build XeroLinux from
 latest git!

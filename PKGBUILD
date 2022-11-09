@@ -6,7 +6,7 @@
 # Maintainer: Your Name <youremail@domain.com>
 pkgname="abs"
 pkgver=2.0
-pkgrel=9
+pkgrel=12
 epoch=
 pkgdesc="Set of scripts designed to automate the archiso build process after making updates to the provided archiso profile. Bundled together as a command line utility that can be called by entering abs in your terminal!"
 arch=('x86_64')
