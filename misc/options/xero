@@ -14,6 +14,24 @@ trap_ctrlc() {
 
 trap "trap_ctrlc" 2
 
+doesProfilePMCHaveValen () {
+	pmanConf=$(cat $profile/airootfs/etc/pacman.conf)
+	if [[ "$pmanConf" =~ "keyaedisa" ]]; then
+    	echo "Repo found in $profile/airootfs/etc/pacman.conf"
+	else
+ 		echo "Repo not found in $profile/airootfs/etc/pacman.conf! Will now add!"
+    	curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/airootfs/etc/pacman.conf
+  		curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/pacman.conf
+	fi
+	pmanConf=$(cat $profile/pacman.conf)
+	if [[ "$pmanConf" =~ "keyaedisa" ]]; then
+    	echo "Repo found in $profile/pacman.conf"
+	else
+    	echo "Repo not found in $profile/pacman.conf! Will now add!"
+  		curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/pacman.conf
+	fi
+}
+
 checkSudo() {
     if [[ ${UID} -eq 0 ]]; then
         echo "Must ${txBold}${fgRed}NOT${txReset} run abs as root!"
@@ -72,6 +90,10 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 	checkInternetConnection
 	isArchisoUpToDate
 
+echo "Checking if your profiles pacman.conf's have abs package repo."
+
+	doesProfilePMCHaveValen
+
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo "${fgCyan}Step 3${txReset}:Getting ready to ${fgCyan}build the iso${txReset}!"
 echo "Will be ${txUnderline}${fgRed}deleting${txReset} previous work directory ${txUnderline}if${txReset} one exists!"
@@ -83,6 +105,9 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 	else
 		echo "${fgCyan}No${txReset} previous work directory found. Moving on!" && sleep 1.3
 	fi
+
+echo "Checking your profiles pacman.conf and adding abs package repo if not already present"
+
 
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo "${fgCyan}Step 3.5${txReset}: Optionally updating ${fgCyan}references${txReset} and ${fgCyan}profiledef.sh${txReset}!"

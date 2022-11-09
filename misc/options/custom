@@ -6,12 +6,31 @@
 source /etc/abs/misc/.bashFormatting
 
 trap_ctrlc() {
+	echo
     echo "Ctrl-C detected. Ending current abs session."
 #    sed -i '/lastErr/c lastErr=$err5' /etc/abs/misc/lastErr
     exit
 }
 
-#trap "trap_ctrlc" 2
+trap "trap_ctrlc" 2
+
+doesProfilePMCHaveValen () {
+	pmanConf=$(cat $profile/airootfs/etc/pacman.conf)
+	if [[ "$pmanConf" =~ "keyaedisa" ]]; then
+    	echo "Repo found in $profile/airootfs/etc/pacman.conf"
+	else
+ 		echo "Repo not found in $profile/airootfs/etc/pacman.conf! Will now add!"
+    	curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/airootfs/etc/pacman.conf
+  		curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/pacman.conf
+	fi
+	pmanConf=$(cat $profile/pacman.conf)
+	if [[ "$pmanConf" =~ "keyaedisa" ]]; then
+    	echo "Repo found in $profile/pacman.conf"
+	else
+    	echo "Repo not found in $profile/pacman.conf! Will now add!"
+  		curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/pacman.conf
+	fi
+}
 
 checkSudo() {
     if [[ ${UID} -eq 0 ]]; then
@@ -73,6 +92,10 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 
 	checkInternetConnection
 	isArchisoUpToDate
+	
+echo "Checking if your profiles pacman.conf's have abs package repo."
+
+	doesProfilePMCHaveValen
 
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo "${fgCyan}Step 3${txReset}:Getting ready to ${fgCyan}build the iso${txReset}!"

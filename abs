@@ -26,11 +26,10 @@ if [[ $1 == "help" ]]; then
 #	echo "${txBold}last-error${txReset}"
 #	echo "Adding this option to abs will print last exit/err code abs set when last ran."
 #	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
-	echo "{txBold}Passing options to abs in terminal${txReset}"
+	echo "${txBold}Passing options to abs in terminal${txReset}"
 	echo "abs can also be called with either of these options directly from terminal"
 	echo "If abs is called with the xero option however, abs will ask you if you need to git clone the xero_iso build repo or if you have already"
 	echo "Once again, if abs is told you've already cloned the xero_iso build repo and it cannot find the xerolinux profile it will exit and ask to be called in the cloned repo directory."
-	echo "That is all for now. abs help will now ${fgRed}exit${txReset}. I hope this has been helpful."
 	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 elif [[ $1 == "custom" || $1 == "Custom" || $1 == "CUSTOM" ]]; then
 	echo "Oki, let's get ready to build a custom iso using a user provided profile."
