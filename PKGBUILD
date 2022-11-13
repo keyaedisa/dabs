@@ -40,7 +40,7 @@ package() {
 	mkdir -p "${pkgdir}/etc/abs/"
 	cp -rf "${srcdir}/gclone/misc/" "${pkgdir}/etc/abs/"
 	cp -rf "${srcdir}/gclone/options/" "${pkgdir}/etc/abs/"
-	cp "${srcdir}/gclone/.options/" "${pkgdir}/etc/abs/"
+	cp "${srcdir}/gclone/.options" "${pkgdir}/etc/abs/"
 	rm -r "../gclone"
 	rm -r "${srcdir}"
 }
