@@ -1,0 +1,34 @@
+#!/bin/bash
+
+help() {
+	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+	echo "abs can be ran with no options or abs can be called with an available option directly from terminal."
+	echo "If abs is ran with no options a prompt will tell you the available options and ask which you'd like to run."
+	echo "Currently abs only has three options: ${fgCyan}custom${txReset}, ${fgCyan}xero${txReset}, or ${fgCyan}help${txReset}."
+	echo "Read below for a brief description of each."
+	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+	echo "${txBold}custom${txReset}"
+	echo "ex: ${fgCyan}abs custom${txReset}, ${fgCyan}abs -c${txReset}, ${fgCyan}abs -C${txReset}"
+	echo "The custom option is for the building of ${txBold}any${txReset} ${txUnderline}archiso${txReset} profile you may be working on."
+	echo "${txUnderline}It is not tied to or dependent on any arch iso or distribution${txReset}."
+	echo "This option is flexible and once again supports the building of basically any archiso profile ${txUnderline}you provide${txReset}."
+	echo "When abs is provided a profile it will look for it in the current directory. If not found it will exit and ask to be ran in the directory containing the profile"
+	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+	echo "${txBold}xero${txReset}"
+	echo "ex: ${fgCyan}abs xero${txReset}, ${fgCyan}abs -x${txReset}, ${fgCyan}abs -X${txReset}"
+	echo "The xero option is dedicated to the build of ${fgCyan}XeroLinux${txReset} using the the ${txUnderline}xero_iso git repo${txReset} as its source."
+	echo "This option will ask you if you need to clone the xero_iso git repo or ask you if you have already done so."
+	echo "If you tell abs to clone the xero_iso git repo for you it will do so and place it in your ${txUnderline}home directory${txReset}."
+	echo "The home directory is chosen so that you can easily move the cloned xero_iso build repo directory wherever you desire if need be."
+	echo "In the future I may make abs smart enough to ask where you want the cloned repo to end up and clone to your chosen destination."
+	echo "If you tell abs that you have already cloned the xero_iso git repo, abs will look for the xero profile."
+	echo "If abs cannot find the xero profile in the directory it's been called, abs will ${fgRed}exit${txReset} and ask that you ${txUnderline}cd to the cloned xero_iso repo and call abs again${txReset}."
+	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+	echo "${txBold}help${txReset}"
+	echo "ex: ${fgCyan}abs help${txReset}, ${fgCyan}abs -h${txReset}, ${fgCyan}abs -H${txReset}"
+	echo "The help option will bring up this menu you see here."
+	echo "If you have any other questions or issues reach out or open a ticket at ${fgCyan}https://github.com/keyaedisa/abs${txReset}"
+	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+}
+
+help
