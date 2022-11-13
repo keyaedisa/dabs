@@ -12,6 +12,36 @@ trap_ctrlc() {
 
 trap "trap_ctrlc" 2
 
+
+cloneGit() {
+	read -p "Would you like to clone the latest ${1} git to your home directory?" YN
+	echo
+	finished="0"
+	while [ finished == 0 ]; do
+	case $YN in
+		y | Y | yes | Yes | YES )
+			echo "Oki, cloning repo now."
+			cd
+			if [[ $1 == 'xero' ]]; then
+				git clone https://github.com/xerolinux/xero_iso.git
+			elif [[ $1 == 'xerog' ]]; then
+				git clone https://github.com/XeroLinuxDev/xero_g_iso.git
+			else
+				echo "This never happens. Congrats"
+			fi
+			echo "Done."
+			;;
+		n | N | no | No | NO )
+			echo "Oki. abs will not clone. Please run abs in the directory containing the xero profile"
+			;;
+		* )
+			echo "abs does not understand your response. Please try again. ${fgGreen}Y${txReset} or ${fgRed}N${txReset}."
+			read -p "Would you like to clone the latest $1 git to your home directory?" YN
+			;;
+	esac
+	done
+}
+
 absC() {
 	echo "Oki, let's get ready to build a custom iso using a user provided profile."
 	read -p "What is the name of the archiso profile abs will be building your iso with? : " archisoProfile
@@ -27,15 +57,28 @@ absC() {
 }
 
 absX() {
-	echo "Oki, let's get ready to build a xero iso from the current up to date git build repo."
+	echo "Oki, let's get ready to build a Xero iso from the provided xero profile."
 	echo
-	echo "Scanning for xerolinux profile."
-	if [[ ! -d xerolinux ]]; then
+	echo "Scanning for Xero profile."
+	if [[ ! -d Xero ]]; then
 		echo "Couldn't find the xerolinux profile in the current directory."
-		echo "Please change to the proper directory and call abs once more."
+		clonegit xero
 	else
 		echo "abs found the xerolinux profile. abs will now begin the xero build process." && sleep 1.7
 		xero
+	fi
+}
+
+absXg() {
+	echo "Oki, let's get ready to build a XeroG iso from the provided XeroG profile."
+	echo
+	echo "Scanning for XeroG profile."
+	if [[ ! -d XeroG ]]; then
+		echo "Couldn't find the xerolinux profile in the current directory."
+		clonegit xerog
+	else
+		echo "abs found the xerolinux profile. abs will now begin the xero build process." && sleep 1.7
+		xerog
 	fi
 }
 
@@ -59,6 +102,10 @@ else
 		xero | XERO | xerolinux | XeroLinux | Xerolinux | xeroLinux | XEROLINUX | -x | -X )
 			finished='1'
 			absX
+			;;
+		XeroG | xerog | Xerog )
+			finished='1'
+			absXg
 			;;
 		help | -h | -H | HELP | help )
 			helpOpt

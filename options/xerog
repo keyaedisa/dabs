@@ -64,7 +64,6 @@ isArchisoUpToDate () {
 	fi
 }
 
-
 cloneGit() {
 	read -p "Would you like to clone the latest ${1} git to your home directory?" YN
 	echo
@@ -97,11 +96,11 @@ cloneGit() {
 checkSudo
 
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
-echo "${fgCyan}Step 1${txReset}: Getting ready to build ${fgCyan}XeroLinux${txReset}!"
+echo "${fgCyan}Step 1${txReset}: Getting ready to build ${fgCyan}XeroLinux Gnome${txReset}!"
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 
 	sudo sed -i 's/quiet="y"/quiet="n"/g' /usr/bin/mkarchiso
-	profile=Xero
+	profile=XeroG
 	profiledef=$profile/profiledef.sh
 	buildDir=$HOME"/${profile}-Build"
 	outDir=$HOME"/${profile}-Out"
@@ -110,7 +109,7 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 if [[ ! -d $profile ]]; then
 	echo "Couldn't find ${fgRed}${profile}${txReset}! Are you sure you're in the correct directory?"
 #	sed '$d' /etc/abs/misc/lastErr && echo \$err1 > /etc/abs/misc/lastErr
-	cloneGit xero
+	gitClone xerog
 	exit
 fi
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset

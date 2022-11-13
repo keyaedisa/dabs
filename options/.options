@@ -10,6 +10,11 @@ xero() {
  exit
 }
 
+xerog() {
+ source /etc/abs/options/xerog
+ exit
+}
+
 helpOpt() {
  source /etc/abs/options/help
  exit
