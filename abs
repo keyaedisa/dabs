@@ -88,6 +88,8 @@ elif [[ $1 == "custom" || $1 == "Custom" || $1 == "CUSTOM" || $1 == "-c" || $1 =
 	absC
 elif [[ $1 == "xero" || $1 == "Xero" || $1 == "XERO" || $1 == "xerolinux" || $1 == "XeroLinux" || $1 == "Xerolinux" || $1 == "xeroLinux" || $1 == "-x" || $1 == "-X" ]]; then
 	absX
+elif  [[ $1 == "xerog" || $1 == "Xerog" || $1 == "XeroG" ]]; then
+	absXg
 elif [[ -n $1 ]]; then
 	echo "Sorry, abs does not recognize this option. Run ${fgCyan}abs -help${txReset} for a list of accepted options and their brief descriptions."
 else
