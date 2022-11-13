@@ -6,7 +6,7 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="abs"
 pkgver=2.1
-pkgrel=2
+pkgrel=3
 epoch=
 pkgdesc="Set of scripts designed to automate the archiso build process after making updates to the provided archiso profile. Bundled together as a command line utility that can be called by entering abs in your terminal!"
 arch=('x86_64')
@@ -39,6 +39,8 @@ package() {
 	cp "${srcdir}/gclone/abs" "${pkgdir}/usr/local/bin/abs"
 	mkdir -p "${pkgdir}/etc/abs/"
 	cp -rf "${srcdir}/gclone/misc/" "${pkgdir}/etc/abs/"
+	cp -rf "${srcdir}/gclone/options/" "${pkgdir}/etc/abs/"
+	cp "${srcdir}/gclone/.options/" "${pkgdir}/etc/abs/"
 	rm -r "../gclone"
 	rm -r "${srcdir}"
 }

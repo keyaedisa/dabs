@@ -1,10 +1,11 @@
 #!/bin/bash
 #set -e
 
-source /etc/abs/misc/*
+source /etc/abs/misc/.bashFormatting
+source /etc/abs/.options
 
 if [[ $1 == "help" || $1 == "-help" || $1 == "-h" || $1 == "-H" ]]; then
-	help
+	helpOpt
 elif [[ $1 == "custom" || $1 == "Custom" || $1 == "CUSTOM" || $1 == "-c" || $1 == "-C" ]]; then
 	echo "Oki, let's get ready to build a custom iso using a user provided profile."
 	read -p "What is the name of the archiso profile abs will be building your iso with? : " archisoProfile
@@ -16,7 +17,7 @@ elif [[ $1 == "custom" || $1 == "Custom" || $1 == "CUSTOM" || $1 == "-c" || $1 =
 #		exit 1
 	else
 		echo "abs found your archiso profile. abs will now begin your iso's build process."
-		/etc/abs/misc/options/custom
+		custom
 	fi
 elif [[ $1 == "xero" || $1 == "Xero" || $1 == "XERO" || $1 == "xerolinux" || $1 == "XeroLinux" || $1 == "Xerolinux" || $1 == "xeroLinux" || $1 == "-x" || $1 == "-X" ]]; then
 	echo "Oki, let's get ready to build a xero iso from the current up to date git build repo."
@@ -28,13 +29,13 @@ elif [[ $1 == "xero" || $1 == "Xero" || $1 == "XERO" || $1 == "xerolinux" || $1 
 #		exit 1
 	else
 		echo "abs found the xerolinux profile. abs will now begin the xero build process." && sleep 1.7
-		/etc/abs/misc/options/xero
+		xero
 #		exit 1
 	fi
 elif [[ -n $1 ]]; then
 	echo "Sorry, abs does not recognize this option. Run ${fgCyan}abs -help${txReset} for a list of accepted options and their brief descriptions."
 else
-	read -p "Are you looking to build a ${fgCyan}${txUnderline}custom${txReset} iso or ${fgCyan}${txUnderline}xero${txReset} iso? or do you need ${fgPurple}help${txReset}? " answer
+	read -p "Are you looking to build a ${fgCyan}${txUnderline}custom${txReset} iso or ${fgCyan}${txUnderline}xero${txReset} iso or do you need ${fgRed}help${txReset}? " answer
 	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 
 	finished='0'
@@ -43,17 +44,18 @@ else
 		custom | Custom | CUSTOM | -C | -c )
 			echo "Oki, building ${fgCyan}custom${txReset} iso"
 			finished='1'
-			bash /etc/abs/misc/options/custom
+			custom
 #			exit 1
 			;;
 		xero | XERO | xerolinux | XeroLinux | Xerolinux | xeroLinux | XEROLINUX | -x | -X )
 			echo "Oki, building ${fgCyan}xerolinux${txReset} iso"
 			finished='1'
-			bash /etc/abs/misc/options/xero
+			xero
 #			exit 1
 			;;
 		help | -h | -H | HELP | help )
-			
+			helpOpt
+			;;
 		* )
 			echo "Not a valid abs option. Enter ${fgCyan}${txUnderline}custom${txReset} or ${fgCyan}${txUnderline}xero${txReset}"
 			echo "Additionally you can run ${fgCyan}abs help${txReset} for abs options and descriptions."
