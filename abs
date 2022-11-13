@@ -4,6 +4,14 @@
 source /etc/abs/misc/.bashFormatting
 source /etc/abs/.options
 
+trap_ctrlc() {
+	echo
+    echo "Ctrl-C detected. Ending current abs session."
+    exit
+}
+
+trap "trap_ctrlc" 2
+
 absC() {
 	echo "Oki, let's get ready to build a custom iso using a user provided profile."
 	read -p "What is the name of the archiso profile abs will be building your iso with? : " archisoProfile
@@ -41,8 +49,6 @@ elif [[ -n $1 ]]; then
 	echo "Sorry, abs does not recognize this option. Run ${fgCyan}abs -help${txReset} for a list of accepted options and their brief descriptions."
 else
 	read -p "Are you looking to build a ${fgCyan}${txUnderline}custom${txReset} iso or ${fgCyan}${txUnderline}xero${txReset} iso or do you need ${fgRed}help${txReset}? " answer
-	echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
-
 	finished='0'
 	while [ finished != 1 ]; do
 	case $answer in
