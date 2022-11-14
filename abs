@@ -62,7 +62,7 @@ absX() {
 	echo "Scanning for Xero profile."
 	if [[ ! -d Xero ]]; then
 		echo "Couldn't find the xerolinux profile in the current directory."
-		clonegit xero
+		cloneGit xero
 	else
 		echo "abs found the xerolinux profile. abs will now begin the xero build process." && sleep 1.7
 		xero
@@ -75,7 +75,7 @@ absXg() {
 	echo "Scanning for XeroG profile."
 	if [[ ! -d XeroG ]]; then
 		echo "Couldn't find the xerolinux profile in the current directory."
-		clonegit xerog
+		cloneGit xerog
 	else
 		echo "abs found the xerolinux profile. abs will now begin the xero build process." && sleep 1.7
 		xerog
