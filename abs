@@ -32,9 +32,9 @@ cloneGit() {
 			elif [[ $profileSelection == "xerog" ]]; then
 				if [[ -d ~/xero_g_iso ]]; then
 					rm -rf ~/xero_g_iso
-					git clone https://github.com/XeroLinuxDev/xero_g_iso.git ~/xero_g_iso
+					git clone https://github.com/xerolinux/xero_g_iso.git ~/xero_g_iso
 				else
-					git clone https://github.com/XeroLinuxDev/xero_g_iso.git ~/xero_g_iso
+					git clone https://github.com/xerolinux/xero_g_iso.git ~/xero_g_iso
 				fi
 			else
 				echo "This never happens. Congrats"
