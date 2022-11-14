@@ -275,7 +275,7 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 sleep 5
 
 done="0"
-while [ done != 1 ]; do 
+while [ $done != 1 ]; do 
 read -p "Do you want to enable verbose out for mkarchiso? Is great for scanning for weird errors. (${fgGreen}y${txReset}/${fgRed}n${txReset}) " YN
 case $YN in
 	y | Y | yes | Yes | YES )

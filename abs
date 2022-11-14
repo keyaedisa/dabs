@@ -56,16 +56,16 @@ cloneGit() {
 
 absC() {
 	echo "Oki, let's get ready to build a custom iso using a user provided profile."
-	read -p "What is the name of the archiso profile abs will be building your iso with? : " archisoProfile
-	echo
-	echo "Scanning for provided archiso profile."
-	if [[ ! -d $archisoProfile ]]; then
-		echo "Couldn't find the archiso profile you provided in the current directory."
-		echo "Please change to the proper directory and call abs once more."
-	else
-		echo "abs found your archiso profile. abs will now begin your iso's build process."
-		custom
-	fi
+#	read -p "What is the name of the archiso profile abs will be building your iso with? : " archisoProfile
+#	echo
+#	echo "Scanning for provided archiso profile."
+#	if [[ ! -d $archisoProfile ]]; then
+#		echo "Couldn't find the archiso profile you provided in the current directory."
+#		echo "Please change to the proper directory and call abs once more."
+#	else
+#		echo "abs found your archiso profile. abs will now begin your iso's build process."
+	custom
+#	fi
 }
 
 absX() {
