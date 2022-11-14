@@ -65,28 +65,30 @@ isArchisoUpToDate () {
 }
 
 cloneGit() {
-	read -p "Would you like to clone the latest ${1} git to your home directory? (${fgGreen}Y${txReset}/${fgRed}N${txReset}: " YN
-	echo
+	read -p "Would you like to clone the latest ${1} git to your home directory? (${fgGreen}Y${txReset}/${fgRed}N${txReset}): " YN
 	finished="0"
-	while [ finished == 0 ]; do
+	profileSelection=$1
+	while [ finished != 1 ]; do
 	case $YN in
 		y | Y | yes | Yes | YES )
 			echo "Oki, cloning repo now."
-			if [[ $1 == "xero" ]]; then
+			if [[ $profileSelection == "xero" ]]; then
 				git clone https://github.com/xerolinux/xero_iso.git ~/xero_iso
-			elif [[ $1 == "xerog" ]]; then
+			elif [[ $profileSelection == "xerog" ]]; then
 				git clone https://github.com/XeroLinuxDev/xero_g_iso.git ~/xero_g_iso
 			else
 				echo "This never happens. Congrats"
 			fi
+			finished='1'
 			echo "Done."
 			;;
 		n | N | no | No | NO )
 			echo "Oki. abs will not clone. Please run abs in the directory containing the xero profile"
+			finished='1'
 			;;
 		* )
 			echo "abs does not understand your response. Please try again. ${fgGreen}Y${txReset} or ${fgRed}N${txReset}."
-			read -p "Would you like to clone the latest $1 git to your home directory?" YN
+			read -p "Would you like to clone the latest ${1} git to your home directory?: " YN
 			;;
 	esac
 	done
