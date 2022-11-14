@@ -65,18 +65,17 @@ isArchisoUpToDate () {
 }
 
 cloneGit() {
-	read -p "Would you like to clone the latest ${1} git to your home directory?" YN
+	read -p "Would you like to clone the latest ${1} git to your home directory? (${fgGreen}Y${txReset}/${fgRed}N${txReset}: " YN
 	echo
 	finished="0"
 	while [ finished == 0 ]; do
 	case $YN in
 		y | Y | yes | Yes | YES )
 			echo "Oki, cloning repo now."
-			cd
-			if [[ $1 == 'xero' ]]; then
-				git clone https://github.com/xerolinux/xero_iso.git
-			elif [[ $1 == 'xerog' ]]; then
-				git clone https://github.com/XeroLinuxDev/xero_g_iso.git
+			if [[ $1 == "xero" ]]; then
+				git clone https://github.com/xerolinux/xero_iso.git ~/xero_iso
+			elif [[ $1 == "xerog" ]]; then
+				git clone https://github.com/XeroLinuxDev/xero_g_iso.git ~/xero_g_iso
 			else
 				echo "This never happens. Congrats"
 			fi
