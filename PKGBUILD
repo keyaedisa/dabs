@@ -5,8 +5,8 @@
 
 # Maintainer: Your Name <keyaedisa>
 pkgname="abs"
-pkgver=2.1
-pkgrel=12
+pkgver=2.2
+pkgrel=1
 epoch=
 pkgdesc="Command line utility to automate the building of an arch iso using a user provided profile! Also the official way to build XeroLinux!"
 arch=('x86_64')

@@ -14,26 +14,37 @@ trap "trap_ctrlc" 2
 
 
 cloneGit() {
-	read -p "Would you like to clone the latest ${1} git to your home directory? (${fgGreen}Y${txReset}/${fgRed}N${txReset}): " YN
+	read -p "Would you like to clone the latest ${1} git to your home directory? ${fgRed}Warning${txReset}! This will replace this repo in your home directory if it already exists! (${fgGreen}Y${txReset}/${fgRed}N${txReset}): " YN
 	finished="0"
 	profileSelection=$1
-	while [ finished != 1 ]; do
+	while [[ $finished != 1 ]]; do
 	case $YN in
 		y | Y | yes | Yes | YES )
+
 			echo "Oki, cloning repo now."
 			if [[ $profileSelection == "xero" ]]; then
-				git clone https://github.com/xerolinux/xero_iso.git ~/xero_iso
+				if [[ -d ~/xero_iso ]]; then
+					rm -rf ~/xero_iso
+					git clone https://github.com/xerolinux/xero_iso.git ~/xero_iso
+				else
+					git clone https://github.com/xerolinux/xero_iso.git ~/xero_iso
+				fi
 			elif [[ $profileSelection == "xerog" ]]; then
-				git clone https://github.com/XeroLinuxDev/xero_g_iso.git ~/xero_g_iso
+				if [[ -d ~/xero_g_iso ]]; then
+					rm -rf ~/xero_g_iso
+					git clone https://github.com/XeroLinuxDev/xero_g_iso.git ~/xero_g_iso
+				else
+					git clone https://github.com/XeroLinuxDev/xero_g_iso.git ~/xero_g_iso
+				fi
 			else
 				echo "This never happens. Congrats"
 			fi
-			finished='1'
+			finished="1"
 			echo "Done."
 			;;
 		n | N | no | No | NO )
 			echo "Oki. abs will not clone. Please run abs in the directory containing the xero profile"
-			finished='1'
+			finished="1"
 			;;
 		* )
 			echo "abs does not understand your response. Please try again. ${fgGreen}Y${txReset} or ${fgRed}N${txReset}."
@@ -62,8 +73,11 @@ absX() {
 	echo
 	echo "Scanning for Xero profile."
 	if [[ ! -d Xero ]]; then
-		echo "Couldn't find the xerolinux profile in the current directory."
+		echo "Couldn't find the xero profile in the current directory."
 		cloneGit xero
+		echo "Changing directory to just cloned repo and beginning build process." && sleep 1.7
+		cd ~/xero_iso
+		xero
 	else
 		echo "abs found the xerolinux profile. abs will now begin the xero build process." && sleep 1.7
 		xero
@@ -77,6 +91,9 @@ absXg() {
 	if [[ ! -d XeroG ]]; then
 		echo "Couldn't find the XeroG profile in the current directory."
 		cloneGit xerog
+		echo "Changing directory to just cloned repo and beginning build process." && sleep 1.7
+		cd ~/xero_g_iso
+		xerog
 	else
 		echo "abs found the xerolinux profile. abs will now begin the xero build process." && sleep 1.7
 		xerog
