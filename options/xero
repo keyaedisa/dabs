@@ -132,9 +132,9 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 	checkInternetConnection
 	isArchisoUpToDate
 
-echo "Checking if your profiles pacman.conf's have abs package repo."
+#echo "Checking if your profiles pacman.conf's have abs package repo."
 
-	doesProfilePMCHaveValen
+#	doesProfilePMCHaveValen
 
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo "${fgCyan}Step 3${txReset}:Getting ready to ${fgCyan}build the iso${txReset}!"
@@ -309,7 +309,7 @@ sleep 5
 sudo mkarchiso -v -w $buildDir -o $outDir $profile
 sudo chown -R $user $buildDir
 sudo chown -R $user $outDir
-cp $buildDir/iso/arch/pkglist.x86_64.txt  $outDir/xerolinux-$(date +%Y.%m.%d)-pkglist.txt
+cp $buildDir/iso/arch/pkglist.x86_64.txt  $outDir/Xero-$(date +%Y.%m)-pkglist.txt
 
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 echo "${fgCyan}Done!${txReset} Look in ${txBold}${outFolder}${txReset} for your ${txUnderline}build and iso folder${txReset}!"
