@@ -291,7 +291,7 @@ case $YN in
 		sudo mkarchiso -w $buildDir -o $outDir $profile
 		sudo chown -R $user $buildDir
 		sudo chown -R $user $outDir
-		cp $buildDir/iso/arch/pkglist.x86_64.txt  $outDir/xerolinux-$(date +%Y.%m.%d)-pkglist.txt
+		cp $buildDir/iso/$profile/pkglist.x86_64.txt  $outDir/xerolinux-$(date +%Y.%m.%d)-pkglist.txt
 		done="1"
 		;;
 	* )
