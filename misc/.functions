@@ -130,6 +130,7 @@ isArchisoUpToDate () {
 			n | no | No | N )
 				echo "Sorry to see that. Unfortunately we can ${fgRed}no longer${txReset} continue. Good day!"
 				exit
+				;;
 			* )
 				echo "${BT} does not understand what you said. Try again. (${fgGreen}y${txReset}/${fgRed}n${txReset})"
 				;;
