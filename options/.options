@@ -2,22 +2,22 @@
 
 custom() {
  source /etc/absd/options/custom
- exit
+# exit
 }
 
 xero() {
  source /etc/absd/options/xero
- exit
+# exit
 }
 
 xerog() {
  source /etc/absd/options/xerog
- exit
+# exit
 }
 
 helpOpt() {
  source /etc/absd/options/help
- exit
+# exit
 }
 
 listOpt() {
