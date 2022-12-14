@@ -194,31 +194,7 @@ echo
 echo "Build ${fgCyan}starts${txReset} in ${fgRed}5 seconds${txReset}!"
 sleep 5
 
-done="0"
-while [ $done != 1 ]; do 
-read -p "Do you want to enable verbose out for mkarchiso? Is great for scanning for weird errors. (${fgGreen}y${txReset}/${fgRed}n${txReset}) " YN
-case $YN in
-	y | Y | yes | Yes | YES )
-		echo "Oki. Building ISO ${fgCyan}with${txReset} verbose output!"
-		sudo mkarchiso -v -w $buildDir -o $outDir $profile
-		sudo chown -R $user $buildDir
-		sudo chown -R $user $outDir
-		cp $buildDir/iso/arch/pkglist.x86_64.txt  $outDir/xerolinux-$(date +%Y.%m.%d)-pkglist.txt
-		done="1"
-		;;
-	n | N | no | No | NO )
-		echo "Oki. Building ISO ${fgCyan}without${txReset} verbose output!"
-		sudo mkarchiso -w $buildDir -o $outDir $profile
-		sudo chown -R $user $buildDir
-		sudo chown -R $user $outDir
-		cp $buildDir/iso/$profile/pkglist.x86_64.txt  $outDir/xerolinux-$(date +%Y.%m.%d)-pkglist.txt
-		done="1"
-		;;
-	* )
-		echo "${fgRed}Invalid${txReset} response. ${txUnderline}Try again${txReset}. Either ${fgGreen}Yes${txReset} or ${fgRed}No${txReset}."
-		;;
-esac
-done
+mkarchisoVerboseCheck
 
 echo
 echo "${fgCyan}Done!${txReset} Look in ${txBold}${outDir}${txReset} for your ${txUnderline}build and ISO folder${txReset}!"

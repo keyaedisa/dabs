@@ -10,108 +10,6 @@ trap_ctrlc() {
 
 trap "trap_ctrlc" 2
 
-
-cloneGit() {
-	read -p "Would you like to clone the latest ${1} git to your home directory? ${fgRed}Warning${txReset}! This will replace this repo in your home directory if it already exists! (${fgGreen}Y${txReset}/${fgRed}N${txReset}): " YN
-	finished="0"
-	profileSelection=$1
-	while [[ $finished != 1 ]]; do
-	case $YN in
-		y | Y | yes | Yes | YES )
-
-			echo "Oki, cloning repo now."
-			if [[ $profileSelection == "xero" ]]; then
-				if [[ -d ~/xero_iso ]]; then
-					rm -rf ~/xero_iso
-					git clone https://github.com/xerolinux/xero_iso.git ~/xero_iso
-				else
-					git clone https://github.com/xerolinux/xero_iso.git ~/xero_iso
-				fi
-			elif [[ $profileSelection == "xerog" ]]; then
-				if [[ -d ~/xero_g_iso ]]; then
-					rm -rf ~/xero_g_iso
-					git clone https://github.com/xerolinux/xero_g_iso.git ~/xero_g_iso
-				else
-					git clone https://github.com/xerolinux/xero_g_iso.git ~/xero_g_iso
-				fi
-			else
-				echo "This never happens. Congrats"
-			fi
-			finished="1"
-			echo "Done."
-			;;
-		n | N | no | No | NO )
-			echo "Oki. ${BT} will not clone. Please run ${BT} in the directory containing the xero profile"
-			finished="1"
-			;;
-		* )
-			echo "${BT} does not understand your response. Please try again. ${fgGreen}Y${txReset} or ${fgRed}N${txReset}."
-			read -p "Would you like to clone the latest ${1} git to your home directory?: " YN
-			;;
-	esac
-	done
-}
-
-valenRepoAdder () {
-
- fin='0'
- while [[ $fin = '0' ]]; do
- case $1 in
- 	y | Y | yes | Yes )
-		pmanConf=$(cat $profile/airootfs/etc/pacman.conf)
-		if [[ "$pmanConf" =~ "valen_repo" ]]; then
-			echo "Repo found in $profile/airootfs/etc/pacman.conf"
-		else
-			echo "Repo not found in $profile/airootfs/etc/pacman.conf! Will now add!"
-			curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '19,20p' >> $profile/airootfs/etc/pacman.conf
-			curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '19,20p' >> $profile/pacman.conf
-		fi
-		pmanConf=$(cat $profile/pacman.conf)
-		if [[ "$pmanConf" =~ "valen_repo" ]]; then
-			echo "Repo found in $profile/pacman.conf"
-		else
-			echo "Repo not found in $profile/pacman.conf! Will now add!"
-			curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '19,20p' >> $profile/pacman.conf
-		fi
-		printf "A brief FYI! Once you install your ISO I highly recommend removing Valen Repo from your new /etc/pacman.conf and going to the Valen Repo to	readd Valen Repo using the provided script which will allow you to securely connect to the repo! This way you can sleep easy at night knowing that the packages you download from Valen Repo are not infected between when they leave the server and make it to your system!\n"
-		printf "."
-		sleep 1.2
-		printf "."
-		sleep 1.2
-		printf "."
-		sleep 1.2
-		printf "."
-		sleep 1.2
-		printf "."
-		sleep 1.2
-		printf "."
-		sleep 1.2
-		printf "."
-		sleep 1.2
-		printf "."
-		sleep 1.2
-		printf "."
-		sleep 1.2
-		printf "."
-		sleep 1.2
-		printf "."
-		sleep 1.2
-		echo "All done! Lets continue."
-		fin='1'
-		;;
-	n | N | no | No )
-		echo "No worries! If you change your mind later you can always add it using the script provided on my repo Valen Repo!"
-		echo "Security is also not compromised thanks to fancy scripting allowing you a secure connection to Valen Repo!"
-		sleep 3
-		fin='1'
-		;;
-	* )
-		echo "${BT} does not understand! Try again. (${fgGreen}y${txReset}/${fgRed}n${txReset})"
-		;;
- esac
- done
-}
-
 checkSudo() {
     if [[ ${UID} -eq 0 ]]; then
         echo "Must ${txBold}${fgRed}NOT${txReset} run ${BT} as root!"
@@ -202,3 +100,93 @@ cloneGit() {
 	done
 }
 
+valenRepoAdder () {
+
+ echo
+ fin='0'
+ while [[ $fin = '0' ]]; do
+ case $1 in
+ 	y | Y | yes | Yes )
+		pmanConf=$(cat $profile/airootfs/etc/pacman.conf)
+		if [[ "$pmanConf" =~ "valen_repo" ]]; then
+			echo "Repo found in $profile/airootfs/etc/pacman.conf"
+		else
+			echo "Repo not found in $profile/airootfs/etc/pacman.conf! Will now add!"
+			curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '19,20p' >> $profile/airootfs/etc/pacman.conf
+			curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '19,20p' >> $profile/pacman.conf
+		fi
+		pmanConf=$(cat $profile/pacman.conf)
+		if [[ "$pmanConf" =~ "valen_repo" ]]; then
+			echo "Repo found in $profile/pacman.conf"
+		else
+			echo "Repo not found in $profile/pacman.conf! Will now add!"
+			curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '19,20p' >> $profile/pacman.conf
+		fi
+		echo
+		printf "A brief FYI! Once you install your ISO I highly recommend removing Valen Repo from your new /etc/pacman.conf and going to the Valen Repo to	readd Valen Repo using the provided script which will allow you to securely connect to the repo! This way you can sleep easy at night knowing that the packages you download from Valen Repo are not infected between when they leave the server and make it to your system!\n"
+		printf "."
+		sleep 1.2
+		printf "."
+		sleep 1.2
+		printf "."
+		sleep 1.2
+		printf "."
+		sleep 1.2
+		printf "."
+		sleep 1.2
+		printf "."
+		sleep 1.2
+		printf "."
+		sleep 1.2
+		printf "."
+		sleep 1.2
+		printf "."
+		sleep 1.2
+		printf "."
+		sleep 1.2
+		printf ".\n"
+		sleep 1.2
+		echo "All done! Lets continue."
+		fin='1'
+		;;
+	n | N | no | No )
+		echo "No worries! If you change your mind later you can always add it using the script provided on my repo Valen Repo!"
+		echo "Security is also not compromised thanks to fancy scripting allowing you a secure connection to Valen Repo!"
+		sleep 3
+		fin='1'
+		;;
+	* )
+		echo "${BT} does not understand! Try again. (${fgGreen}y${txReset}/${fgRed}n${txReset})"
+		;;
+ esac
+ done
+}
+
+mkarchisoVerboseCheck() {
+ done="0"
+while [ $done != 1 ]; do 
+read -p "Do you want to enable verbose out for mkarchiso? Is great for scanning for weird errors. (${fgGreen}y${txReset}/${fgRed}n${txReset}) " YN
+case $YN in
+	y | Y | yes | Yes | YES )
+		echo "Oki. Building ISO ${fgCyan}with${txReset} verbose output!"
+		sudo mkarchiso -v -w $buildDir -o $outDir $profile
+		sudo chown -R $user $buildDir
+		sudo chown -R $user $outDir
+		cp $buildDir/iso/arch/pkglist.x86_64.txt  $outDir/xerolinux-$(date +%Y.%m.%d)-pkglist.txt
+		done="1"
+		;;
+	n | N | no | No | NO )
+		echo "Oki. Building ISO ${fgCyan}without${txReset} verbose output!"
+		sudo mkarchiso -w $buildDir -o $outDir $profile
+		sudo chown -R $user $buildDir
+		sudo chown -R $user $outDir
+		cp $buildDir/iso/$profile/pkglist.x86_64.txt  $outDir/xerolinux-$(date +%Y.%m.%d)-pkglist.txt
+		done="1"
+		;;
+	* )
+		echo "${fgRed}Invalid${txReset} response. ${txUnderline}Try again${txReset}. Either ${fgGreen}Yes${txReset} or ${fgRed}No${txReset}."
+		;;
+esac
+done
+
+}
