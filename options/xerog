@@ -30,9 +30,9 @@ echo "${fgCyan}Step 2${txReset}: Making sure you have latest ${fgCyan}archiso${t
 	checkInternetConnection
 	isArchisoUpToDate
 
-read -p "Would you like to add Valen Repo to your archiso's pacman.conf so you can ${fgCyan}easily${txReset} download abs on your new system?" yn
+read -p "Would you like to add Valen Repo to your archiso's pacman.conf so you can ${fgCyan}easily${txReset} download abs on your new system? : " yn
 
-	valenRepoAdder $YN
+	valenRepoAdder $yn
 
 
 echo "${fgCyan}Step 3${txReset}:Getting ready to ${fgCyan}build the ISO${txReset}!"
