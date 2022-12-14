@@ -16,6 +16,8 @@ profile=releng
 outDir=ISO/
 buildDir=Build/
 
+valenRepoAdder
+
 echo "We are all setup to build a Vanilla Arch Monthly ISO. Lets Begin!"
 echo "ISO will be found in a folder within this directory labeled ISO!"
 echo "Build folder will be labeled build!"
