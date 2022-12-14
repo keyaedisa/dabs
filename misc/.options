@@ -1,17 +1,17 @@
 #!/bin/bash
 
 custom() {
- source /etc/abs/options/custom
+ source /etc/absd/options/custom
  exit
 }
 
 xero() {
- source /etc/abs/options/xero
+ source /etc/absd/options/xero
  exit
 }
 
 helpOpt() {
- source /etc/abs/options/help
+ source /etc/absd/options/help
  exit
 }
 

@@ -4,13 +4,13 @@
 # then please put 'unknown'.
 
 # Maintainer: Your Name <keyaedisa>
-pkgname="abs"
-pkgver=2.2
-pkgrel=9
+pkgname="absd"
+pkgver=2.3
+pkgrel=0
 epoch=
-pkgdesc="Command line utility to automate the building of an arch iso using a user provided profile! Also the official way to build XeroLinux!"
+pkgdesc="Command line utility to automate the building of an arch iso using a user provided profile! Also the official way to build XeroLinux and XeroLinux Gnome Edition!"
 arch=('x86_64')
-url="https://github.com/keyaedisa/abs"
+url="https://github.com/keyaedisa/absd"
 #license=('')
 #groups=()
 depends=("git"
@@ -21,14 +21,14 @@ depends=("git"
 makedepends=('git')
 #checkdepends=()
 #optdepends=()
-provides=('abs')
-conflicts=('archiso-build-scripts')
+provides=('absd')
+#conflicts=('archiso-build-scripts')
 #replaces=('archiso-build-scripts')
 #backup=()
 #options=()
 #install=
 #changelog=
-source=("gclone"::"git+https://github.com/keyaedisa/abs"
+source=("gclone"::"git+git@github.com:keyaedisa/absd.git"
 )
 #noextract=()
 #md5sums=()
@@ -36,11 +36,11 @@ sha256sums=('SKIP')
 
 package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
-	cp "${srcdir}/gclone/abs" "${pkgdir}/usr/local/bin/abs"
-	mkdir -p "${pkgdir}/etc/abs/"
-	cp -rf "${srcdir}/gclone/misc/" "${pkgdir}/etc/abs/"
-	cp -rf "${srcdir}/gclone/options/" "${pkgdir}/etc/abs/"
-	cp "${srcdir}/gclone/options/.options" "${pkgdir}/etc/abs/"
+	cp "${srcdir}/gclone/absd" "${pkgdir}/usr/local/bin/absd"
+	mkdir -p "${pkgdir}/etc/absd/"
+	cp -rf "${srcdir}/gclone/misc/" "${pkgdir}/etc/absd/"
+	cp -rf "${srcdir}/gclone/options/" "${pkgdir}/etc/absd/"
+	cp "${srcdir}/gclone/options/.options" "${pkgdir}/etc/absd/"
 	rm -r "../gclone"
 	rm -r "${srcdir}"
 }

@@ -1,0 +1,70 @@
+#!/bin/bash
+
+set -e
+
+source misc/.bashFormatting
+
+echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
+echo "First we check if anything in PKGBUILD needs updating." && sleep 1.3
+echo
+
+currentPkgVer=$(sed -n 's/\(^pkgver=\)//p' PKGBUILD	)
+currentPkgRel=$(sed -n 's/\(^pkgrel=\)//p' PKGBUILD	)
+
+echo "Current pkgver is: ${currentPkgVer}! Update? (y/n): " && read -n 1 YN
+echo
+case $YN  in
+	y | Y )
+		read -p "Oki. What should new pkgver be?: " newVersion
+		sed -i  "/pkgver/c pkgver=${newVersion}" PKGBUILD
+		currentPkgVer=$(sed -n 's/\(^pkgver=\)//p' PKGBUILD	)
+		echo "Oki, pkgver is now: ${currentPkgVer}"
+		;;
+	n | N )
+		echo "Oki. Moving on!"
+		echo
+		;;
+esac
+
+echo "Current pkgrel is: ${currentPkgRel}! Update? (y/n): " && read -n 1 YN
+echo
+case $YN  in
+	y | Y )
+		read -p "Oki. What should new pkgrel be?: " newRel
+		sed -i  "/pkgrel/c pkgrel=$newRel" PKGBUILD
+		currentPkgRel=$(sed -n 's/\(^pkgrel=\)//p' PKGBUILD	)
+		echo "Oki, pkgrel is now: ${currentPkgRel}"
+		;;
+	n | N )
+		echo "Oki. Moving on!"
+		echo
+		;;
+esac
+
+echo "Need to update anything else in PKGBUILD? (y/n): " && read -n 1 YN
+echo
+case $YN  in
+	y | Y )
+		nano -w PKGBUILD
+		;;
+	n | N )
+		echo "Oki. Moving on!"
+		;;
+esac
+echo "Pushing latest abs changes to abs git repo before creating a new abs pkg!" && sleep 1.3
+git add -A
+git commit -a
+git push
+echo "Oki, time to build!" && sleep  1.3
+makepkg --sign
+rm -rf pkg/
+echo
+echo "Oki now  we move new pkgs to Valen repo and begin push!" && sleep 1.3
+mv *.pkg.tar.zst *.pkg.tar.zst.sig ../valenDev_repo/x86_64/
+cd ../valenDev_repo/x86_64/
+repo-add -v -s -R valenDev_repo.db.tar.gz *.pkg.tar.zst
+cd ..
+git add -A
+git commit -a
+git push
+echo "Done, don't forget repo update takes a few minutes to be available through pacman!"

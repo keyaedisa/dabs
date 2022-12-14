@@ -2,13 +2,13 @@
 
 # Written by Keyaedisa
 # Website in the works
-# Made specific to XeroLinuxKDE
+# Made specific to XeroLinux Gnome Edition
 
-source /etc/abs/misc/.bashFormatting
+source /etc/absd/misc/.bashFormatting
 
 trap_ctrlc() {
-    echo "Ctrl-C detected. Ending current abs session."
-#    sed '$d' /etc/abs/misc/lastErr && echo \$err5 > /etc/abs/misc/lastErr
+    echo "Ctrl-C detected. Ending current absd session."
+#    sed '$d' /etc/absd/misc/lastErr && echo \$err5 > /etc/absd/misc/lastErr
     exit
 }
 
@@ -34,9 +34,9 @@ doesProfilePMCHaveValen () {
 
 checkSudo() {
     if [[ ${UID} -eq 0 ]]; then
-        echo "Must ${txBold}${fgRed}NOT${txReset} run abs as root!"
+        echo "Must ${txBold}${fgRed}NOT${txReset} run absd as root!"
         echo "Exiting now!"
-#        sed '$d' /etc/abs/misc/lastErr && echo \$err6 > /etc/abs/misc/lastErr
+#        sed '$d' /etc/absd/misc/lastErr && echo \$err6 > /etc/absd/misc/lastErr
         exit
     fi
 }
@@ -44,7 +44,7 @@ checkSudo() {
 checkInternetConnection() {
 	ping -c 1 -q xerolinux.xyz >&/dev/null; if [[ $? != 0 ]]; then
 	echo "${fgRed}Not connected to the internet${txReset}! Fix that and try again."
-#	sed '$d' /etc/abs/misc/lastErr && echo \$err7 > /etc/abs/misc/lastErr
+#	sed '$d' /etc/absd/misc/lastErr && echo \$err7 > /etc/absd/misc/lastErr
 	exit
 	fi
 }
@@ -59,7 +59,7 @@ isArchisoUpToDate () {
 		echo "Latest archiso check ${fgRed}failed${txReset}!"
 		echo "Exiting now!"
 		sudo rm stfu.txt
-#		sed '$d' /etc/abs/misc/lastErr && echo \$err8 > /etc/abs/misc/lastErr
+#		sed '$d' /etc/absd/misc/lastErr && echo \$err8 > /etc/absd/misc/lastErr
 		exit
 	fi
 }
@@ -94,11 +94,11 @@ cloneGit() {
 			echo "Done."
 			;;
 		n | N | no | No | NO )
-			echo "Oki. abs will not clone. Please run abs in the directory containing the xero profile"
+			echo "Oki. absd will not clone. Please run absd in the directory containing the xero profile"
 			finished="1"
 			;;
 		* )
-			echo "abs does not understand your response. Please try again. ${fgGreen}Y${txReset} or ${fgRed}N${txReset}."
+			echo "absd does not understand your response. Please try again. ${fgGreen}Y${txReset} or ${fgRed}N${txReset}."
 			read -p "Would you like to clone the latest ${1} git to your home directory?: " YN
 			;;
 	esac
@@ -120,7 +120,7 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 
 if [[ ! -d $profile ]]; then
 	echo "Couldn't find ${fgRed}${profile}${txReset}! Are you sure you're in the correct directory?"
-#	sed '$d' /etc/abs/misc/lastErr && echo \$err1 > /etc/abs/misc/lastErr
+#	sed '$d' /etc/absd/misc/lastErr && echo \$err1 > /etc/absd/misc/lastErr
 	gitClone xerog
 	exit
 fi
@@ -132,7 +132,7 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 	checkInternetConnection
 	isArchisoUpToDate
 
-#echo "Checking if your profiles pacman.conf's have abs package repo."
+#echo "Checking if your profiles pacman.conf's have absd package repo."
 
 #	doesProfilePMCHaveValen
 
@@ -148,7 +148,7 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 		echo "${fgCyan}No${txReset} previous work directory found. Moving on!" && sleep 1.3
 	fi
 
-echo "Checking your profiles pacman.conf and adding abs package repo if not already present"
+echo "Checking your profiles pacman.conf and adding absd package repo if not already present"
 
 
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset

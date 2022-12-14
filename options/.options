@@ -1,22 +1,33 @@
 #!/bin/bash
 
 custom() {
- source /etc/abs/options/custom
+ source /etc/absd/options/custom
  exit
 }
 
 xero() {
- source /etc/abs/options/xero
+ source /etc/absd/options/xero
  exit
 }
 
 xerog() {
- source /etc/abs/options/xerog
+ source /etc/absd/options/xerog
  exit
 }
 
 helpOpt() {
- source /etc/abs/options/help
+ source /etc/absd/options/help
  exit
 }
 
+listOpt() {
+ printf "\n${txBold}${fgBlue}Usage${txReset}:\n\tabsd [OPTIONS]\n"
+ printf "${txBold}${fgBlue}Options${txReset}:\n"
+ printf "    absd can be called with no options and an interactive menu will start\n"
+ printf "    -c,     \tBuild an Arch ISO using a custom profile.\n"
+ printf "    -L,     \tList all options.\n"
+ printf "    -h,     \tDisplay help message and exit.\n"
+ printf "    --help, \tDisplay more detailed help message and exit.\n"
+ printf "    -x,     \tBuild a XeroLinux Arch ISO using latest source.\n"
+ printf "    -xg,    \tBuild a XeroLinux Gnome Arch ISO using latest source.\n"
+}
