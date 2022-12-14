@@ -1,33 +1,25 @@
 #!/bin/bash
 
+# Build Type. i.e. absd for abs dev and abs for the production version of abs
+#BT="absd"
+
 custom() {
- source /etc/absd/options/custom
-# exit
-}
-
-xero() {
- source /etc/absd/options/xero
-# exit
-}
-
-xerog() {
- source /etc/absd/options/xerog
-# exit
-}
-
-helpOpt() {
- source /etc/absd/options/help
-# exit
+ source /etc/$BT/options/custom
 }
 
 listOpt() {
- printf "\n${txBold}${fgBlue}Usage${txReset}:\n\tabsd [OPTIONS]\n"
- printf "${txBold}${fgBlue}Options${txReset}:\n"
- printf "    absd can be called with no options and an interactive menu will start\n"
- printf "    -c,     \tBuild an Arch ISO using a custom profile.\n"
- printf "    -L,     \tList all options.\n"
- printf "    -h,     \tDisplay help message and exit.\n"
- printf "    --help, \tDisplay more detailed help message and exit.\n"
- printf "    -x,     \tBuild a XeroLinux Arch ISO using latest source.\n"
- printf "    -xg,    \tBuild a XeroLinux Gnome Arch ISO using latest source.\n"
+ source /etc/$BT/options/listOpt
 }
+
+helpOpt() {
+ source /etc/$BT/options/help
+}
+
+xero() {
+ source /etc/$BT/options/xero
+}
+
+xerog() {
+ source /etc/$BT/options/xerog
+}
+

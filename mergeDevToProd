@@ -19,12 +19,14 @@ rm ../abs/abs
 mv ../abs/absd ../abs/abs
 
 # change all absd refs to abs in all files
-sed 's/absd/abs/g' ../abs/abs
-sed 's/absd/abs/g' ../abs/options/.options
-sed 's/absd/abs/g' ../abs/options/custom
-sed 's/absd/abs/g' ../abs/options/help
-sed 's/absd/abs/g' ../abs/options/xero
-sed 's/absd/abs/g' ../abs/options/xerog
+#sed 's/absd/abs/g' ../abs/abs
+#sed 's/absd/abs/g' ../abs/options/.options
+#sed 's/absd/abs/g' ../abs/options/custom
+#sed 's/absd/abs/g' ../abs/options/help
+#sed 's/absd/abs/g' ../abs/options/xero
+#sed 's/absd/abs/g' ../abs/options/xerog
+sed '4 s/absd/abs/' ../abs/options/.options
+sed '4 s/absd/abs/' ../abs/abs
 sed 's/absd/abs/g' ../abs/PKGBUILD
 
 # set url in PKGBUILD back to production abs repo

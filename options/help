@@ -1,58 +1,60 @@
 #!/bin/bash
 
-#source /etc/absd/options/.options
+#source /etc/${BT}/options/.options
+
+#kum=$(echo "!$")
 
 case $1 in
 	-h )
-		echo "${txBold}${fgMagenta}absd${txReset} is a utility designed for building archisos whether custom or using one of absd's options."
+		echo "${txBold}${fgMagenta}${BT}${txReset} is a utility designed for building archisos whether custom or using one of ${BT}'s options."
 		echo "Use '--help' instead of '-h' to see a more detailed version of the help message."
 		listOpt
 		;;
 	--help )
-		echo "absd can be ran with no options or absd can be called with an option directly from terminal."
-		echo "If absd is ran with no options an interactive prompt will start and ask which option you'd like to run."
-		echo "Currently absd has the following options:"
+		echo "${BT} can be ran with no options or ${BT} can be called with an option directly from terminal."
+		echo "If ${BT} is ran with no options an interactive prompt will start and ask which option you'd like to run."
+		echo "Currently ${BT} has the following options:"
 		listOpt
 		echo "Read below for a brief description of each."
 		echo
 		echo "${fgBlue}-c${txReset}"
-		echo "    ex: ${fgCyan}absd -c${txReset}, ${fgCyan}absd custom${txReset}"
+		echo "    ex: ${fgCyan}${BT} -c${txReset}, ${fgCyan}${BT} custom${txReset}"
 		echo "    This will run the custom option. It is for the building of ${txBold}any${txReset} ${txUnderline}archiso${txReset} profile you may be working on."
 		echo "    ${txUnderline}It is not tied to or dependent on any Arch ISO or distribution${txReset}."
 		echo "    This option is flexible and once again supports the building of basically any archiso profile ${txUnderline}you provide${txReset}."
-		echo "    When absd is provided a profile it will look for it in the current directory. If not found it will exit and ask to be ran in the directory containing the profile"
+		echo "    When ${BT} is provided a profile it will look for it in the current directory. If not found it will exit and ask to be ran in the directory containing the profile"
 		echo
 		echo "${fgBlue}-L${txReset}"
-		echo "    ex: ${fgCyan}absd -L${txReset}"
-		echo "    This option will list all of absd's options."
+		echo "    ex: ${fgCyan}${BT} -L${txReset}"
+		echo "    This option will list all of ${BT}'s options."
 		echo
 		echo "${fgBlue}-h${txReset}"
-		echo "    ex: ${fgCyan}absd -h${txReset}"
-		echo "    This option will bring up absd's help message."
-		echo "    If you have any other questions or issues reach out or open a ticket at ${fgCyan}https://github.com/keyaedisa/absd${txReset}"
+		echo "    ex: ${fgCyan}${BT} -h${txReset}"
+		echo "    This option will bring up ${BT}'s help message."
+		echo "    If you have any other questions or issues reach out or open a ticket at ${fgCyan}https://github.com/keyaedisa/${BT}${txReset}"
 		echo
 		echo "${fgBlue}--help${txReset}"
-		echo "    ex: ${fgCyan}absd --help${txReset}"
-		echo "    This option will bring up a more detailed version of absd's help message"
+		echo "    ex: ${fgCyan}${BT} --help${txReset}"
+		echo "    This option will bring up a more detailed version of ${BT}'s help message"
 		echo
 		echo "${fgBlue}-x${txReset}"
-		echo "    ex: ${fgCyan}absd -x${txReset}, ${fgCyan}absd xero${txReset}"
+		echo "    ex: ${fgCyan}${BT} -x${txReset}, ${fgCyan}${BT} xero${txReset}"
 		echo "    This will start the Xero option. It is dedicated to the build of ${fgCyan}XeroLinux${txReset} using the ${txUnderline}xero_iso git repo${txReset} as its source."
 		echo "    This option will ask you if you need to clone the xero_iso git repo or ask you if you have already done so."
-		echo "    If you tell absd to clone the xero_iso git repo for you it will do so and place it in your ${txUnderline}home directory${txReset}."
+		echo "    If you tell ${BT} to clone the xero_iso git repo for you it will do so and place it in your ${txUnderline}home directory${txReset}."
 		echo "    The home directory is chosen so that you can easily move the cloned xero_iso build repo directory wherever you desire if need be."
-		echo "    If you tell absd that you have already cloned the xero_iso git repo, absd will look for the xero profile."
-		echo "    If absd cannot find the xero profile in the directory it's been called, absd will ${fgRed}exit${txReset} and ask that you ${txUnderline}cd to the cloned xero_iso repo and call absd again${txReset}."
+		echo "    If you tell ${BT} that you have already cloned the xero_iso git repo, ${BT} will look for the xero profile."
+		echo "    If ${BT} cannot find the xero profile in the directory it's been called, ${BT} will ${fgRed}exit${txReset} and ask that you ${txUnderline}cd to the cloned xero_iso repo and call ${BT} again${txReset}."
 		echo
 		echo "${fgBlue}-xg${txReset}"
-		echo "    ex: ${fgCyan}absd -xg${txReset}, ${fgCyan}absd xerog${txReset}"
+		echo "    ex: ${fgCyan}${BT} -xg${txReset}, ${fgCyan}${BT} xerog${txReset}"
 		echo "    The XeroG option is dedicated to the build of ${fgCyan}XeroLinux Gnome Edition${txReset} using the ${txUnderline}xero_g_iso git repo${txReset} as its source."
 		echo "    This option will ask you if you need to clone the xero_g_iso git repo or ask you if you have already done so."
-		echo "    If you tell absd to clone the xero_g_iso git repo for you it will do so and place it in your ${txUnderline}home directory${txReset}."
+		echo "    If you tell ${BT} to clone the xero_g_iso git repo for you it will do so and place it in your ${txUnderline}home directory${txReset}."
 		echo "    The home directory is chosen so that you can easily move the cloned xero_g_iso build repo directory wherever you desire if need be."
-		echo "    In the future I may make absd smart enough to ask where you want the cloned repo to end up and clone to your chosen destination."
-		echo "    If you tell absd that you have already cloned the xero_g_iso git repo, absd will look for the XeroG profile."
-		echo "    If absd cannot find the XeroG profile in the directory it's been called, absd will ${fgRed}exit${txReset} and ask that you ${txUnderline}cd to the cloned xero_g_iso repo and call absd again${txReset}."
+		echo "    In the future I may make ${BT} smart enough to ask where you want the cloned repo to end up and clone to your chosen destination."
+		echo "    If you tell ${BT} that you have already cloned the xero_g_iso git repo, ${BT} will look for the XeroG profile."
+		echo "    If ${BT} cannot find the XeroG profile in the directory it's been called, ${BT} will ${fgRed}exit${txReset} and ask that you ${txUnderline}cd to the cloned xero_g_iso repo and call ${BT} again${txReset}."
 		echo
 		;;
 esac

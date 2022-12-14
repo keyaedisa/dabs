@@ -4,106 +4,7 @@
 # Website in the works
 # Made specific to XeroLinux Gnome Edition
 
-source /etc/absd/misc/.bashFormatting
-
-trap_ctrlc() {
-    echo "Ctrl-C detected. Ending current absd session."
-#    sed '$d' /etc/absd/misc/lastErr && echo \$err5 > /etc/absd/misc/lastErr
-    exit
-}
-
-trap "trap_ctrlc" 2
-
-doesProfilePMCHaveValen () {
-	pmanConf=$(cat $profile/airootfs/etc/pacman.conf)
-	if [[ "$pmanConf" =~ "keyaedisa" ]]; then
-    	echo "Repo found in $profile/airootfs/etc/pacman.conf"
-	else
- 		echo "Repo not found in $profile/airootfs/etc/pacman.conf! Will now add!"
-    	curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/airootfs/etc/pacman.conf
-  		curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/pacman.conf
-	fi
-	pmanConf=$(cat $profile/pacman.conf)
-	if [[ "$pmanConf" =~ "keyaedisa" ]]; then
-    	echo "Repo found in $profile/pacman.conf"
-	else
-    	echo "Repo not found in $profile/pacman.conf! Will now add!"
-  		curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/pacman.conf
-	fi
-}
-
-checkSudo() {
-    if [[ ${UID} -eq 0 ]]; then
-        echo "Must ${txBold}${fgRed}NOT${txReset} run absd as root!"
-        echo "Exiting now!"
-#        sed '$d' /etc/absd/misc/lastErr && echo \$err6 > /etc/absd/misc/lastErr
-        exit
-    fi
-}
-
-checkInternetConnection() {
-	ping -c 1 -q xerolinux.xyz >&/dev/null; if [[ $? != 0 ]]; then
-	echo "${fgRed}Not connected to the internet${txReset}! Fix that and try again."
-#	sed '$d' /etc/absd/misc/lastErr && echo \$err7 > /etc/absd/misc/lastErr
-	exit
-	fi
-}
-
-isArchisoUpToDate () {
-	sudo pacman -Sy >> stfu.txt
-	sudo pacman -S archiso --needed --noconfirm > /dev/null 2>stfu.txt
-	if [[ -n $(sed -n 's/is up to date -- skipping//p' stfu.txt) ]]; then
-		echo "Latest archiso check ${fgGreen}succesful${txReset}!" && sleep 1.7
-		sudo rm stfu.txt
-	else
-		echo "Latest archiso check ${fgRed}failed${txReset}!"
-		echo "Exiting now!"
-		sudo rm stfu.txt
-#		sed '$d' /etc/absd/misc/lastErr && echo \$err8 > /etc/absd/misc/lastErr
-		exit
-	fi
-}
-
-cloneGit() {
-	read -p "Would you like to clone the latest ${1} git to your home directory? ${fgRed}Warning${txReset}! This will replace this repo in your home directory if it already exists! (${fgGreen}Y${txReset}/${fgRed}N${txReset}): " YN
-	finished="0"
-	profileSelection=$1
-	while [[ $finished != 1 ]]; do
-	case $YN in
-		y | Y | yes | Yes | YES )
-
-			echo "Oki, cloning repo now."
-			if [[ $profileSelection == "xero" ]]; then
-				if [[ -d ~/xero_iso ]]; then
-					rm -rf ~/xero_iso
-					git clone https://github.com/xerolinux/xero_iso.git ~/xero_iso
-				else
-					git clone https://github.com/xerolinux/xero_iso.git ~/xero_iso
-				fi
-			elif [[ $profileSelection == "xerog" ]]; then
-				if [[ -d ~/xero_g_iso ]]; then
-					rm -rf ~/xero_g_iso
-					git clone https://github.com/xerolinux/xero_g_iso.git ~/xero_g_iso
-				else
-					git clone https://github.com/xerolinux/xero_g_iso.git ~/xero_g_iso
-				fi
-			else
-				echo "This never happens. Congrats"
-			fi
-			finished="1"
-			echo "Done."
-			;;
-		n | N | no | No | NO )
-			echo "Oki. absd will not clone. Please run absd in the directory containing the xero profile"
-			finished="1"
-			;;
-		* )
-			echo "absd does not understand your response. Please try again. ${fgGreen}Y${txReset} or ${fgRed}N${txReset}."
-			read -p "Would you like to clone the latest ${1} git to your home directory?: " YN
-			;;
-	esac
-	done
-}
+#source /etc/$BT/misc/.bashFormatting
 
 checkSudo
 
@@ -120,7 +21,7 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 
 if [[ ! -d $profile ]]; then
 	echo "Couldn't find ${fgRed}${profile}${txReset}! Are you sure you're in the correct directory?"
-#	sed '$d' /etc/absd/misc/lastErr && echo \$err1 > /etc/absd/misc/lastErr
+#	sed '$d' /etc/${BT}/misc/lastErr && echo \$err1 > /etc/${BT}/misc/lastErr
 	gitClone xerog
 	exit
 fi
@@ -132,7 +33,7 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 	checkInternetConnection
 	isArchisoUpToDate
 
-#echo "Checking if your profiles pacman.conf's have absd package repo."
+#echo "Checking if your profiles pacman.conf's have ${BT} package repo."
 
 #	doesProfilePMCHaveValen
 
@@ -148,7 +49,7 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 		echo "${fgCyan}No${txReset} previous work directory found. Moving on!" && sleep 1.3
 	fi
 
-echo "Checking your profiles pacman.conf and adding absd package repo if not already present"
+echo "Checking your profiles pacman.conf and adding ${BT} package repo if not already present"
 
 
 echo $fgMagenta&&xUnicode 2730 49&&echo $txReset

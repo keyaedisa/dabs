@@ -3,66 +3,6 @@
 # Written by Keyaedisa
 # Website in the works
 
-source /etc/absd/misc/.bashFormatting
-
-trap_ctrlc() {
-	echo
-    echo "Ctrl-C detected. Ending current absd session."
-#    sed -i '/lastErr/c lastErr=$err5' /etc/absd/misc/lastErr
-    exit
-}
-
-trap "trap_ctrlc" 2
-
-doesProfilePMCHaveValen () {
-	pmanConf=$(cat $profile/airootfs/etc/pacman.conf)
-	if [[ "$pmanConf" =~ "keyaedisa" ]]; then
-    	echo "Repo found in $profile/airootfs/etc/pacman.conf"
-	else
- 		echo "Repo not found in $profile/airootfs/etc/pacman.conf! Will now add!"
-    	curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/airootfs/etc/pacman.conf
-  		curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/pacman.conf
-	fi
-	pmanConf=$(cat $profile/pacman.conf)
-	if [[ "$pmanConf" =~ "keyaedisa" ]]; then
-    	echo "Repo found in $profile/pacman.conf"
-	else
-    	echo "Repo not found in $profile/pacman.conf! Will now add!"
-  		curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/pacman.conf
-	fi
-}
-
-checkSudo() {
-    if [[ ${UID} -eq 0 ]]; then
-        echo "Must ${txBold}${fgRed}NOT${txReset} run absd as root!"
-        echo "Exiting now!"
-#        sed '3d' /etc/absd/misc/lastErr && echo \$err6 > /etc/absd/misc/lastErr
-        exit
-    fi
-}
-
-checkInternetConnection() {
-	ping -c 1 -q xerolinux.xyz >&/dev/null; if [[ $? != 0 ]]; then
-	echo "${fgRed}Not connected to the internet${txReset}! Fix that and try again."
-#	sed '3d' /etc/absd/misc/lastErr && echo \$err7 > /etc/absd/misc/lastErr
-	exit
-	fi
-}
-
-isArchisoUpToDate () {
-	sudo pacman -Sy >> stfu.txt
-	sudo pacman -S archiso --needed --noconfirm > /dev/null 2>stfu.txt
-	if [[ -n $(sed -n 's/is up to date -- skipping//p' stfu.txt) ]]; then
-		echo "Latest archiso check ${fgGreen}succesful${txReset}!" && sleep 1.7
-		sudo rm stfu.txt
-	else
-		echo "Latest archiso check ${fgRed}failed${txReset}!"
-		echo "Exiting now!"
-		sudo rm stfu.txt
-#		sed '3d' /etc/absd/misc/lastErr && echo \$err8 > /etc/absd/misc/lastErr
-		exit
-	fi
-}
 
 checkSudo
 
@@ -72,7 +12,7 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 read -p "Please enter the name of your ${fgCyan}archiso${txReset} profile: " archisoProfile
 if [[ ! -d $archisoProfile ]]; then
 	echo "Couldn't find ${fgRed}${archisoProfile}${txReset}! Are you sure you're in the correct directory?"
-#	sed '3d' /etc/absd/misc/lastErr && echo \$err1 > /etc/absd/misc/lastErr
+#	sed '3d' /etc/${BT}/misc/lastErr && echo \$err1 > /etc/${BT}/misc/lastErr
 	exit
 fi
 echo "Oki! Preparing iso build using ${fgCyan}${archisoProfile}${txReset}!" && sleep 1.3
@@ -93,7 +33,7 @@ echo $fgMagenta&&xUnicode 2730 49&&echo $txReset
 	checkInternetConnection
 	isArchisoUpToDate
 	
-echo "Checking if your profiles pacman.conf's have absd package repo."
+echo "Checking if your profiles pacman.conf's have ${BT} package repo."
 
 	doesProfilePMCHaveValen
 
