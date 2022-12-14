@@ -166,6 +166,7 @@ valenRepoAdder () {
 mkarchisoVerboseCheck() {
  done="0"
 while [ $done != 1 ]; do 
+echo "Note: Turning off verbosity for mkarchiso does not stop the terminal from being filled as it builds your ISO."
 read -p "Do you want to enable verbose out for mkarchiso? Is great for scanning for weird errors. (${fgGreen}y${txReset}/${fgRed}n${txReset}) " YN
 case $YN in
 	y | Y | yes | Yes | YES )
