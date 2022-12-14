@@ -123,7 +123,8 @@ valenRepoAdder () {
 			curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '19,20p' >> $profile/pacman.conf
 		fi
 		echo
-		printf "A brief FYI! Once you install your ISO I highly recommend removing Valen Repo from your new /etc/pacman.conf and going to the Valen Repo to	readd Valen Repo using the provided script which will allow you to securely connect to the repo! This way you can sleep easy at night knowing that the packages you download from Valen Repo are not infected between when they leave the server and make it to your system!\n"
+		echo "A brief FYI! Once you install your ISO I highly recommend removing Valen Repo from your new /etc/pacman.conf and going to the Valen Repo to readd	Valen Repo using the provided script which will allow you to securely connect to the repo!"
+		echo "This way you can sleep easy at night knowing that the packages you download from Valen Repo are not infected between when they leave the server and make it to your system!"
 		printf "."
 		sleep 1.2
 		printf "."
