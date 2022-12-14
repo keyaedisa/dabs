@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Copy contents of absd dir to abs dir -> rename absd file in abs dir to abs -> change $BT from ="absd" to ="abs"
+# -> rename all absd refs in PKGBUILD to abs -> change source in makepkg back to the production abs one
+
+rsync -a ./ ../abs/
+
+mv ../abs/absd ../abs/abs
+
+sed 's/absd/abs/g' ../abs/abs
+
+sed 's/absd/abs/g' ../abs/PKGBUILD
+
+sed 's/git@github.com:keyaedisa\/absd.git/https:\/\/github.com\/keyaedisa\/absd.git/' ../abs/PKGBUILD
