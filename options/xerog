@@ -6,8 +6,9 @@
 
 checkSudo
 
+echo
 echo "${fgCyan}Step 1${txReset}: Getting ready to build ${fgCyan}XeroLinux Gnome${txReset}!"
-
+echo
 
 	sudo sed -i 's/quiet="y"/quiet="n"/g' /usr/bin/mkarchiso
 	profile=XeroG
@@ -23,9 +24,9 @@ if [[ ! -d $profile ]]; then
 	exit
 fi
 
-
+echo
 echo "${fgCyan}Step 2${txReset}: Making sure you have latest ${fgCyan}archiso${txReset}!"
-
+echo
 
 	checkInternetConnection
 	isArchisoUpToDate
@@ -34,10 +35,10 @@ read -p "Would you like to add Valen Repo to your archiso's pacman.conf so you c
 
 	valenRepoAdder $yn
 
-
+echo
 echo "${fgCyan}Step 3${txReset}:Getting ready to ${fgCyan}build the ISO${txReset}!"
+echo
 echo "Will be ${txUnderline}${fgRed}deleting${txReset} previous work directory ${txUnderline}if${txReset} one exists!"
-
 
 	if [[ -d $buildDir ]]; then
 		sudo rm -rf $buildDir
@@ -48,10 +49,9 @@ echo "Will be ${txUnderline}${fgRed}deleting${txReset} previous work directory $
 
 echo "Checking your profiles pacman.conf and adding ${BT} package repo if not already present"
 
-
-
+echo
 echo "${fgCyan}Step 3.5${txReset}: Optionally updating ${fgCyan}references${txReset} and ${fgCyan}profiledef.sh${txReset}!"
-
+echo
 
 	currentName=$(sed -n 's/\(^iso_name=\)//p' $profiledef | sed 's/\([^"]*\)./\1/gi')
 	currentLabel=$(sed -n 's/\(^iso_label=\)//p' $profiledef | sed 's/\([^"]*\)./\1/gi')
@@ -180,7 +180,7 @@ n | N | no | No | NO )
 esac
 done
 
-
+echo
 echo "Updating ${fgCyan}build date aka ISO_BUILD${txReset} in dev-rel"
 dateBuild=$(date +%m-%d-%Y)
 echo "${fgCyan}This${txReset} ISO's build date is : "$dateBuild
@@ -198,8 +198,9 @@ mv dev-rel $profile/airootfs/etc/dev-rel
 echo "Oki. ${fgCyan}ISO_RELEASE${txReset} in dev-rel updated. ${fgCyan}${profile}/airootfs/etc/dev-rel${txReset} now reads: "
 sed -n '1,3p' $profile/airootfs/etc/dev-rel && sleep 1.7
 
-
+echo
 echo "${fgCyan}Step 4${txReset}: Time to build ${fgCyan}ISO${txReset}. This ${txUnderline}will${txReset} take a while. Go grab a drink or something!"
+echo
 echo "Build ${fgCyan}starts${txReset} in ${fgRed}5 seconds${txReset}!"
 
 sleep 5
@@ -209,7 +210,7 @@ sudo chown -R $user ~/XeroG-Build/
 sudo chown -R $user $outDir
 cp ~/XeroG-Build/iso/arch/pkglist.x86_64.txt  $outDir/XeroG-$(date +%Y.%m)-pkglist.txt
 
-
+echo
 echo "${fgCyan}Done!${txReset} Look in ${txBold}${outDir}${txReset} for your ${txUnderline}build and ISO folder${txReset}!"
 echo "Made with ${fgRed}love${txReset} by your ${fgMagenta}favorite genderless${txReset} being ${txUnderline}${txStandout}${fgMagenta}Keyaedisa${txReset}${txBold}${txReset}!"
 echo "${txUnderline}${fgCyan}https://twitter.com/keyaedisa${txReset}, ${txUnderline}${fgCyan}https://github.com/keyaedisa${txReset}, ${txUnderline}${fgCyan}https://keyaedisa.carrd.co${txReset}!"
