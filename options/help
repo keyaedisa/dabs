@@ -34,6 +34,16 @@ case $1 in
 		echo "    ex: ${fgCyan}${BT} --help${txReset}"
 		echo "    This option will bring up a more detailed version of ${BT}'s help message"
 		echo
+		echo "${fgBlue}-v${txReset}"
+		echo "    ex: ${fgCyan}${BT} -v${txReset}, ${fgCyan}${BT} vanilla${txReset}, ${fgCyan}${BT} releng${txReset}"
+		echo "    The Vanilla option will build you an ISO using the official Arch Linux monthly ISO profile."
+		echo "    If you want to build the latest and greatest Vanilla Arch ISO this is the option for you."
+		echo
+		echo "${fgBlue}-vb${txReset}"
+		echo "    ex: ${fgCyan}${BT} -vb${txReset}, ${fgCyan}${BT} vanillaBaseline${txReset}, ${fgCyan}${BT} baseline${txReset}"
+		echo "    The Vanilla option will build you an ISO using the official Arch Linux monthly Baseline ISO profile."
+		echo "    This option will build an up to date Arch ISO however, it will only have what is required to boot and nothing more."
+		echo
 		echo "${fgBlue}-x${txReset}"
 		echo "    ex: ${fgCyan}${BT} -x${txReset}, ${fgCyan}${BT} xero${txReset}"
 		echo "    This will start the Xero option. It is dedicated to the build of ${fgCyan}XeroLinux${txReset} using the ${txUnderline}xero_iso git repo${txReset} as its source."

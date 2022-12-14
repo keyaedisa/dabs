@@ -13,6 +13,14 @@ helpOpt() {
  source /etc/$BT/options/help
 }
 
+vanilla() {
+ source /etc/$BT/options/vanilla
+}
+
+vanillaBaseline() {
+ source /etc/$BT/options/vanillaBaseline
+}
+
 xero() {
  source /etc/$BT/options/xero
 }

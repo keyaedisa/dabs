@@ -1,0 +1,26 @@
+#!/bin/bash
+
+cd
+
+user=$(whoami)
+
+mkdir Arch-Vanilla-Baseline
+mkdir Arch-Vanilla-Baseline/ISO
+mkdir Arch-Vanilla-Baseline/Build
+
+cp -r /usr/share/archiso/configs/baseline/ Arch-Vanilla-Baseline/
+
+cd Arch-Vanilla-Baseline/
+
+profile=baseline
+outDir=ISO/
+buildDir=Build/
+
+echo "We are all setup to build a Baseline (only what's needed) Vanilla Arch Monthly ISO. Lets Begin!"
+echo "ISO will be found in a folder within this directory labeled ISO!"
+echo "Build folder will be labeled build!"
+echo "This will take a bit so perhaps make some coffee!"
+
+sudo mkarchiso -v -w $buildDir -o $outDir $profile
+sudo chown -R $user $buildDir
+sudo chown -R $user $outDir

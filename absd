@@ -13,6 +13,10 @@ elif [[ $1 == "-h" || $1 == "--help" ]]; then
 	helpOpt $1
 elif [[ $1 == "-L" ]]; then
 	listOpt
+elif  [[ $1 == "-v" || $1 == "vanilla" || $1 == "releng" ]]; then
+	vanilla
+elif  [[ $1 == "-vb" || $1 == "vanillaBaseline" || $1 == "baseline" ]]; then
+	vanillaBaseline
 elif [[ $1 == "-x" || $1 == "xero" ]]; then
 	xero
 elif  [[ $1 == "-xg" || $1 == "xerog" ]]; then
@@ -35,6 +39,13 @@ else
 		-L )
 			listOpt
 			;;
+		-v | vanilla | releng )
+			finished='1'
+			vanilla
+			;;
+		-vb | vanillaBaseline | baseline )
+			finished='1'
+			vanillaBaseline
 		-x | xero )
 			finished='1'
 			xero
