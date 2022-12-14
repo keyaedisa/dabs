@@ -6,7 +6,7 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="absd"
 pkgver=2.3
-pkgrel=1
+pkgrel=2
 epoch=
 pkgdesc="Command line utility to automate the building of an arch iso using a user provided profile! Also the official way to build XeroLinux and XeroLinux Gnome Edition!"
 arch=('x86_64')
@@ -28,7 +28,7 @@ provides=('absd')
 #options=()
 #install=
 #changelog=
-source=("gclone"::"git+git@github.com:keyaedisa/absd.git"
+source=("gclone"::"git@github.com:keyaedisa/absd.git"
 )
 #noextract=()
 #md5sums=()
