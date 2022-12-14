@@ -1,7 +1,6 @@
 #!/bin/bash
 # List of functions used by abs/d
-
-source /etc/$BT/misc/.bashFormatting
+# https://keyaedisa.github.io
 
 trap_ctrlc() {
 	echo
@@ -53,22 +52,45 @@ cloneGit() {
 	done
 }
 
-doesProfilePMCHaveValen () {
-	pmanConf=$(cat $profile/airootfs/etc/pacman.conf)
-	if [[ "$pmanConf" =~ "keyaedisa" ]]; then
-		echo "Repo found in $profile/airootfs/etc/pacman.conf"
-	else
-		echo "Repo not found in $profile/airootfs/etc/pacman.conf! Will now add!"
-		curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/airootfs/etc/pacman.conf
-		curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/pacman.conf
-	fi
-	pmanConf=$(cat $profile/pacman.conf)
-	if [[ "$pmanConf" =~ "keyaedisa" ]]; then
-		echo "Repo found in $profile/pacman.conf"
-	else
-		echo "Repo not found in $profile/pacman.conf! Will now add!"
-		curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '11,14p' >> $profile/pacman.conf
-	fi
+# Need to sort our credential shit
+valenRepoAdder () {
+
+ if [[ $1 == "y" || $1 == "Y" || $1 == "yes" || $1 == "Yes" ]]; then
+ fin='0'
+ while [[ $fin = 0 ]]; do
+ case $1 in
+ 	y | Y | yes | Yes )
+		pmanConf=$(cat $profile/airootfs/etc/pacman.conf)
+		if [[ "$pmanConf" =~ "valen_repo" ]]; then
+			echo "Repo found in $profile/airootfs/etc/pacman.conf"
+		else
+			echo "Repo not found in $profile/airootfs/etc/pacman.conf! Will now add!"
+			curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '19,20p' >> $profile/airootfs/etc/pacman.conf
+			curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '19,20p' >> $profile/pacman.conf
+		fi
+		pmanConf=$(cat $profile/pacman.conf)
+		if [[ "$pmanConf" =~ "valen_repo" ]]; then
+			echo "Repo found in $profile/pacman.conf"
+		else
+			echo "Repo not found in $profile/pacman.conf! Will now add!"
+			curl -fsSL https://raw.githubusercontent.com/keyaedisa/valen_repo/trunk/README.md | sed -n '19,20p' >> $profile/pacman.conf
+		fi
+		printf "A brief FYI! Once you install your ISO I highly recommend removing Valen Repo from your new /etc/pacman.conf and going to the Valen Repo to
+		readd Valen Repo using the provided script which will allow you to securely connect to the repo! This way you can sleep easy at night knowing that the
+		packages you download from Valen Repo are not infected between when they leave the server and make it to your system!\n"
+		echo "All done! Lets continue."
+		fin='1'
+		;;
+	n | N | no | No )
+		echo "No worries! If you change your mind later you can always add it using the script provided on my repo Valen Repo!"
+		echo "Security is also not compromised thanks to fancy scripting allowing you a secure connection to Valen Repo!"
+		fin='1'
+		;;
+	* )
+		echo "${BT} does not understand! Try again. (${fgGreen}y${txReset}/${fgRed}n${txReset})"
+		;;
+ esac
+ done
 }
 
 checkSudo() {
@@ -92,12 +114,28 @@ isArchisoUpToDate () {
 	sudo pacman -Sy >> stfu.txt
 	sudo pacman -S archiso --needed --noconfirm > /dev/null 2>stfu.txt
 	if [[ -n $(sed -n 's/is up to date -- skipping//p' stfu.txt) ]]; then
-		echo "Latest archiso check ${fgGreen}succesful${txReset}!" && sleep 1.7
+		echo "Latest archiso check ${fgGreen}succesful${txReset}!" && sleep 1.3
 		sudo rm stfu.txt
 	else
-		echo "Latest archiso check ${fgRed}failed${txReset}!"
-		echo "Exiting now!"
 		sudo rm stfu.txt
+		echo "Latest archiso check ${fgRed}failed${txReset}!"
+		read -p "Install/update archiso now? You will ${fgRed}not${txReset} be able to continue without it!" yn
+		fin='0'
+		while [[ $fin != 1 ]]; do
+		case $yn in
+			y | yes | Yes | Y )
+				echo "Oki! Archiso will now be installed/updated."
+				sudo pacman -S archiso --noconfirm
+				fin='1'
+				;;
+			n | no | No | N )
+				echo "Sorry to see that. Unfortunately we can ${fgRed}no longer${txReset} continue. Good day!"
+				exit
+			* )
+				echo "${BT} does not understand what you said. Try again. (${fgGreen}y${txReset}/${fgRed}n${txReset})"
+				;;
+		esac
+		done
 #		sed '$d' /etc/${BT}/misc/lastErr && echo \$err8 > /etc/${BT}/misc/lastErr
 		exit
 	fi

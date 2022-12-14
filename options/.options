@@ -1,7 +1,5 @@
 #!/bin/bash
-
-# Build Type. i.e. absd for abs dev and abs for the production version of abs
-#BT="absd"
+# https://keyaedisa.github.io/
 
 custom() {
  source /etc/$BT/options/custom

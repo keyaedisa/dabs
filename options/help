@@ -1,8 +1,5 @@
 #!/bin/bash
-
-#source /etc/${BT}/options/.options
-
-#kum=$(echo "!$")
+# https://keyaedisa.github.io/
 
 case $1 in
 	-h )

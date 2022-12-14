@@ -1,56 +1,11 @@
 #!/bin/bash
+# https://keyaedisa.github.io/
 
 export BT="absd"
 
 source /etc/$BT/misc/.bashFormatting
 source /etc/$BT/misc/.functions
 source /etc/$BT/.options
-
-${BT}C() {
-	echo "Oki, let's get ready to build a custom iso using a user provided profile."
-#	read -p "What is the name of the archiso profile ${BT} will be building your iso with? : " archisoProfile
-#	echo
-#	echo "Scanning for provided archiso profile."
-#	if [[ ! -d $archisoProfile ]]; then
-#		echo "Couldn't find the archiso profile you provided in the current directory."
-#		echo "Please change to the proper directory and call ${BT} once more."
-#	else
-#		echo "${BT} found your archiso profile. ${BT} will now begin your iso's build process."
-	custom
-#	fi
-}
-
-${BT}X() {
-	echo "Oki, let's get ready to build a Xero iso from the provided xero profile."
-	echo
-	echo "Scanning for Xero profile."
-	if [[ ! -d Xero ]]; then
-		echo "Couldn't find the xero profile in the current directory."
-		cloneGit xero
-		echo "Changing directory to just cloned repo and beginning build process." && sleep 1.7
-		cd ~/xero_iso
-		xero
-	else
-		echo "${BT} found the xerolinux profile. ${BT} will now begin the xero build process." && sleep 1.7
-		xero
-	fi
-}
-
-${BT}Xg() {
-	echo "Oki, let's get ready to build a XeroG iso from the provided XeroG profile."
-	echo
-	echo "Scanning for XeroG profile."
-	if [[ ! -d XeroG ]]; then
-		echo "Couldn't find the XeroG profile in the current directory."
-		cloneGit xerog
-		echo "Changing directory to just cloned repo and beginning build process." && sleep 1.7
-		cd ~/xero_g_iso
-		xerog
-	else
-		echo "${BT} found the xerolinux profile. ${BT} will now begin the xero build process." && sleep 1.7
-		xerog
-	fi
-}
 
 if [[ $1 == "-c" || $1 == "custom" ]]; then
 	custom
