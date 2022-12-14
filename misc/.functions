@@ -55,7 +55,6 @@ cloneGit() {
 # Need to sort our credential shit
 valenRepoAdder () {
 
- if [[ $1 == "y" || $1 == "Y" || $1 == "yes" || $1 == "Yes" ]]; then
  fin='0'
  while [[ $fin = 0 ]]; do
  case $1 in

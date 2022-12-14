@@ -46,6 +46,7 @@ else
 		-vb | vanillaBaseline | baseline )
 			finished='1'
 			vanillaBaseline
+			;;
 		-x | xero )
 			finished='1'
 			xero
