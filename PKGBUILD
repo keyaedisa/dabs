@@ -6,7 +6,7 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="dab"
 pkgver=3.4
-pkgrel=1
+pkgrel=0
 epoch=
 pkgdesc="dev abs builds"
 arch=('x86_64')
@@ -34,22 +34,23 @@ source=("git+ssh://git@github.com/keyaedisa/dabs.git/")
 sha256sums=('SKIP')
 
 package() {
+	cd "${srcdir}"/$pkgname
 	mkdir -p "${pkgdir}/usr/local/bin/"
-	cp "${srcdir}/dab" "${pkgdir}/usr/local/bin/dab"
+	cp "${srcdir}/dabs/dab" "${pkgdir}/usr/local/bin/dab"
 	mkdir -p "${pkgdir}/etc/dab/"
 	cp -rf "${srcdir}/misc/" "${pkgdir}/etc/dab/"
 	cp -rf "${srcdir}/options/" "${pkgdir}/etc/dab/"
 	cp "${srcdir}/options/.options" "${pkgdir}/etc/dab/"
 #	rm -r "../gc"
-	rm -r "${srcdir}"
+#	rm -r "${srcdir}"
 
-	if [[ ${pkgname} == "abs" ]]; then
-		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/abs/misc/.formatting
- 	elif [[ ${pkgname} == "dabs" ]]; then
- 		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/dabs/misc/.formatting
- 	else
-		echo "hey bb"
- 	fi
+#	if [[ ${pkgname} == "abs" ]]; then
+#		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/abs/misc/.formatting
+# 	elif [[ ${pkgname} == "dabs" ]]; then
+# 		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/dabs/misc/.formatting
+# 	else
+#		echo "hey bb"
+# 	fi
 
 
 }
