@@ -35,17 +35,17 @@ sha256sums=('SKIP')
 
 package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
-	cp "${srcdir}/absd" "${pkgdir}/usr/local/bin/absd"
-	mkdir -p "${pkgdir}/etc/absd/"
-	cp -rf "${srcdir}/misc/" "${pkgdir}/etc/absd/"
-	cp -rf "${srcdir}/options/" "${pkgdir}/etc/absd/"
-	cp "${srcdir}/options/.options" "${pkgdir}/etc/absd/"
+	cp "${srcdir}/dabs" "${pkgdir}/usr/local/bin/dabs"
+	mkdir -p "${pkgdir}/etc/dabs/"
+	cp -rf "${srcdir}/misc/" "${pkgdir}/etc/dabs/"
+	cp -rf "${srcdir}/options/" "${pkgdir}/etc/dabs/"
+	cp "${srcdir}/options/.options" "${pkgdir}/etc/dabs/"
 	rm -r "../gc"
 	rm -r "${srcdir}"
 
 	if [[ ${pkgname} == "abs" ]]; then
 		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}/etc/abs/misc/.formatting"
- 	elif [[ ${pkgname} == "absd" ]]; then
+ 	elif [[ ${pkgname} == "dabs" ]]; then
  		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}/etc/abs/misc/.formatting"
  	else
 		echo "hey bb"
