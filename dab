@@ -3,7 +3,7 @@
 
 source /etc/dab/misc/.bashFormatting
 source /etc/dab/misc/.functions
-source /etc/dab/.options
+source /etc/dab/options/.options
 
 if [[ $1 == "-c" || $1 == "--custom" ]]; then
 	custom
