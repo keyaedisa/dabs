@@ -1,0 +1,17 @@
+#!/bin/bash
+
+custom() {
+ source /etc/absd/options/custom
+ exit
+}
+
+xero() {
+ source /etc/absd/options/xero
+ exit
+}
+
+helpOpt() {
+ source /etc/absd/options/help
+ exit
+}
+
