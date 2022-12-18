@@ -38,11 +38,11 @@ package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
 	cp "${srcdir}/dabs/dab" "${pkgdir}/usr/local/bin/dab"
 	mkdir -p "${pkgdir}/etc/dab/"
-	cp -rf "${srcdir}/misc/" "${pkgdir}/etc/dab/"
-	cp -rf "${srcdir}/options/" "${pkgdir}/etc/dab/"
-	cp "${srcdir}/options/.options" "${pkgdir}/etc/dab/"
+	cp -rf "${srcdir}dabs/misc/*" "${pkgdir}/etc/dab/"
+	cp -rf "${srcdir}dabs/options/*" "${pkgdir}/etc/dab/"
+#	cp "${srcdir}/options/.options" "${pkgdir}/etc/dab/"
 #	rm -r "../gc"
-#	rm -r "${srcdir}"
+	rm -r "${srcdir}"
 
 #	if [[ ${pkgname} == "abs" ]]; then
 #		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/abs/misc/.formatting
