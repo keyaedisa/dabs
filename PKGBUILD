@@ -6,7 +6,7 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="dab"
 pkgver=3.4
-pkgrel=0
+pkgrel=1
 epoch=
 pkgdesc="dev abs builds"
 arch=('x86_64')
@@ -41,7 +41,7 @@ package() {
 	cp -rf "${srcdir}/dabs/misc/" "${pkgdir}/etc/dab/"
 	cp -rf "${srcdir}/dabs/options/" "${pkgdir}/etc/dab/"
 #	cp "${srcdir}/options/.options" "${pkgdir}/etc/dab/"
-#	rm -r "../gc"
+	rm -rf "../dabs/"
 	rm -r "${srcdir}"
 
 #	if [[ ${pkgname} == "abs" ]]; then
