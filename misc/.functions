@@ -2,8 +2,6 @@
 # List of functions used by abs/d
 # https://keyaedisa.github.io
 
-version=
-
 trap_ctrlc() {
 	echo
     echo "Ctrl-C detected. Ending current abs session."
@@ -97,11 +95,6 @@ cloneGit() {
 			;;
 	esac
 	done
-}
-
-currentVersion(){
-	echo "${txBold}${fgBlue}Version${txReset}:"
-	echo "    ${txBold}${fgMagenta}abs${txReset} v${fgCyan}${version}${txReset}!"
 }
 
 listOptions() {

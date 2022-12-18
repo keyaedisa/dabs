@@ -1,0 +1,8 @@
+#!/bin/bash
+# i am very upset about this
+
+version=
+
+echo "${txBold}${fgBlue}Version${txReset}:"
+echo "    ${txBold}${fgMagenta}abs${txReset} v${fgCyan}${version}${txReset}!"
+

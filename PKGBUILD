@@ -6,7 +6,7 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="dab"
 pkgver=3.4
-pkgrel=2
+pkgrel=3
 epoch=
 pkgdesc="dev abs builds"
 arch=('x86_64')
@@ -41,14 +41,6 @@ package() {
 	cp -rf "${srcdir}/dabs/options/" "${pkgdir}/etc/dab/"
 	rm -rf "../dabs/"
 	rm -r "${srcdir}"
-
-	if [[ ${pkgname} == "abs" ]]; then
-		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/abs/misc/.formatting
- 	elif [[ ${pkgname} == "dabs" ]]; then
- 		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/dabs/misc/.formatting
- 	else
-		echo "hey bb"
- 	fi
 }
 
 
