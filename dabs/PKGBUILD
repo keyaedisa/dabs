@@ -36,7 +36,7 @@ sha256sums=('SKIP')
 package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
 	cp "${srcdir}/gc/dabs/dabs" "${pkgdir}/usr/local/bin/dabs"
-	mkdir -p "${pkgdir}/gc/etc/dabs/"
+	mkdir -p "${pkgdir}/etc/dabs/"
 	cp -rf "${srcdir}/gc/misc/" "${pkgdir}/etc/dabs/"
 	cp -rf "${srcdir}/gc/options/" "${pkgdir}/etc/dabs/"
 	cp "${srcdir}/gc/options/.options" "${pkgdir}/etc/dabs/"
