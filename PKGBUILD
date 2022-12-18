@@ -6,10 +6,10 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="dab"
 pkgver=3.4
-pkgrel=9
+pkgrel=10
 epoch=
 pkgdesc="dev abs builds"
-arch=('x86_64')
+arch=('x86_64' 'i686')
 url="https://github.com/keyaedisa/dabs"
 #license=('')
 #groups=()
@@ -23,7 +23,7 @@ makedepends=('git')
 #optdepends=()
 provides=('dab')
 #conflicts=('')
-replaces=('absd')
+#replaces=('absd')
 #backup=()
 #options=()
 install=dab.install
