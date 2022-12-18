@@ -4,7 +4,7 @@
 # then please put 'unknown'.
 
 # Maintainer: Your Name <keyaedisa>
-pkgname="absd"
+pkgname="dabs"
 pkgver=3.3
 pkgrel=3
 epoch=
@@ -21,20 +21,19 @@ depends=("git"
 makedepends=('git')
 #checkdepends=()
 #optdepends=()
-provides=('absd')
-#conflicts=('archiso-build-scripts')
-#replaces=('archiso-build-scripts')
+provides=('dabs')
+#conflicts=('')
+#replaces=('absd')
 #backup=()
 #options=()
-#install=
+install=dabs.install
 #changelog=
-source=("git+ssh://git@github.com/keyaedisa/absd.git")
+source=("git+ssh://git@github.com/keyaedisa/abd.git/dabs/")
 #noextract=()
 #md5sums=()
 sha256sums=('SKIP')
 
 package() {
-	cd "${srcdir}"/
 	mkdir -p "${pkgdir}/usr/local/bin/"
 	cp "${srcdir}/absd" "${pkgdir}/usr/local/bin/absd"
 	mkdir -p "${pkgdir}/etc/absd/"
