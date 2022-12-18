@@ -1,0 +1,13 @@
+#!/bin/bash
+
+printf "\n${txBold}${fgBlue}Usage${txReset}:\n\t${BT} [OPTIONS]\n"
+printf "${txBold}${fgBlue}Options${txReset}:\n"
+printf "    ${BT} can be called with no options and an interactive menu will start\n"
+printf "    -c,     \tBuild an Arch ISO using a custom profile.\n"
+printf "    -L,     \tList all options.\n"
+printf "    -h,     \tDisplay help message and exit.\n"
+printf "    --help, \tDisplay more detailed help message and exit.\n"
+printf "    -v,     \tBuild an official Vanilla Arch Monthly ISO.\n"
+printf "    -vb,    \tBuild an official Vanilla Arch Monthly ISO but with only whats needed to boot.\n"
+printf "    -x,     \tBuild a XeroLinux Arch ISO using latest source.\n"
+printf "    -xg,    \tBuild a XeroLinux Gnome Arch ISO using latest source.\n"
