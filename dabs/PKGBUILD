@@ -28,25 +28,25 @@ provides=('dabs')
 #options=()
 install=dabs.install
 #changelog=
-source=("git+ssh://git@github.com/keyaedisa/abd.git/")
+source=("gc"::"git+ssh://git@github.com/keyaedisa/abd.git/")
 #noextract=()
 #md5sums=()
 sha256sums=('SKIP')
 
 package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
-	cp "${srcdir}/dabs" "${pkgdir}/usr/local/bin/dabs"
-	mkdir -p "${pkgdir}/etc/dabs/"
-	cp -rf "${srcdir}/misc/" "${pkgdir}/etc/dabs/"
-	cp -rf "${srcdir}/options/" "${pkgdir}/etc/dabs/"
-	cp "${srcdir}/options/.options" "${pkgdir}/etc/dabs/"
+	cp "${srcdir}/gc/dabs" "${pkgdir}/usr/local/bin/dabs"
+	mkdir -p "${pkgdir}/gc/etc/dabs/"
+	cp -rf "${srcdir}/gc/misc/" "${pkgdir}/etc/dabs/"
+	cp -rf "${srcdir}/gc/options/" "${pkgdir}/etc/dabs/"
+	cp "${srcdir}/gc/options/.options" "${pkgdir}/etc/dabs/"
 	rm -r "../gc"
 	rm -r "${srcdir}"
 
 	if [[ ${pkgname} == "abs" ]]; then
-		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}/etc/abs/misc/.formatting"
+		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/abs/misc/.formatting
  	elif [[ ${pkgname} == "dabs" ]]; then
- 		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}/etc/abs/misc/.formatting"
+ 		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/dabs/misc/.formatting
  	else
 		echo "hey bb"
  	fi
