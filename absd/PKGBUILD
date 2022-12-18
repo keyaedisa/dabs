@@ -34,6 +34,7 @@ source=("git+ssh://git@github.com/keyaedisa/absd.git")
 sha256sums=('SKIP')
 
 package() {
+	cd "${srcdir}"/
 	mkdir -p "${pkgdir}/usr/local/bin/"
 	cp "${srcdir}/absd" "${pkgdir}/usr/local/bin/absd"
 	mkdir -p "${pkgdir}/etc/absd/"
