@@ -4,13 +4,13 @@
 # then please put 'unknown'.
 
 # Maintainer: Your Name <keyaedisa>
-pkgname="dabs"
-pkgver=3.3
-pkgrel=4
+pkgname="dab"
+pkgver=3.4
+pkgrel=0
 epoch=
 pkgdesc="dev abs builds"
 arch=('x86_64')
-url="https://github.com/keyaedisa/abd"
+url="https://github.com/keyaedisa/dabs"
 #license=('')
 #groups=()
 depends=("git"
@@ -21,26 +21,26 @@ depends=("git"
 makedepends=('git')
 #checkdepends=()
 #optdepends=()
-provides=('dabs')
+provides=('dab')
 #conflicts=('')
-#replaces=('absd')
+replaces=('absd')
 #backup=()
 #options=()
-install=dabs.install
+install=dab.install
 #changelog=
-source=("gc"::"git+ssh://git@github.com/keyaedisa/abd.git/")
+source=("git+ssh://git@github.com/keyaedisa/dabs.git/")
 #noextract=()
 #md5sums=()
 sha256sums=('SKIP')
 
 package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
-	cp "${srcdir}/gc/dabs/dabs" "${pkgdir}/usr/local/bin/dabs"
-	mkdir -p "${pkgdir}/etc/dabs/"
-	cp -rf "${srcdir}/gc/misc/" "${pkgdir}/etc/dabs/"
-	cp -rf "${srcdir}/gc/options/" "${pkgdir}/etc/dabs/"
-	cp "${srcdir}/gc/options/.options" "${pkgdir}/etc/dabs/"
-	rm -r "../gc"
+	cp "${srcdir}/dab" "${pkgdir}/usr/local/bin/dab"
+	mkdir -p "${pkgdir}/etc/dab/"
+	cp -rf "${srcdir}/misc/" "${pkgdir}/etc/dab/"
+	cp -rf "${srcdir}/options/" "${pkgdir}/etc/dab/"
+	cp "${srcdir}/options/.options" "${pkgdir}/etc/dab/"
+#	rm -r "../gc"
 	rm -r "${srcdir}"
 
 	if [[ ${pkgname} == "abs" ]]; then
@@ -50,6 +50,7 @@ package() {
  	else
 		echo "hey bb"
  	fi
+
 
 }
 
