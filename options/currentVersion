@@ -1,8 +1,8 @@
 #!/bin/bash
 # i am very upset about this
 
-release=3.4-4
+version=3.4-4
 
 echo "${txBold}${fgBlue}Version${txReset}:"
-echo "    ${txBold}${fgMagenta}abs${txReset} v${fgCyan}${release}${txReset}!"
+echo "    ${txBold}${fgMagenta}abs${txReset} v${fgCyan}${version}${txReset}!"
 
