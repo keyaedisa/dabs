@@ -1,13 +1,13 @@
-post_upgrade() {
-	if [[ ${pkgname} == "abs" ]]; then
-		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/abs/misc/.formatting
-	elif [[ ${pkgname} == "dab" ]]; then
-		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/dab/misc/.formatting
-	else
-		echo "hey bb"
-	fi
-
-}
+#post_upgrade() {
+#	if [[ ${pkgname} == "abs" ]]; then
+#		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/abs/misc/.formatting
+#	elif [[ ${pkgname} == "dab" ]]; then
+#		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/dab/misc/.formatting
+#	else
+#		echo "hey bb"
+#	fi
+#
+#}
 
 post_remove() {
  if [[ $pkgname == "abs" ]]; then
