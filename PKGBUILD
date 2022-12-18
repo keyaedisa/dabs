@@ -34,7 +34,7 @@ source=("git+ssh://git@github.com/keyaedisa/dabs.git/")
 sha256sums=('SKIP')
 
 package() {
-	cd "${srcdir}"/$pkgname
+#	cd "${srcdir}"/dabs
 	mkdir -p "${pkgdir}/usr/local/bin/"
 	cp "${srcdir}/dabs/dab" "${pkgdir}/usr/local/bin/dab"
 	mkdir -p "${pkgdir}/etc/dab/"
