@@ -3,7 +3,7 @@
 
 set -e
 
-devRepo="ValenDev_Repo"
+devRepo="valenDev_repo"
 prodRepo="valen_repo"
 
 # define package variables using this pkgs PKGBUILD, most if not all will be rewritten by end of script
