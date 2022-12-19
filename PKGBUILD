@@ -6,7 +6,7 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="dab"
 pkgver=3.4
-pkgrel=15
+pkgrel=16
 epoch=
 pkgdesc="dev abs builds"
 arch=('x86_64' 'i686')
