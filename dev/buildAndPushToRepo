@@ -98,7 +98,7 @@ echo
 echo "Oki now we move new ${cPkgName} pkg to ${destRepo} and begin push!"
 mv *.pkg.tar.zst *.pkg.tar.zst.sig ../$destRepo/x86_64/
 cd ../$destRepo/x86_64/
-repo-add -v -s -R $destRepo.db.tar.gz $package
+repo-add -v -s -R $destRepo.db.tar.gz *.pkg.tar.zst
 cd ..
 git add -A
 git commit -m "${cPkgName}-${cPkgVer}-${cPkgRel}"
