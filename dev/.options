@@ -5,17 +5,17 @@
 source /etc/dab/options/.options
 
 _buildAndPushToRepo() {
- source /etc/dev/buildAndPushToRepo
+ source /etc/dab/dev/buildAndPushToRepo
 }
 
 _mergeDevToProd() {
- source /etc/dev/mergeDevToProd
+ source /etc/dab/dev/mergeDevToProd
 }
 
 _push2Git() {
- source /etc/dev/push2Git
+ source /etc/dab/dev/push2Git
 }
 
 _help() {
- source /etc/dev/help
+ source /etc/dab/dev/help
  }
