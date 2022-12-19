@@ -11,7 +11,7 @@ trap_ctrlc() {
 trap "trap_ctrlc" 2
 
 _version() {
-buildVersion=3.5-1
+buildVersion=3.5-2
 
 	echo "${txBold}${fgBlue}Version${txReset}:"
 	echo "    ${txBold}${fgMagenta}${app-name}${txReset} v${fgCyan}${buildVersion}${txReset}!"
