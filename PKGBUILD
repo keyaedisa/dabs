@@ -5,11 +5,11 @@
 
 # Maintainer: Your Name <keyaedisa>
 pkgname="dab"
-pkgver=3.4
-pkgrel=20
+pkgver=3.5
+pkgrel=1
 epoch=
-pkgdesc="dev abs builds"
-arch=('x86_64' 'i686')
+pkgdesc="abs but with extra features."
+arch=('x86_64')
 url="https://github.com/keyaedisa/dabs"
 #license=('')
 #groups=()
@@ -39,6 +39,7 @@ package() {
 	mkdir -p "${pkgdir}/etc/dab/"
 	cp -rf "${srcdir}/dabs/misc/" "${pkgdir}/etc/dab/"
 	cp -rf "${srcdir}/dabs/options/" "${pkgdir}/etc/dab/"
+	cp -rf "${srcdir}/dabs/dev/" "${pkgdir}/etc/dab/"
 	rm -rf "../dabs/"
 	rm -r "${srcdir}"
 }

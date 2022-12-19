@@ -1,9 +1,5 @@
 #!/bin/bash
-# https://keyaedisa.github.io/
-
-currentVersion() {
- source /etc/dab/options/currentVersion
-}
+# https://keyaedisa.github.io, https://github.com/keyaedisa
 
 custom() {
  source /etc/dab/options/custom

@@ -1,6 +1,6 @@
 #!/bin/bash
-# List of functions used by abs/d
-# https://keyaedisa.github.io
+# List of functions used by abs
+# https://keyaedisa.github.io, https://github.com/keyaedisa
 
 trap_ctrlc() {
 	echo
@@ -9,6 +9,14 @@ trap_ctrlc() {
 }
 
 trap "trap_ctrlc" 2
+
+_version() {
+buildVersion=3.5-1
+
+	echo "${txBold}${fgBlue}Version${txReset}:"
+	echo "    ${txBold}${fgMagenta}${app-name}${txReset} v${fgCyan}${buildVersion}${txReset}!"
+
+}
 
 checkSudo() {
     if [[ ${UID} -eq 0 ]]; then
@@ -99,9 +107,9 @@ cloneGit() {
 
 listOptions() {
 	echo "${txBold}${fgBlue}Usage${txReset}:"
-	echo "    abs [OPTIONS]"
+	echo "    ${app_name} [OPTIONS]"
 	printf "${txBold}${fgBlue}Options${txReset}:\n"
-	printf "    abs can be called with no options and an interactive menu will start\n"
+	printf "    ${app_name} can be called with no options and an interactive menu will start\n"
 	printf "    -c,     \tBuild an Arch ISO using a custom profile.\n"
 	printf "    -h,     \tDisplay help message and exit.\n"
 	printf "    --help, \tDisplay more detailed help message and exit.\n"

@@ -1,0 +1,21 @@
+#!/bin/bash
+# List of options used exclusively in dab, but imports abs options too
+# https://keyaedisa.github.io, https://github.com/keyaedisa
+
+source /etc/dab/options/.options
+
+_buildAndPushToRepo() {
+ source /etc/dev/buildAndPushToRepo
+}
+
+_mergeDevToProd() {
+ source /etc/dev/mergeDevToProd
+}
+
+_push2Git() {
+ source /etc/dev/push2Git
+}
+
+_help() {
+ source /etc/dev/help
+ }
