@@ -6,7 +6,7 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="dab"
 pkgver=3.4
-pkgrel=18
+pkgrel=19
 epoch=
 pkgdesc="dev abs builds"
 arch=('x86_64' 'i686')
@@ -23,12 +23,12 @@ makedepends=('git')
 #optdepends=()
 provides=('dab')
 #conflicts=('')
-#replaces=('absd')
+#replaces=('')
 #backup=()
 #options=()
 install=dab.install
 #changelog=
-source=("git+ssh://git@github.com/keyaedisa/dabs.git/")
+source=("git+ssh://git@github.com/keyaedisa/dabs.git")
 #noextract=()
 #md5sums=()
 sha256sums=('SKIP')

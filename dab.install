@@ -10,13 +10,13 @@
 #}
 
 post_remove() {
- if [[ $pkgname == "abs" ]]; then
-	rm -rf etc/abs/ usr/local/bin/abs/
- elif [[ $pkgname == "absd" ]]; then
-	rm -rf etc/absd/ usr/local/bin/absd/
- else
-	echo "hey bb"
- fi
+# if [[ $pkgname == "abs" ]]; then
+#	rm -rf etc/abs/ usr/local/bin/abs/
+# elif [[ $pkgname == "absd" ]]; then
+#	rm -rf etc/absd/ usr/local/bin/absd/
+# else
+#	echo "hey bb"
+# fi
 
  echo "Sad to see you go! Please reach out to Keyaedisa if theres anyway they can bring you back!"
 }
