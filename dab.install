@@ -1,4 +1,4 @@
-#post_upgrade() {
+post_upgrade() {
 #	if [[ ${pkgname} == "abs" ]]; then
 #		sed -i  "0,/version/s/.*version.*/version=${pkgver}-${pkgrel}/" "${pkgdir}"/etc/abs/misc/.formatting
 #	elif [[ ${pkgname} == "dab" ]]; then
@@ -7,7 +7,18 @@
 #		echo "hey bb"
 #	fi
 #
-#}
+	echo
+	echo "New abs update installed!"
+	echo "If you are a distro maintainer and are interesting in integrating your distro into abs reach out!
+	echo "https://keyaedisa.github.io, https://github.com/keyaedisa "
+}
+
+post_install() {
+	echo
+	echo "Thanks for installing abs! I'm sure you will love it. If you need assistance try abs -h/--help!"
+	echo "If you are a distro maintainer and are interesting in integrating your distro into abs reach out!
+	echo "https://keyaedisa.github.io, https://github.com/keyaedisa "
+}
 
 post_remove() {
 # if [[ $pkgname == "abs" ]]; then
