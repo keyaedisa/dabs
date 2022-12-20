@@ -3,10 +3,11 @@
 
 case $1 in
 	-h )
-		echo "dab is the developer version of ${app_name}. It supports the standard ${app_name} features but also has some of it's own."
+		echo "dab is the developer version of abs. It supports the standard abs features but also has some of it's own."
 		echo "The features special to dab are either future options being tested, or features only meant for dab (for now?)."
 		echo "Will see how things go."
 		echo "Use '--help' instead of '-h' to see a more detailed version of the help message."
+		echo
 		_version
 		_listOptsDev
 		;;

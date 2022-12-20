@@ -5,6 +5,7 @@ case $1 in
 	-h )
 		echo "${txBold}${fgMagenta}abs${txReset} is a utility designed for building Arch ISO's whether custom or using one of abs's built in options."
 		echo "Use '--help' instead of '-h' to see a more detailed version of the help message."
+		echo
 		_version
 		listOptions
 		;;
@@ -16,6 +17,7 @@ case $1 in
 		echo "Both releng (Latest Monthly) and baseline (Latest Monthly but bare minimal) are supported out of the box!"
 		echo "abs is a pride project of Keyaedisa! Check them out at https://keyaedisa.github.io! Feature requests welcome!"
 		echo "abs is more than ready to be integrated with you distro too, reach out!"
+		echo
 		_version
 		echo
 		echo "Read below for a brief description of each available option."
