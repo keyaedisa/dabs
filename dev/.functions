@@ -76,24 +76,30 @@ ENDUSAGETEXT
 _listOptsDev() {
 	echo "${txBold}${fgBlue}Usage${txReset}:"
 	echo "    ${app_name} [OPTIONS]"
-	printf "${txBold}${fgBlue}Options${txReset}:\n"
-	printf "    ${app_name} can be called with no options and an interactive menu will start\n"
-	printf "    -buildAndPush   Build a new Pkg Tar and upload to Pkg Repo.\n"
-	printf "    -c,             Build an Arch ISO using a custom profile.\n"
-	printf "    -gitpush        Add all changes, make a commit, and push to repo.\n"
-	printf "    -h,             Display this help message and exit.\n"
-	printf "    --help,         Display more detailed help message and exit.\n"
-	printf "    -V,             Display current abs version.\n"
-	printf "    -mergeDevToProd Build a new Pkg Tar and upload to Pkg Repo.\n"
-	printf "    -v,             Build an official Vanilla Arch Monthly ISO.\n"
-	printf "    -vb,            Build an official Vanilla Arch Monthly ISO but with only whats needed to boot.\n"
-	printf "    -x,             Build a XeroLinux Arch ISO using latest source.\n"
-	printf "    -xg,            Build a XeroLinux Gnome Arch ISO using latest source.\n"
+	echo "${txBold}${fgBlue}Options${txReset}:"
+	echo "    ${app_name} can be called with no options and an interactive menu will start"
+	echo
+	echo "    ${txBold}${fgBlue}dab ${txReset}${fgRed}only${txReset} ${txBold}${fgBlue}options first.${txReset}"
+	echo
+	echo "    -buildAndPush   Build a new Pkg Tar and push to repo."
+	echo "    -gitpush        Add all changes, make a commit, and push to repo."
+	echo "    -mergeDevToProd Push necesarry dab changes to abs."
+	echo
+	echo "    ${txBold}${fgBlue}Now normal abs options below.${txReset}"
+	echo
+	echo "    -c,             Build an Arch ISO using a custom profile."
+	echo "    -h,             Display this help message and exit."
+	echo "    --help,         Display more detailed help message and exit."
+	echo "    -V,             Display current abs version."
+	echo "    -v,             Build an official Vanilla Arch Monthly ISO."
+	echo "    -vb,            Build an official Vanilla Arch Monthly ISO but with only whats needed to boot."
+	echo "    -x,             Build a XeroLinux Arch ISO using latest source."
+	echo "    -xg,            Build a XeroLinux Gnome Arch ISO using latest source."
 }
 
 _interactiveDev() {
 echo
-echo "${app_name} TUI"
+echo "Welcome to the ${app_name} TUI. See below for how to use ${app_name}."
 echo
 fin='0'
 while [ $fin != 1 ]; do

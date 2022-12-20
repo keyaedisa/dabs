@@ -30,29 +30,30 @@ case $1 in
 		echo "    ${app_name} [OPTIONS]"
 		echo "${txBold}${fgBlue}Options${txReset}:"
 		echo "    ${app_name} can be called with no options and an interactive menu will start"
-		echo "${txBold}${fgBlue}-c${txReset}"
-		echo "    ex: ${fgCyan}${app_name} -c${txReset}, ${fgCyan}${app_name} --custom${txReset}"
-		echo "    This will run the custom option. It is for the building of ${txBold}any${txReset} ${txUnderline}archiso${txReset} profile you may be working on."
-		echo "    ${txUnderline}It is not tied to or dependent on any Arch ISO or distribution${txReset}."
-		echo "    This option is flexible and once again supports the building of basically any archiso profile ${txUnderline}you provide${txReset}."
-		echo "    When ${app_name} is provided a profile it will look for it in the current directory. If not found it will exit and ask to be ran in the directory containing the profile"
 		echo
-		echo "    dab ${fgRed}only${txReset} first."
+		echo "${txBold}${fgBlue}dab ${txReset}${fgRed}only${txReset} ${txBold}${fgBlue}options first.${txReset}"
 		echo
 		echo "${txBold}${fgBlue}-buildAndPush${txReset}"
 		echo "    ex: ${fgCyan}${app_name} -buildAndPush${txReset}"
 		echo "    This option will build a new Pkg Tar and push it to the repo"
+		echo
+		echo "${txBold}${fgBlue}-gitpush${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -gitpush${txReset}"
+		echo "    This option will git add -A, then git commit -a, then git push"
 		echo
 		echo "${txBold}${fgBlue}-mergeDevToProd${txReset}"
 		echo "    ex: ${fgCyan}${app_name} -mergeDevToProd${txReset}"
 		echo "    This option will merge dab's appropriate upgrades to abs."
 		echo "    You will still need to build abs and push to repo afterwards."
 		echo
-		echo "${txBold}${fgBlue}-gitpush${txReset}"
-		echo "    ex: ${fgCyan}${app_name} -gitpush${txReset}"
-		echo "    This option will git add -A, then git commit -a, then git push"
+		echo "${txBold}${fgBlue}Now normal abs options below.${txReset}"
 		echo
-		echo "    Now normal abs options below."
+		echo "${txBold}${fgBlue}-c${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -c${txReset}, ${fgCyan}${app_name} --custom${txReset}"
+		echo "    This will run the custom option. It is for the building of ${txBold}any${txReset} ${txUnderline}archiso${txReset} profile you may be working on."
+		echo "    ${txUnderline}It is not tied to or dependent on any Arch ISO or distribution${txReset}."
+		echo "    This option is flexible and once again supports the building of basically any archiso profile ${txUnderline}you provide${txReset}."
+		echo "    When ${app_name} is provided a profile it will look for it in the current directory. If not found it will exit and ask to be ran in the directory containing the profile"
 		echo
 		echo "${txBold}${fgBlue}-h${txReset}"
 		echo "    ex: ${fgCyan}${app_name} -h${txReset}"

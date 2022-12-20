@@ -4,7 +4,8 @@
 
 trap_ctrlc() {
 	echo
-    echo "Ctrl-C detected. Ending current abs session."
+    echo
+    echo "Ctrl-C detected. Ending current ${app_name} session."
     exit
 }
 
@@ -12,7 +13,7 @@ trap "trap_ctrlc" 2
 
 _interactive() {
 echo
-echo "${app_name} TUI"
+echo "Welcome to the ${app_name} TUI. See below for how to use ${app_name}."
 echo
 fin='0'
 while [ $fin != 1 ]; do
@@ -57,7 +58,7 @@ fi
 
 
 _version() {
-buildVersion=3.5-5
+buildVersion=3.5-6
 
 	echo "${txBold}${fgBlue}Version${txReset}:"
 	echo "    ${txBold}${fgMagenta}${app_name}${txReset} v${fgCyan}${buildVersion}${txReset}!"
