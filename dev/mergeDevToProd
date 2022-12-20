@@ -38,6 +38,7 @@ dabsSource="git+ssh\:\/\/git@github.com\/keyaedisa\/dabs.git" # yup here too
 
 sed -i 's/dab/abs/' abs
 sed -i 's/dab/abs/' options/.options
+sed -i 's/dab/abs/' misc/.functions
 sed -i 's/dev/misc/' abs
 
 
