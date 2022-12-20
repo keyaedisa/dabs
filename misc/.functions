@@ -10,8 +10,54 @@ trap_ctrlc() {
 
 trap "trap_ctrlc" 2
 
+_interactive() {
+echo
+echo "${app_name} TUI"
+echo
+fin='0'
+while [ $fin != 1 ]; do
+_listOptsDev
+echo
+read -p "What option would you like to select? : " opt
+case $opt in
+		-c | --custom )	custom \ fin='1' ;;
+		-h | --help ) _help $opt ;;
+		-V | --version ) _version \ fin='1' ;;
+		-v | --releng ) vanilla \ fin='1' ;;
+		-vb | --baseline ) vanillaBaseline \ fin='1' ;;
+		-x | --xero | xero | Xero ) xero \ fin='1' ;;
+		-xg | --xerog | xerog | XeroG ) xerog \ fin='1' ;;
+		* ) echo
+			echo "${opt} is not a valid ${app_name} option. Try again."
+			echo
+			;;
+esac
+done
+}
+
+_absTUI() {
+if [[ -n $1 ]]; then
+	case $1 in
+		-c | --custom )	custom ;;
+		-h | --help ) _help $1 ;;
+		-V | --version ) _version ;;
+		-v | --releng ) vanilla ;;
+		-vb | --baseline ) vanillaBaseline ;;
+		-x | --xero | xero | Xero ) xero ;;
+		-xg | --xerog | xerog | XeroG ) xerog ;;
+		* )
+			echo "${1} is not a valid ${app_name} option. Try again."
+			_interactive
+			;;
+	esac
+elif [[ -z $1 ]]; then
+	_interactive
+fi
+}
+
+
 _version() {
-buildVersion=3.5-4
+buildVersion=3.5-5
 
 	echo "${txBold}${fgBlue}Version${txReset}:"
 	echo "    ${txBold}${fgMagenta}${app_name}${txReset} v${fgCyan}${buildVersion}${txReset}!"

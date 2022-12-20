@@ -91,7 +91,36 @@ _listOptsDev() {
 	printf "    -xg,            Build a XeroLinux Gnome Arch ISO using latest source.\n"
 }
 
+_interactiveDev() {
+echo
+echo "${app_name} TUI"
+echo
+fin='0'
+while [ $fin != 1 ]; do
+_listOptsDev
+echo
+read -p "What option would you like to select? : " opt
+case $opt in
+		-c | --custom )	custom \ fin='1' ;;
+		-h | --help ) _help $opt ;;
+		-V | --version ) _version \ fin='1' ;;
+		-v | --releng ) vanilla \ fin='1' ;;
+		-vb | --baseline ) vanillaBaseline \ fin='1' ;;
+		-x | --xero | xero | Xero ) xero \ fin='1' ;;
+		-xg | --xerog | xerog | XeroG ) xerog \ fin='1' ;;
+		-gitpush ) _pushToGit \ fin='1' ;;
+		-mergeDevToProd ) _mergeDevToProd \ fin='1' ;;
+		-buildAndPush | -buildAndPushToRepo ) _buildAndPushToRepo \ fin='1' ;;
+		* ) echo
+			echo "${opt} is not a valid ${app_name} option. Try again."
+			echo
+			;;
+esac
+done
+}
+
 _dabTUI() {
+
 if [[ -n $1 ]]; then
 	case $1 in
 		-c | --custom )	custom ;;
@@ -105,86 +134,12 @@ if [[ -n $1 ]]; then
 		-mergeDevToProd ) _mergeDevToProd ;;
 		-buildAndPush | -buildAndPushToRepo ) _buildAndPushToRepo ;;
 		* )
-			echo "Not a valid dab option."
-			echo
-			_help
+			echo "${1} is not a valid ${app_name} option. Try again."
+			_interactiveDev
 			;;
 	esac
 elif [[ -z $1 ]]; then
-	_version
-	echo
-	fin='0'
-	while [ $fin != 1 ]; do
-	_listOptsDev
-	read -p "What option would you like to select?" opt
-	case $opt in
-		-c | --custom )
-			custom
-			fin='1' ;;
-		-h | --help )
-			_help $opt ;;
-		-V | --version )
-			_version
-			fin='1' ;;
-		-v | --releng )
-			vanilla
-			fin='1' ;;
-		-vb | --baseline )
-			vanillaBaseline
-			fin='1' ;;
-		-x | --xero | xero | Xero )
-			xero
-			fin='1' ;;
-		-xg | --xerog | xerog | XeroG )
-			xerog
-			fin='1' ;;
-		-gitpush )
-			_pushToGit
-			fin='1' ;;
-		-mergeDevToProd )
-			_mergeDevToProd
-			fin='1' ;;
-		-buildAndPush | -buildAndPushToRepo )
-			_buildAndPushToRepo
-			fin='1' ;;
-		* )
-			echo "Not a valid dab option. Try again"
-			echo
-			;;
-	esac
-	done
+	_interactiveDev
 fi
-}
 
-# Shows configuration options.
-_show_config() {
-    local build_date
-    printf -v build_date '%(%FT%R%z)T' "${SOURCE_DATE_EPOCH}"
-    _msg_info "${app_name} configuration settings"
-    _msg_info "             Architecture:   ${arch}"
-    _msg_info "        Working directory:   ${work_dir}"
-    _msg_info "   Installation directory:   ${install_dir}"
-    _msg_info "               Build date:   ${build_date}"
-    _msg_info "         Output directory:   ${out_dir}"
-    _msg_info "       Current build mode:   ${buildmode}"
-    _msg_info "              Build modes:   ${buildmodes[*]}"
-    _msg_info "                  GPG key:   ${gpg_key:-None}"
-    _msg_info "               GPG signer:   ${gpg_sender:-None}"
-    _msg_info "Code signing certificates:   ${cert_list[*]:-None}"
-    _msg_info "                  Profile:   ${profile}"
-    _msg_info "Pacman configuration file:   ${pacman_conf}"
-    _msg_info "          Image file name:   ${image_name:-None}"
-    _msg_info "         ISO volume label:   ${iso_label}"
-    _msg_info "            ISO publisher:   ${iso_publisher}"
-    _msg_info "          ISO application:   ${iso_application}"
-    _msg_info "               Boot modes:   ${bootmodes[*]:-None}"
-    _msg_info "            Packages File:   ${buildmode_packages}"
-    _msg_info "                 Packages:   ${buildmode_pkg_list[*]}"
-}
-
-_pushToGit() {
-	echo "Oki, adding all changes, creating a new commit and pushing to this repo's git!"
-	git add -A
-	git commit -a
-	git push
 }
