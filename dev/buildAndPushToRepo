@@ -17,17 +17,24 @@ package="${cPkgName}-${cPkgVer}-${cPkgRel}-${cPkgArch}.pkg.tar.zst"
 echo "Preparing to build ${cPkgName} for ${cPkgArch}!"
 echo
 
+fin=0
+while [ $fin = 0 ]; do
 read -p "When done building push to dev or production repo? (d/p) : " dp
 case $dp  in
 	d | dev | development )
 		echo "Oki. Will push to development Valen repo when done!"
 		destRepo=$devRepo
+		fin='1'
 		;;
 	p | prod | production )
 		echo "Oki. Will push to production Valen repo when done!"
 		destRepo=$prodRepo
+		fin='1'
+	* )
+		echo "Not a valid option. Please enter dev or prod."
 		;;
 esac
+done
 
 echo "First we check if anything in PKGBUILD needs updating."
 echo
@@ -46,7 +53,7 @@ case $YN  in
 		;;
 esac
 
-read -p "Current pkgrel is: ${cPkgRel}! Update? Press enter to increment by one or type y to specify new pkgrel. : " YN
+read -p "Current pkgrel is: ${cPkgRel}! Update? Press enter to increment by one, y to specify new pkgrel, or N to not change. : " YN
 case $YN  in
 	y | Y )
 		read -p "Oki. What should new pkgrel be?: " newRel
