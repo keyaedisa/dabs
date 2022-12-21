@@ -40,7 +40,7 @@ sed -i 's/dab/abs/' abs
 sed -i 's/dab/abs/' options/.options
 sed -i 's/dab/abs/' misc/.functions
 sed -i 's/dev/misc/' abs
-
+sed -i 's/misc\/.options/options\/.options/' abs
 
 
 echo
