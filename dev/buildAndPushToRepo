@@ -30,6 +30,7 @@ case $dp  in
 		echo "Oki. Will push to production Valen repo when done!"
 		destRepo=$prodRepo
 		fin='1'
+		;;
 	* )
 		echo "Not a valid option. Please enter dev or prod."
 		;;
