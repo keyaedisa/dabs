@@ -39,7 +39,7 @@ echo
 
 checkInternetConnection
 isArchisoUpToDate
-valenRepoAdder
+valenRepoAdder releng
 
 echo "abs will now copy over the Latest Monthly ${fgCyan}Releng${txReset} Arch Profile into this directory."
 echo
