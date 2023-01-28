@@ -1,0 +1,8 @@
+#!/bin/bash
+# https://keyaedisa.github.io, https://github.com/keyaedisa
+
+echo "Oki, preparing for push to this repo's git"
+git add -A
+git commit -a
+git push
+
