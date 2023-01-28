@@ -1,11 +1,11 @@
 format = 2
 pkgname = dab
 pkgbase = dab
-pkgver = 3.5-14
+pkgver = 3.5-13
 pkgarch = x86_64
-pkgbuild_sha256sum = b02a8a46f940f7cc808dac2d9c591f4c7a8e152250167766bc6a356ce9b13e32
+pkgbuild_sha256sum = e0c21c783b5915b186c0186715028be4d4130b0e8ffdcbc7bb6e8a1b8f48195c
 packager = Unknown Packager
-builddate = 1674926620
+builddate = 1674936164
 builddir = /home/key/safekeep/gitRepos/dabs
 startdir = /home/key/safekeep/gitRepos/dabs
 buildtool = makepkg
