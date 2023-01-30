@@ -17,7 +17,7 @@ echo
 	outDir=$HOME"/${profile}-Out"
 	user=$(whoami)
 
-#	searchForSourceGit $profile
+	searchForSourceGit $profile
 
 echo
 echo "${fgCyan}Step 2${txReset}: Making sure you have latest ${fgCyan}archiso${txReset}!"
