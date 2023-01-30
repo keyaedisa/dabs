@@ -58,7 +58,7 @@ fi
 
 
 _version() {
-buildVersion=3.5-18
+buildVersion=3.5-19
 
 	echo "${txBold}${fgBlue}Version${txReset}:"
 	echo "    ${txBold}${fgMagenta}${app_name}${txReset} v${fgCyan}${buildVersion}${txReset}!"
@@ -172,7 +172,6 @@ searchForSourceGit() {
 	if [[ ! -d $sourceGit ]]; then
 		echo "Couldn't find ${fgRed}${sourceGit}${txReset} git in the current directory!"
 		cloneGit $sourceGit
-		cd ~/xero_iso
 	else
 		echo "Found ${fgCyan}${sourceGit}${txReset} git!"
 	fi

@@ -39,7 +39,7 @@ echo "abs will now check if you have the latest archiso so that we only build th
 
 checkInternetConnection
 isArchisoUpToDate
-valenRepoAdder
+#valenRepoAdder
 
 echo "abs will now copy over the Latest Monthly ${fgCyan}Baseline${txReset} Arch Profile into this directory."
 

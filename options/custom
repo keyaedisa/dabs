@@ -8,7 +8,7 @@ checkSudo
 echo "${fgCyan}Step 1${txReset}: Getting ready to build your ${fgCyan}custom${txReset} ISO!"
 echo
 
-read -p "Please enter the name of your ${fgCyan}archiso${txReset} profile: " profile
+read -p "Please enter the name of your ${fgCyan}archiso${txReset} profile: " archisoProfile
 
 if [[ ! -d $archisoProfile ]]; then
 	echo "Couldn't find ${fgRed}${archisoProfile}${txReset}! Are you sure you're in the correct directory?"
@@ -27,7 +27,7 @@ echo "Oki! ${fgCyan}${buildDir}${txReset} will be where the build takes place!" 
 	profile=$archisoProfile
 	profiledef=$profile/profiledef.sh
 	user=$(whoami)
-	echo $profile
+#	echo $profile
 
 echo
 echo "${fgCyan}Step 2${txReset}: Making sure you have latest ${fgCyan}archiso${txReset}!"
@@ -35,7 +35,7 @@ echo
 
 	checkInternetConnection
 	isArchisoUpToDate
-	valenRepoAdder
+#	valenRepoAdder
 
 echo
 echo "${fgCyan}Step 3${txReset}:Getting ready to ${fgCyan}build the ISO${txReset}!"
