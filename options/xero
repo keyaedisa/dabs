@@ -11,13 +11,13 @@ echo "${fgCyan}Step 1${txReset}: Getting ready to build ${fgCyan}XeroLinux${txRe
 echo
 
 	sudo sed -i 's/quiet="y"/quiet="n"/g' /usr/bin/mkarchiso
-	profile=Xero
+	profile='Xero'
 	profiledef=$profile/profiledef.sh
 	buildDir=$HOME"/${profile}-Build"
 	outDir=$HOME"/${profile}-Out"
 	user=$(whoami)
 
-	searchForSourceGit $profile
+#	searchForSourceGit $profile
 
 echo
 echo "${fgCyan}Step 2${txReset}: Making sure you have latest ${fgCyan}archiso${txReset}!"
