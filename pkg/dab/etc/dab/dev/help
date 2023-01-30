@@ -1,0 +1,102 @@
+#!/bin/bash
+# https://keyaedisa.github.io, https://github.com/keyaedisa
+
+case $1 in
+	-h )
+		echo "dab is the developer version of abs. It supports the standard abs features but also has some of it's own."
+		echo "The features special to dab are either future options being tested, or features only meant for dab (for now?)."
+		echo "Will see how things go."
+		echo "Use '--help' instead of '-h' to see a more detailed version of the help message."
+		echo
+		_version
+		_listOptsDev
+		;;
+	--help )
+		echo "${app_name} is a utility that makes it easy to build custom Arch ISO distributions."
+		echo "It can not only help you build your own custom distribution, but known distro's too!"
+		echo "${app_name} is the official build utility for both KDE and Gnome versions of XeroLinux!"
+		echo "The functionality doesn't end there however as ${app_name} supports building the ${txUnderline}${fgCyan}LATEST Vanilla Arch ISO's${txReset} too!"
+		echo "Both releng (Latest Monthly) and baseline (Latest Monthly but bare minimal) are supported out of the box!"
+		echo "${app_name} is a pride project of Keyaedisa! Check them out at https://keyaedisa.github.io! Feature requests welcome!"
+		echo "${app_name} is more than ready to be integrated with you distro too, reach out!"
+
+		echo "dab is the developer version of ${app_name}. It supports the standard ${app_name} features but also has some of it's own."
+		echo "The features special to dab are either future options being tested, or features only meant for dab (for now?)."
+		echo "Will see how things go."
+		_version
+		echo
+		echo "Read below for a brief description of each available option."
+		echo
+		echo "${txBold}${fgBlue}Usage${txReset}:"
+		echo "    ${app_name} [OPTIONS]"
+		echo "${txBold}${fgBlue}Options${txReset}:"
+		echo "    ${app_name} can be called with no options and an interactive menu will start"
+		echo
+		echo "${txBold}${fgBlue}dab ${txReset}${fgRed}only${txReset} ${txBold}${fgBlue}options first.${txReset}"
+		echo
+		echo "${txBold}${fgBlue}-buildAndPush${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -buildAndPush${txReset}"
+		echo "    This option will build a new Pkg Tar and push it to the repo"
+		echo
+		echo "${txBold}${fgBlue}-gitpush${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -gitpush${txReset}"
+		echo "    This option will git add -A, then git commit -a, then git push"
+		echo
+		echo "${txBold}${fgBlue}-mergeDevToProd${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -mergeDevToProd${txReset}"
+		echo "    This option will merge dab's appropriate upgrades to abs."
+		echo "    You will still need to build abs and push to repo afterwards."
+		echo
+		echo "${txBold}${fgBlue}Now normal abs options below.${txReset}"
+		echo
+		echo "${txBold}${fgBlue}-c${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -c${txReset}, ${fgCyan}${app_name} --custom${txReset}"
+		echo "    This will run the custom option. It is for the building of ${txBold}any${txReset} ${txUnderline}archiso${txReset} profile you may be working on."
+		echo "    ${txUnderline}It is not tied to or dependent on any Arch ISO or distribution${txReset}."
+		echo "    This option is flexible and once again supports the building of basically any archiso profile ${txUnderline}you provide${txReset}."
+		echo "    When ${app_name} is provided a profile it will look for it in the current directory. If not found it will exit and ask to be ran in the directory containing the profile"
+		echo
+		echo "${txBold}${fgBlue}-h${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -h${txReset}"
+		echo "    This option will bring up ${app_name}'s help message."
+		echo "    If you have any other questions or issues reach out or open a ticket at ${fgCyan}https://github.com/keyaedisa/${app_name}${txReset}"
+		echo
+		echo "${txBold}${fgBlue}--help${txReset}"
+		echo "    ex: ${fgCyan}${app_name} --help${txReset}"
+		echo "    This option will bring up a more detailed version of ${app_name}'s help message"
+		echo
+		echo "${txBold}${fgBlue}-V${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -V${txReset} ${fgCyan}${app_name} --version${txReset}"
+		echo "    This option will list ${app_name}'s current version."
+		echo
+		echo "${txBold}${fgBlue}-v${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -v${txReset}, ${fgCyan}${app_name} --releng${txReset}"
+		echo "    This option will build you an ISO using the official Arch Linux monthly Releng archiso profile."
+		echo "    If you want to build the latest and greatest Vanilla Arch ISO this is the option for you."
+		echo "    This will build the same kind of ISO you would get from the Arch Linux website."
+		echo
+		echo "${txBold}${fgBlue}-vb${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -vb${txReset}, ${fgCyan}${app_name} --baseline${txReset}"
+		echo "    This option will build you an ISO using the official Arch Linux monthly Baseline archiso profile."
+		echo "    This option will build an up to date Arch Linux ISO however, it will only have what is required to boot and nothing more."
+		echo "    This is for the ${txUnderline}experienced${txReset}. ${fgRed}Beware${txReset}."
+		echo
+		echo "${txBold}${fgBlue}-x${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -x${txReset}, ${fgCyan}${app_name} --xero${txReset}"
+		echo "    This option is dedicated to the build of ${fgCyan}XeroLinux${txReset} using the ${txUnderline}official xero_iso git repo${txReset} as its source."
+		echo "    This option will ask you if you need to clone the xero_iso git repo if you aren't in it already or if it doesn't already exist in your home directory."
+		echo "    If you tell ${app_name} to clone the xero_iso git repo for you it will do so and place it in your ${txUnderline}home directory${txReset}."
+		echo "    The home directory is chosen so that you can easily move the cloned xero_iso build repo directory wherever you desire if need be."
+		echo
+		echo "${txBold}${fgBlue}-xg${txReset}"
+		echo "    ex: ${fgCyan}${app_name} -xg${txReset}, ${fgCyan}${app_name} --xerog${txReset}"
+		echo "    This option is dedicated to the build of ${fgCyan}XeroLinux Gnome Edition${txReset} using the ${txUnderline}official xero_g_iso git repo${txReset} as its source."
+		echo "    This option will ask you if you need to clone the xero_g_iso git repo if you aren't in it already or if it doesn't already exist in your home directory."
+		echo "    If you tell ${app_name} to clone the xero_g_iso git repo for you it will do so and place it in your ${txUnderline}home directory${txReset}."
+		echo "    The home directory is chosen so that you can easily move the cloned xero_g_iso build repo directory wherever you desire if need be."
+		echo
+		;;
+esac
+
+exit
+
