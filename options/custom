@@ -61,6 +61,7 @@ echo
 
 updateProfiledef="0"
 while [ $updateProfiledef != 1 ]; do
+echo $profileDef
 echo "Below are the ${txUnderline}current${txReset} relevant values in your ${fgCyan}profiledef.sh${txReset}."
 sed -n '4,8p' $profileDef
 echo
