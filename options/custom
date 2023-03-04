@@ -61,7 +61,7 @@ echo
 
 updateProfiledef="0"
 while [ $updateProfiledef != 1 ]; do
-echo $profileDef
+#echo $profileDef
 echo "Below are the ${txUnderline}current${txReset} relevant values in your ${fgCyan}profiledef.sh${txReset}."
 sed -n '4,8p' $profileDef
 echo
@@ -187,12 +187,11 @@ mv dev-rel $profile/airootfs/etc/dev-rel
 echo "Oki. ${fgCyan}ISO_RELEASE${txReset} in dev-rel updated. ${fgCyan}${profile}/airootfs/etc/dev-rel${txReset} now reads: "
 sed -n '1,3p' $profile/airootfs/etc/dev-rel && sleep 1.7
 echo
-echo "${fgCyan}Step 4${txReset}: Time to build ${fgCyan}ISO${txReset}. This ${txUnderline}will${txReset} take a while. Go grab a drink or something!"
+echo "${fgCyan}Step 4${txReset}: Time to build ${fgCyan}ISO${txReset}."
 echo
-echo "Build ${fgCyan}starts${txReset} in ${fgRed}5 seconds${txReset}!"
-sleep 5
-
 mkarchisoVerboseCheck
+echo "Build ${fgCyan}starts${txReset} in ${fgRed}5 seconds${txReset}! This ${txUnderline}will${txReset} take a while. Go grab a drink or something!""
+sleep 5
 
 echo
 echo "${fgCyan}Done!${txReset} Look in ${txBold}${outDir}${txReset} for your ${txUnderline}build and ISO folder${txReset}!"
