@@ -6,7 +6,7 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="dab"
 pkgver=3.5
-pkgrel=22
+pkgrel=23
 epoch=
 pkgdesc="abs but with extra features."
 arch=('x86_64')
