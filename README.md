@@ -1,3 +1,5 @@
+This is the test variant of abs. Currently undergoing a C rewrite.
+
 # abs Repo
 
 Welcome to the Official abs Source Repository! The most recent compiled version of abs is hosted on my package repo called Valen and
