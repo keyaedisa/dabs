@@ -1,23 +1,28 @@
-#include "libabu.h"
+//#include "libabu.h"
+#include <stdint.h>
 
 // think about potentially using a struct to neatly store the variables abu needs
 // create a string array called options each element contains a string that is the name
 // of the option, and the length of the array is how many options exist
+//#define unique_opt
+//#define host_opt_custom (1 << 1)
 
+//extern uint32_t abuFlags;
+
+
+//typedef struct {
+//    int custom, help, vanilla, xero;
+//} abuFlags;
+
+void abu(int argc, char *argv[]){
+    optparse(argc,argv);
+}
+
+//char *arg;
 int main(int argc, char *argv[]){
-    //bool cmlArgPassed; // keeps track of if the user called abu with or w/out args from the console
-       
+    //bool cmlArgPassed; // keeps track of if the user called abu with or w/out args from the console 
     //fprintf(stdout,"%s %s\n","Program name is:",*argv);
-    if(argc == 1){
-        fprintf(stdout,"%s","No extra command line arguments.\n");
-        abuTUI();
-    } else if(argc >= 2){
-        //cmlArgPassed = true;
-        optParser(argc, argv);
-    } else{
-        //cmlArgPassed = false;
-        fprintf(stdout,"%s %d %s %s\n","hi",argc,argv[1],"bye ");
-    }
+    abu(argc,argv);
     //abu(cmlArgPassed, *argv){
 
     /*
