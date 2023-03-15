@@ -19,11 +19,11 @@
 
 
 void dab(int argc, char *argv[]){
-    dabRunProperties thisRun;
-    int ret = optparse(argc,argv,&thisRun);
+    //dabRunProperties thisRun;
+    optparse(argc,argv);
     //free(thisRun.customProfile);
-    printf("%s\n",thisRun.customProfile);
-    printf("%d\n",thisRun.hostFlagsT);
+    //printf("%d\n",*hostFlags_p);
+    //printf("%s\n",cProfile);
 }
 
 //char *arg;

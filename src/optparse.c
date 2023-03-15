@@ -1,4 +1,11 @@
-#include "optparse.h"
+#include "dab.h"
+
+dabRunOpts_t hostFlags = 0;
+dabRunOpts_p hostFlags_p = &hostFlags;
+//dabRunProperties thisRun;
+char* cProfile;
+static int usage(int e, char* progName);
+
 
 static struct option longopts[] = {
 	{"custom",optional_argument,NULL,'c'},
@@ -18,30 +25,30 @@ static int usage(int e, char* progName){
 //#else
 	"Usage: %s [-chvx]"
 //#endif
-	"\tNote: -c,-v,-x can take an optional argument-> [-c [archiso-profile], -v [r / b], -x [k / g]]\n\n"
-	"Created by keyaedisa->\n"
-	"archiso wrapper utility\n\n"
-	"\t-c, --custom\t\t\tBuild an ISO using a custom profile\n"
-	"\t-h, --help\t\t\tShow this help\n"
-	"\t-v, --vanilla\t\t\tBuild a vanilla arch ISO using the releng or baseline profiles\n"
-	"\t-x, --xero\t\t\tBuild a XeroLinux ISO using the KDE or Gnome profiles\n"
+	"\tNote: -c,-v,-x can take the following optional arguments -> [-c [archiso-profile], -v [r / b], -x [k / g]]\n\n"
+	"Created by keyaedisa.\n"
+	"archiso wrapper utility designed to help you build your own custom ISO's"
+	"or an ISO using one of the built in presets.\n\n"
+	"Options:\n"
+	"\t-c, --custom\t[archisoProfile]\tBuild an ISO using a custom profile\n"
+	"\t-h, --help\t\t\t\tShow this help\n"
+	"\t-v, --vanilla\t[r/b]\t\t\tBuild a vanilla arch ISO using the releng or baseline profiles\n"
+	"\t-x, --xero\t[k/g]\t\t\tBuild a XeroLinux ISO using the KDE or Gnome profiles\n"
 	,progName);
 
 	exit(e);
 }
 
-int customHandler
+//int customHandler(dabRunProperties *st){
 
-int optStructPrep(dabRunProperties *st){
-    st->customProfile = "";
-	st->hostFlagsT = 0;
-	return 0;
-}
+//}
 
-int optparse(int argc, char* argv[], dabRunProperties *st){
+
+
+int optparse(int argc, char* argv[]){
 	int opt;
-	int index;
-	optStructPrep(st);
+	//int index;
+	//optStructPrep(st);
 	while ((opt = getopt_long(argc,argv,
 //#ifdef DEV_BUILD
 	//"xxx"
@@ -53,37 +60,33 @@ int optparse(int argc, char* argv[], dabRunProperties *st){
 		switch (opt){
 		case 'c':
 			if(!OPTIONAL_ARGUMENT_IS_PRESENT)
-				st->hostFlagsT |= dabCF;
+				*hostFlags_p |= dabCF;
 			else {
-				st->customProfile = optarg;
-				st->hostFlagsT |= dabCFPP;
+				//st->customProfile = optarg;
+				cProfile = optarg;
+				*hostFlags_p |= dabCFPP;
 			}
-				
-			//host_flags |= (unique_opt | dab_cFlag);
 			break;
 		case 'h':
 			usage(0, argv[0]);
 			break;
 		case 'v':
-		printf("kumv\n");
 		if(OPTIONAL_ARGUMENT_IS_PRESENT){
 			if(*optarg == 'b')
-				st->hostFlagsT |= dabVBF;
+				*hostFlags_p |= dabVBF;
 			else if (*optarg == 'r')
-				st->hostFlagsT |= dabVRF;
-		}
-		else
-			st->hostFlagsT |= dabVF; 
+				*hostFlags_p |= dabVRF;
+		} else
+			*hostFlags_p |= dabVF; 
 		break;
 		case 'x':
 		if(OPTIONAL_ARGUMENT_IS_PRESENT){
-				if(*optarg == 'k')
-					*hostFlags_p |= dabVBF;
-				else if (*optarg == 'g')
-					*hostFlags_p |= dabVRF;
-			else 
-				*hostFlags_p |= dabVF;
-		} 
+			if(*optarg == 'k')
+				*hostFlags_p |= dabXKF;
+			else if (*optarg == 'g')
+				*hostFlags_p |= dabXGF;			
+		} else 
+				*hostFlags_p |= dabXF;
 		break;
 		default:
 			printf("kumz\n");

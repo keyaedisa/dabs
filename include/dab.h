@@ -6,16 +6,10 @@
 #include <stdint.h>
 #include <string.h>
 
-typedef uint8_t dabRunOpts_t, *dabRunOpts_p;
-extern dabRunOpts_t hostFlags_t;
-extern dabRunOpts_p hostFlags_p;
-
-extern dabRunProperties thisRun;
-
-typedef struct {
-    dabRunOpts_t hostFlagsT;
-    char* customProfile;
-} dabRunProperties;
+#define OPTIONAL_ARGUMENT_IS_PRESENT \
+    ((optarg == NULL && optind < argc && argv[optind][0] != '-') \
+     ? (bool) (optarg = argv[optind++]) \
+     : (optarg != NULL))
 
 #define dabCF  1                //dab custom flag no profile provided
 #define dabCFPP (1 << 1)        //dab custom flag profile provided
@@ -25,4 +19,22 @@ typedef struct {
 #define dabXF   (1 << 5)        // dab xero flag, no DE specified
 #define dabXKF  (1 << 6)        // dab xero kde flag
 #define dabXGF  (1 << 7)        // dab xero gnome flag
+
+typedef uint8_t dabRunOpts_t, *dabRunOpts_p;
+extern dabRunOpts_t hostFlags;
+extern dabRunOpts_p hostFlags_p;
+extern char* cProfile;
+
+int optparse(int argc, char* argv[]);
+//typedef struct {
+//    dabRunOpts_t hostFlagsT;
+//    char* customProfile;
+//} dabRunProperties;
+
+//extern dabRunProperties thisRun;
+
+
+//int optStructPrep(dabRunProperties *st);
+//int customHandler(dabRunProperties *st);
+
 
