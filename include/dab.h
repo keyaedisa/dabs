@@ -17,9 +17,6 @@ typedef struct {
     char* customProfile;
 } dabRunProperties;
 
-int customHandler(dabRunProperties *st);
-
-
 #define dabCF  1                //dab custom flag no profile provided
 #define dabCFPP (1 << 1)        //dab custom flag profile provided
 #define dabVF   (1 << 2)        // dab Vanilla flag
