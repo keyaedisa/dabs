@@ -1,5 +1,8 @@
 //#include "libabu.h"
+#include <stdio.h>
 #include <stdint.h>
+
+#include "abu.h"
 
 // think about potentially using a struct to neatly store the variables abu needs
 // create a string array called options each element contains a string that is the name
