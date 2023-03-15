@@ -2,6 +2,11 @@
     "files.associations": {
         "stdlib.h": "c",
         "abu.h": "c",
-        "stdbool.h": "c"
-    }
+        "stdbool.h": "c",
+        "stdint.h": "c",
+        "dab.h": "c",
+        "stdio.h": "c",
+        "getopt.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

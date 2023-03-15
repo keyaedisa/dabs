@@ -1,14 +1,4 @@
-#include "abu.h"
-
-abuRunOptions_t hostFlags_t = 0;
-abuRunOptions_p hostFlags_p = &hostFlags_t;
-
-#define OPTIONAL_ARGUMENT_IS_PRESENT \
-    ((optarg == NULL && optind < argc && argv[optind][0] != '-') \
-     ? (bool) (optarg = argv[optind++]) \
-     : (optarg != NULL))
-
-
+#include "optparse.h"
 
 static struct option longopts[] = {
 	{"custom",optional_argument,NULL,'c'},
@@ -28,8 +18,8 @@ static int usage(int e, char* progName){
 //#else
 	"Usage: %s [-chvx]"
 //#endif
-	"\tNote: -c,-v,-x can take an optional argument. [-c [archiso-profile], -v [r / b], -x [k / g]]\n\n"
-	"Created by keyaedisa.\n"
+	"\tNote: -c,-v,-x can take an optional argument-> [-c [archiso-profile], -v [r / b], -x [k / g]]\n\n"
+	"Created by keyaedisa->\n"
 	"archiso wrapper utility\n\n"
 	"\t-c, --custom\t\t\tBuild an ISO using a custom profile\n"
 	"\t-h, --help\t\t\tShow this help\n"
@@ -40,12 +30,18 @@ static int usage(int e, char* progName){
 	exit(e);
 }
 
+int customHandler
 
+int optStructPrep(dabRunProperties *st){
+    st->customProfile = "";
+	st->hostFlagsT = 0;
+	return 0;
+}
 
-void optparse(int argc, char* argv[]){
+int optparse(int argc, char* argv[], dabRunProperties *st){
 	int opt;
 	int index;
-	char* arg;
+	optStructPrep(st);
 	while ((opt = getopt_long(argc,argv,
 //#ifdef DEV_BUILD
 	//"xxx"
@@ -56,12 +52,14 @@ void optparse(int argc, char* argv[]){
 	{
 		switch (opt){
 		case 'c':
-			printf("kumc\n");
-			if(OPTIONAL_ARGUMENT_IS_PRESENT){
-				arg = optarg;
-				printf("yxwaugh\n");
+			if(!OPTIONAL_ARGUMENT_IS_PRESENT)
+				st->hostFlagsT |= dabCF;
+			else {
+				st->customProfile = optarg;
+				st->hostFlagsT |= dabCFPP;
 			}
-			//host_flags |= (unique_opt | abu_cFlag);
+				
+			//host_flags |= (unique_opt | dab_cFlag);
 			break;
 		case 'h':
 			usage(0, argv[0]);
@@ -70,17 +68,23 @@ void optparse(int argc, char* argv[]){
 		printf("kumv\n");
 		if(OPTIONAL_ARGUMENT_IS_PRESENT){
 			if(*optarg == 'b')
-				*hostFlags_p |= abuVBF;
+				st->hostFlagsT |= dabVBF;
 			else if (*optarg == 'r')
-				*hostFlags_p |= abuVRF;
-		} else {*hostFlags_p |= abuVF; };
-		printf("%p hostFlags, %d abuVBF, %d abuVRF, %c optarg\n",hostFlags_p,abuVBF,abuVRF,*optarg);
-			break;
+				st->hostFlagsT |= dabVRF;
+		}
+		else
+			st->hostFlagsT |= dabVF; 
+		break;
 		case 'x':
 		if(OPTIONAL_ARGUMENT_IS_PRESENT){
-				arg = optarg;
-				printf("ben\n");
-			}
+				if(*optarg == 'k')
+					*hostFlags_p |= dabVBF;
+				else if (*optarg == 'g')
+					*hostFlags_p |= dabVRF;
+			else 
+				*hostFlags_p |= dabVF;
+		} 
+		break;
 		default:
 			printf("kumz\n");
 			usage(1, argv[0]);
@@ -89,4 +93,5 @@ void optparse(int argc, char* argv[]){
 	if(argc == 1){
 		usage(1,argv[0]);
 	};
+	return 0;
 }

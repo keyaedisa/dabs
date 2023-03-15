@@ -1,0 +1,49 @@
+#!/bin/bash
+# https://keyaedisa.github.io, https://github.com/keyaedisa
+
+# log current production and dev abs/d versions
+currentDevPkgVer=$(sed -n 's/\(^pkgver=\)//p' PKGBUILD )
+currentDevPkgRel=$(sed -n 's/\(^pkgrel=\)//p' PKGBUILD )
+currentProdPkgVer=$(sed -n 's/\(^pkgver=\)//p' ../abs/PKGBUILD )
+currentProdPkgRel=$(sed -n 's/\(^pkgrel=\)//p' ../abs/PKGBUILD )
+
+# cp over necesary files with updates to production abs repo and then cd to it
+cp -rf options/ ../abs/
+cp -rf misc/ ../abs/
+cp dab ../abs/
+#cp -rf PKGBUILD ../abs/PKGBUILD
+#cp dab.install ../abs/
+cd ../abs/
+
+# delete unneccessary files and rename absd to abs
+rm abs
+mv dab abs
+#mv dab.install abs.install
+
+# proper git repos for sed to modify source= correcy
+absSource='gc"\:\:"git+https\:\/\/github.com\/keyaedisa\/abs.git' # u gotta delimit all the specials for sed
+dabsSource="git+ssh\:\/\/git@github.com\/keyaedisa\/dabs.git" # yup here too
+
+# this portion here modifies values in the package() function in PKGBUILD
+#sed -i "s/${dabsSource}/${absSource}/" PKGBUILD # this sets source= to abs source
+#sed -i 's/${srcdir}\/dabs\/dab/${srcdir}\/gc\/abs/' PKGBUILD # sets srcdir part of first cp line to "${srcdir}/gc/abs" 
+#sed -i 's/${srcdir}\/dabs\/misc\//${srcdir}\/gc\/misc\//' PKGBUILD # sets srcdir part of second cp line to "${srcdir}/gc/misc/"
+#sed -i 's/${srcdir}\/dabs\/options\//${srcdir}\/gc\/options\//' PKGBUILD # sets srcdir part of third cp line to "${srcdir}/gc/options/"
+#sed -i 's/${srcdir}\/dabs\/options\/.options/${srcdir}\/gc\/options\/.options/' PKGBUILD #sets srcdir part of fourth & final cp to line "${srcdir}/gc/options/.options"
+#sed -i 's/..\/dabs\//..\/gc/' PKGBUILD # sets dir to be removed by rm -r to "../gc"
+#sed -i 's/dabs/abs/g;s/dab/abs/g;s/pkgdesc=.*/pkgdesc="CLI tool to automate the customization and build of custom and built in distros such as Vanilla Arch and XeroLinux."/' PKGBUILD
+#sed -i '/dev/d' PKGBUILD 
+
+# change all dabs + dab refs to abs in all files
+
+sed -i 's/dab/abs/' abs
+sed -i 's/dab/abs/' options/.options
+sed -i 's/dab/abs/' misc/.functions
+sed -i 's/dev/misc/' abs
+sed -i 's/misc\/.options/options\/.options/' abs
+
+
+echo
+echo "make sure to go to the PKGBUILD in the abs production repo, compare it to the old one and move what's neccessary"
+echo
+echo "all done. checkout the abs directory."
