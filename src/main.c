@@ -4,26 +4,23 @@
 
 #include "dab.h"
 
-// think about potentially using a struct to neatly store the variables dab needs
-// create a string array called options each element contains a string that is the name
-// of the option, and the length of the array is how many options exist
-//#define unique_opt
-//#define host_opt_custom (1 << 1)
+//dabRunOpts_t optArr[];
+options option;
 
-//extern uint32_t dabFlags;
-
-
-//typedef struct {
-//    int custom, help, vanilla, xero;
-//} dabFlags;
+int executor(dabRunOpts_p flags){
+    dabRunOpts_t i, optChecker = 0;
+    int launchOpt;
+    for(i = dabCF;  (1 << i) <= dabXGF;  i++)
+        (*flags & (1 << i)) ? launchOpt = i && break : continue;
+    
+}
 
 
 void dab(int argc, char *argv[]){
-    //dabRunProperties thisRun;
     optparse(argc,argv);
-    //free(thisRun.customProfile);
+    //executor(hostFlags_p,);
     //printf("%d\n",*hostFlags_p);
-    //printf("%s\n",cProfile);
+    printf("%d\n", option);
 }
 
 //char *arg;

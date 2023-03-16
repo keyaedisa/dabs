@@ -48,7 +48,6 @@ static int usage(int e, char* progName){
 int optparse(int argc, char* argv[]){
 	int opt;
 	//int index;
-	//optStructPrep(st);
 	while ((opt = getopt_long(argc,argv,
 //#ifdef DEV_BUILD
 	//"xxx"

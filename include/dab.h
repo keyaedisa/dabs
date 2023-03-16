@@ -20,6 +20,7 @@
 #define dabXKF  (1 << 6)        // dab xero kde flag
 #define dabXGF  (1 << 7)        // dab xero gnome flag
 
+//enum options{dabCF,dabCFPP,dabVF,dabVBF,dabVRF,dabXF,dabXGF,dabXKF};
 typedef uint8_t dabRunOpts_t, *dabRunOpts_p;
 extern dabRunOpts_t hostFlags;
 extern dabRunOpts_p hostFlags_p;
