@@ -9,7 +9,7 @@
 int executor(dabRunOpts_p hostFlags_p){
     int z = 0;
     printf("%d z\n",*hostFlags_p);
-    for(z;*hostFlags_p > 0;*hostFlags_p >> z++){
+    for(z;*hostFlags_p > 0;z++){
         printf("%dhf\n",z);
         switch(*hostFlags_p){
             //case  0:
