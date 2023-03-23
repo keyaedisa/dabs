@@ -5,22 +5,43 @@
 #include "dab.h"
 
 //dabRunOpts_t optArr[];
-options option;
-
-int executor(dabRunOpts_p flags){
-    dabRunOpts_t i, optChecker = 0;
-    int launchOpt;
-    for(i = dabCF;  (1 << i) <= dabXGF;  i++)
-        (*flags & (1 << i)) ? launchOpt = i && break : continue;
-    
+//options option;
+int executor(dabRunOpts_p hostFlags_p){
+    int z = 0;
+    printf("%d z\n",*hostFlags_p);
+    for(z;*hostFlags_p > 0;*hostFlags_p >> z++){
+        printf("%dhf\n",z);
+        switch(*hostFlags_p){
+            //case  0:
+              //  printf("0\n");
+              //  break;
+            case isoBuilder:
+                printf("iso\n");
+                break;
+            case userProfMan:
+                printf("usr\n");
+                break;
+            case archisoProfMan:
+                printf("arch\n");
+                printf("%d zval\n",z);
+                printf("%dapm\n",archisoProfMan);
+                break;
+            default:
+                printf("faiilure\n");
+                break;
+        }
+    }
+    return 0;
 }
+
 
 
 void dab(int argc, char *argv[]){
     optparse(argc,argv);
+    executor(hostFlags_p);
     //executor(hostFlags_p,);
     //printf("%d\n",*hostFlags_p);
-    printf("%d\n", option);
+    //printf("%d\n", option);
 }
 
 //char *arg;

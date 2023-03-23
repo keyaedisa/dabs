@@ -1,17 +1,22 @@
 #include "dab.h"
 
-dabRunOpts_t hostFlags = 0;
-dabRunOpts_p hostFlags_p = &hostFlags;
+int hostFlags = 0;
+int* hostFlags_p = &hostFlags;
+int const con = 0;
+int* const conp = &con;
+
+
 //dabRunProperties thisRun;
 char* cProfile;
 static int usage(int e, char* progName);
 
 
 static struct option longopts[] = {
-	{"custom",optional_argument,NULL,'c'},
-	{"help",no_argument,NULL,'h'},
-	{"vanilla",optional_argument,NULL,'v'},
-	{"xero",optional_argument,NULL,'x'},
+	{"custom",optional_argument,conp, con | isoBuilder},
+	{"help",no_argument,conp, con | isoBuilder},
+	{"vanilla",optional_argument,conp,con | (dabRunOpts_t)isoBuilder},
+	{"xero",optional_argument,conp,con | (dabRunOpts_t)isoBuilder},
+	{"archisoProfMan",optional_argument,conp,con | archisoProfMan},
 //#ifdef DEV_BUILD
 // {,,,},
 //#endif
@@ -36,6 +41,7 @@ static int usage(int e, char* progName){
 	"\t-x, --xero\t[k/g]\t\t\tBuild a XeroLinux ISO using the KDE or Gnome profiles\n"
 	,progName);
 
+
 	exit(e);
 }
 
@@ -52,18 +58,18 @@ int optparse(int argc, char* argv[]){
 //#ifdef DEV_BUILD
 	//"xxx"
 //#else
-	"c::hv::x::",
+	"c::hv::x::a::",
 //#endif
 	longopts, NULL)) != -1)
 	{
 		switch (opt){
 		case 'c':
 			if(!OPTIONAL_ARGUMENT_IS_PRESENT)
-				*hostFlags_p |= dabCF;
+				*hostFlags_p |= isoBuilder;
 			else {
 				//st->customProfile = optarg;
 				cProfile = optarg;
-				*hostFlags_p |= dabCFPP;
+				*hostFlags_p |= isoBuilder;
 			}
 			break;
 		case 'h':
@@ -72,21 +78,24 @@ int optparse(int argc, char* argv[]){
 		case 'v':
 		if(OPTIONAL_ARGUMENT_IS_PRESENT){
 			if(*optarg == 'b')
-				*hostFlags_p |= dabVBF;
+				*hostFlags_p |= isoBuilder;
 			else if (*optarg == 'r')
-				*hostFlags_p |= dabVRF;
+				*hostFlags_p |= isoBuilder;
 		} else
-			*hostFlags_p |= dabVF; 
+			*hostFlags_p |= isoBuilder; 
 		break;
 		case 'x':
 		if(OPTIONAL_ARGUMENT_IS_PRESENT){
 			if(*optarg == 'k')
-				*hostFlags_p |= dabXKF;
+				*hostFlags_p |= isoBuilder;
 			else if (*optarg == 'g')
-				*hostFlags_p |= dabXGF;			
+				*hostFlags_p |= isoBuilder;			
 		} else 
-				*hostFlags_p |= dabXF;
+				*hostFlags_p |= isoBuilder;
 		break;
+		case 'a':
+			*hostFlags_p |= archisoProfMan;
+			break;
 		default:
 			printf("kumz\n");
 			usage(1, argv[0]);
