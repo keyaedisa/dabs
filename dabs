@@ -1,0 +1,18 @@
+#!/bin/bash
+# https://keyaedisa.github.io, https://github.com/keyaedisa
+
+# kum
+
+export app_name="${0##*/}"
+
+source /etc/abs/include/.bashFormatting
+source /etc/abs/include/.functions
+source /etc/abs/include/.options
+
+if [[ $app_name = "dabs" ]]; then
+	source /etc/dabs/included/.functions
+	source /etc/dabs/included/.options
+fi
+
+
+_${app_name}TUI $1

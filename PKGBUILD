@@ -4,43 +4,43 @@
 # then please put 'unknown'.
 
 # Maintainer: Your Name <keyaedisa>
-pkgname="dab"
-pkgver=3.5
-pkgrel=27
+pkgname="dabs"
+pkgver=3.6
+pkgrel=0
 epoch=
-pkgdesc="abs but with extra features."
+pkgdesc="Developer Version of abs. CLI tool to automate the customization and build of custom and built in distros such as Vanilla Arch and XeroLinux."
 arch=('x86_64')
-url="https://github.com/keyaedisa/dabs"
+url="https://github.com/keyaedisa/abs"
 #license=('')
 #groups=()
 depends=("git"
 		"gawk"
 		"sed"
 		"archiso"
-		"bash")
+		"bash"
+		"abs")
 makedepends=('git')
 #checkdepends=()
 #optdepends=()
-provides=('dab')
+provides=('dabs')
 #conflicts=('')
 #replaces=('')
 #backup=()
 #options=()
-#install=dab.install
+#install=abs.install
 #changelog=
-source=("git+ssh://git@github.com/keyaedisa/dabs.git")
+source=("gc"::"git+https://github.com/keyaedisa/dabs.git")
 #noextract=()
 #md5sums=()
 sha256sums=('SKIP')
 
 package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
-	cp "${srcdir}/dabs/dab" "${pkgdir}/usr/local/bin/dab"
-	mkdir -p "${pkgdir}/etc/dab/"
-	cp -rf "${srcdir}/dabs/misc/" "${pkgdir}/etc/dab/"
-	cp -rf "${srcdir}/dabs/options/" "${pkgdir}/etc/dab/"
-	cp -rf "${srcdir}/dabs/dev/" "${pkgdir}/etc/dab/"
-	rm -rf "../dabs/"
+	cp "${srcdir}/gc/dabs" "${pkgdir}/usr/local/bin/dabs"
+	mkdir -p "${pkgdir}/etc/dabs/"
+	cp -rf "${srcdir}/gc/include/" "${pkgdir}/etc/dabs/"
+	cp -rf "${srcdir}/gc/included/" "${pkgdir}/etc/dabs/"
+	rm -rf "../gc"
 	rm -r "${srcdir}"
 }
 
