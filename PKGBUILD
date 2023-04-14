@@ -6,7 +6,7 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="dabs"
 pkgver=3.6
-pkgrel=4
+pkgrel=5
 epoch=
 pkgdesc="Developer Version of abs. CLI tool to automate the customization and build of custom and built in distros such as Vanilla Arch and XeroLinux."
 arch=('x86_64')
@@ -29,18 +29,18 @@ provides=('dabs')
 #options=()
 #install=abs.install
 #changelog=
-source=("gc"::"https://github.com/keyaedisa/dabs.git")
+source=("https://github.com/keyaedisa/dabs.git")
 #noextract=()
 #md5sums=()
 sha256sums=('SKIP')
 
 package() {
 	mkdir -p "${pkgdir}/usr/local/bin/"
-	cp "${srcdir}/gc/dabs" "${pkgdir}/usr/local/bin/dabs"
+	cp "${srcdir}/dabs" "${pkgdir}/usr/local/bin/dabs"
 	mkdir -p "${pkgdir}/etc/dabs/"
-	cp -rf "${srcdir}/gc/include/" "${pkgdir}/etc/dabs/"
-	cp -rf "${srcdir}/gc/included/" "${pkgdir}/etc/dabs/"
-	rm -rf "../gc"
+	cp -rf "${srcdir}/include/" "${pkgdir}/etc/dabs/"
+	cp -rf "${srcdir}/included/" "${pkgdir}/etc/dabs/"
+#	rm -rf "../gc"
 	rm -r "${srcdir}"
 }
 
