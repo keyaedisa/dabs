@@ -6,7 +6,7 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="dabs"
 pkgver=3.6
-pkgrel=1
+pkgrel=2
 epoch=
 pkgdesc="Developer Version of abs. CLI tool to automate the customization and build of custom and built in distros such as Vanilla Arch and XeroLinux."
 arch=('x86_64')
@@ -29,7 +29,7 @@ provides=('dabs')
 #options=()
 #install=abs.install
 #changelog=
-source=("gc"::"git+https://github.com/keyaedisa/dabs.git")
+source=("gc"::"git@github.com:keyaedisa/dabs.git")
 #noextract=()
 #md5sums=()
 sha256sums=('SKIP')
