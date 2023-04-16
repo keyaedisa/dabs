@@ -7,7 +7,7 @@ echo
 	profile=releng
 	profiledef=$profile/profiledef.sh
 	user=$(whoami)
-	outDir=ISO
+	outDir=~/Arch-Vanilla-Out
 	buildDir=Build
 
 cd
@@ -25,7 +25,7 @@ if [[ -d Arch-Vanilla ]]; then
 else
 	echo "abs could ${fgRed}not${txReset} locate the directory this option uses. abs will now create it."
 	mkdir Arch-Vanilla
-	mkdir Arch-Vanilla/ISO
+	mkdir Arch-Vanilla-Out
 	mkdir Arch-Vanilla/Build
 	echo "${fgCyan}Arch-Vanilla${txReset} directory has been created and within it exist folders labeled ${fgCyan}ISO${txReset} and ${fgCyan}Build${txReset}."
 	echo "abs will now change into the ${fgCyan}Arch-Vanilla${txReset} directory and move onto the next step."
