@@ -53,7 +53,7 @@ echo "Build folder will be found in ${fgCyan}~/Arch-Vanilla-Baseline/Build/${txR
 echo "This will take a bit so perhaps make some coffee!"
 
 sudo mkarchiso -v -w $buildDir -o $outDir $profile
-#sudo chown -R $user $buildDir
+sudo chown -R $user $buildDir
 sudo chown -R $user $outDir
 
 echo

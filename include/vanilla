@@ -54,7 +54,7 @@ echo "This will take a bit so perhaps make some coffee!"
 echo
 
 sudo mkarchiso -v -w $buildDir -o $outDir $profile
-#sudo chown -R $user $buildDir
+sudo chown -R $user $buildDir
 sudo chown -R $user $outDir
 
 echo "Done! Check out ${fgCyan}~/Arch-Vanilla/ISO/${txReset} for your new ISO!"
