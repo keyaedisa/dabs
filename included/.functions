@@ -21,7 +21,7 @@ _interactiveD() {
 #echo
 #read -p "What option would you like to select? : " opt
 case $1 in
-		-gp | -gitpush ) _pushToGit ;;
+		-g | -gitpush ) _pushToGit ;;
 		-m | -mergeDevToProd ) _mergeDevToProd ;;
 		-b | -buildAndPush | -buildAndPushToRepo ) _buildAndPushToRepo ;;
 		* ) echo
@@ -35,7 +35,7 @@ esac
 _dabsTUI() {
 if [[ -n $1 ]]; then
 	case $1 in
-		-gp | -gitpush ) _pushToGit ;;
+		-g | -gitpush ) _pushToGit ;;
 		-m | -mergeDevToProd ) _mergeDevToProd ;;
 		-b | -buildAndPush | -buildAndPushToRepo ) _buildAndPushToRepo ;;
 		* )

@@ -19,7 +19,7 @@ echo "Welcome to the ${app_name} TUI. See below for how to use ${app_name}."
 echo
 fin='0'
 while [ $fin != 1 ]; do
-listOptions
+listOptions ${app_name}
 echo
 read -p "What option would you like to select? : " opt
 case $opt in
@@ -242,6 +242,11 @@ listOptions() {
 	printf "    -x,     \tBuild a XeroLinux Arch ISO using latest source.\n"
 	printf "    -xg,    \tBuild a XeroLinux Gnome Arch ISO using latest source.\n"
 	printf "    -xf,    \tBuild a XeroLinux XFCE Arch ISO using latest source.\n"
+	if [[ ${app_name} = "dabs" ]]; then
+		printf "	-b		\tBuild and push to repo.\n"
+		printf "	-m		\tMerge Dev repo to Production.\n"
+		printf "	-g		\tGit Push.\n"
+	fi
 }
 
 searchForSourceGit() {

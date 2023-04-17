@@ -11,7 +11,7 @@ source /etc/abs/include/.options
 
 if [[ $app_name = "dabs" ]]; then
 	source /etc/dabs/included/.functions
-#	source /etc/dabs/included/.options
+	source /etc/dabs/included/.options
 fi
 
 
