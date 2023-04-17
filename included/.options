@@ -1,13 +1,13 @@
 #!/bin/bash
 
 _buildAndPushToRepo(){
- source /etc/${app_name}/buildAndPushToRepo
+ source /etc/${app_name}/included/buildAndPushToRepo
 }
 
 _pushToGit(){
- source /etc/${app_name}/push2Git
+ source /etc/${app_name}/included/push2Git
 }
 
 _mergeDevToProd(){
- source /etc/${app_name}/mergeDevToProd
+ source /etc/${app_name}/included/mergeDevToProd
 }
