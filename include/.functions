@@ -31,9 +31,13 @@ case $opt in
 		-x | --xero | xero | Xero ) xero \ fin='1' ;;
 		-xg | --xerog | xerog | XeroG ) xerog \ fin='1' ;;
 		-xf | --xeroce | --xerof | xerof | XeroF ) xeroce \ fin='1' ;;
-		* ) echo
-			echo "${opt} is not a valid ${app_name} option. Try again."
-			echo
+		* ) if [[ ${app_name} = "dabs" ]]; then
+				_interactiveD $opt
+			else
+				echo
+				echo "${opt} is not a valid ${app_name} option. Try again."
+				echo
+			fi
 			;;
 esac
 done
@@ -51,8 +55,12 @@ if [[ -n $1 ]]; then
 		-xg | --xerog | xerog | XeroG ) xerog ;;
 		-xf | --xeroce | --xerof | xerof | XeroF ) xeroce \ fin='1' ;;
 		* )
-			echo "${1} is not a valid ${app_name} option. Try again."
-			_interactive
+			if [[ ${app_name} = "dabs" ]]; then
+				_$(app_name}TUI $1
+			else
+				echo "${1} is not a valid ${app_name} option. Try again."
+				_interactive
+			fi
 			;;
 	esac
 elif [[ -z $1 ]]; then

@@ -11,7 +11,7 @@ trap_ctrlc() {
 
 trap "trap_ctrlc" 2
 
-#_interactive() {
+_interactiveD() {
 #echo
 #echo "Welcome to the ${app_name} TUI. See below for how to use ${app_name}."
 #echo
@@ -20,41 +20,34 @@ trap "trap_ctrlc" 2
 #listOptions
 #echo
 #read -p "What option would you like to select? : " opt
-#case $opt in
-#		-c | --custom )	custom \ fin='1' ;;
-#		-h | --help ) _help $opt ;;
-#		-V | --version ) _version \ fin='1' ;;
-#		-v | --releng ) vanilla \ fin='1' ;;
-#		-vb | --baseline ) vanillaBaseline \ fin='1' ;;
-#		-x | --xero | xero | Xero ) xero \ fin='1' ;;
-#		-xg | --xerog | xerog | XeroG ) xerog \ fin='1' ;;
-#		* ) echo
-#			echo "${opt} is not a valid ${app_name} option. Try again."
-#			echo
-#			;;
-#esac
-#done
-#}
+case $1 in
+		-gp | -gitpush ) _pushToGit ;;
+		-m | -mergeDevToProd ) _mergeDevToProd ;;
+		-b | -buildAndPush | -buildAndPushToRepo ) _buildAndPushToRepo ;;
+		* ) echo
+			echo "${1} is not a valid ${app_name} option. Try again."
+			echo
+			_interactive
+			;;
+esac
+done
+}
 
-#_absTUI() {
-#if [[ -n $1 ]]; then
-#	case $1 in
-#		-c | --custom )	custom ;;
-#		-h | --help ) _help $1 ;;
-#		-V | --version ) _version ;;
-#		-v | --releng ) vanilla ;;
-#		-vb | --baseline ) vanillaBaseline ;;
-#		-x | --xero | xero | Xero ) xero ;;
-#		-xg | --xerog | xerog | XeroG ) xerog ;;
-#		* )
-#			echo "${1} is not a valid ${app_name} option. Try again."
-#			_interactive
-#			;;
-#	esac
-#elif [[ -z $1 ]]; then
-#	_interactive
-#fi
-#}
+_dabsTUI() {
+if [[ -n $1 ]]; then
+	case $1 in
+		-gp | -gitpush ) _pushToGit ;;
+		-m | -mergeDevToProd ) _mergeDevToProd ;;
+		-b | -buildAndPush | -buildAndPushToRepo ) _buildAndPushToRepo ;;
+		* )
+			echo "${1} is not a valid ${app_name} option. Try again."
+			_interactive
+			;;
+	esac
+elif [[ -z $1 ]]; then
+	_interactive
+fi
+}
 
 
 _version() {
