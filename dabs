@@ -9,7 +9,7 @@ source /etc/abs/include/.bashFormatting
 source /etc/abs/include/.functions
 source /etc/abs/include/.options
 
-if [[ $app_name = "dabs" ]]; then
+if [[ $app_name = "dab" ]]; then
 	source /etc/dabs/included/.functions
 	source /etc/dabs/included/.options
 fi
