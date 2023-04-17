@@ -2,6 +2,8 @@
 # List of functions used by abs duh
 # https://keyaedisa.github.io, https://github.com/keyaedisa
 
+export delAfter='0'
+
 trap_ctrlc() {
 	echo
     echo
@@ -11,50 +13,52 @@ trap_ctrlc() {
 
 trap "trap_ctrlc" 2
 
-#_interactive() {
-#echo
-#echo "Welcome to the ${app_name} TUI. See below for how to use ${app_name}."
-#echo
-#fin='0'
-#while [ $fin != 1 ]; do
-#listOptions
-#echo
-#read -p "What option would you like to select? : " opt
-#case $opt in
-#		-c | --custom )	custom \ fin='1' ;;
-#		-h | --help ) _help $opt ;;
-#		-V | --version ) _version \ fin='1' ;;
-#		-v | --releng ) vanilla \ fin='1' ;;
-#		-vb | --baseline ) vanillaBaseline \ fin='1' ;;
-#		-x | --xero | xero | Xero ) xero \ fin='1' ;;
-#		-xg | --xerog | xerog | XeroG ) xerog \ fin='1' ;;
-#		* ) echo
-#			echo "${opt} is not a valid ${app_name} option. Try again."
-#			echo
-#			;;
-#esac
-#done
-#}
+_interactive() {
+echo
+echo "Welcome to the ${app_name} TUI. See below for how to use ${app_name}."
+echo
+fin='0'
+while [ $fin != 1 ]; do
+listOptions
+echo
+read -p "What option would you like to select? : " opt
+case $opt in
+		-c | --custom )	custom \ fin='1' ;;
+		-h | --help ) _help $opt ;;
+		-V | --version ) _version \ fin='1' ;;
+		-v | --releng ) vanilla \ fin='1' ;;
+		-vb | --baseline ) vanillaBaseline \ fin='1' ;;
+		-x | --xero | xero | Xero ) xero \ fin='1' ;;
+		-xg | --xerog | xerog | XeroG ) xerog \ fin='1' ;;
+		-xf | --xeroce | --xerof | xerof | XeroF ) xeroce \ fin='1' ;;
+		* ) echo
+			echo "${opt} is not a valid ${app_name} option. Try again."
+			echo
+			;;
+esac
+done
+}
 
-#_absTUI() {
-#if [[ -n $1 ]]; then
-#	case $1 in
-#		-c | --custom )	custom ;;
-#		-h | --help ) _help $1 ;;
-#		-V | --version ) _version ;;
-#		-v | --releng ) vanilla ;;
-#		-vb | --baseline ) vanillaBaseline ;;
-#		-x | --xero | xero | Xero ) xero ;;
-#		-xg | --xerog | xerog | XeroG ) xerog ;;
-#		* )
-#			echo "${1} is not a valid ${app_name} option. Try again."
-#			_interactive
-#			;;
-#	esac
-#elif [[ -z $1 ]]; then
-#	_interactive
-#fi
-#}
+_absTUI() {
+if [[ -n $1 ]]; then
+	case $1 in
+		-c | --custom )	custom ;;
+		-h | --help ) _help $1 ;;
+		-V | --version ) _version ;;
+		-v | --releng ) vanilla ;;
+		-vb | --baseline ) vanillaBaseline ;;
+		-x | --xero | xero | Xero ) xero ;;
+		-xg | --xerog | xerog | XeroG ) xerog ;;
+		-xf | --xeroce | --xerof | xerof | XeroF ) xeroce \ fin='1' ;;
+		* )
+			echo "${1} is not a valid ${app_name} option. Try again."
+			_interactive
+			;;
+	esac
+elif [[ -z $1 ]]; then
+	_interactive
+fi
+}
 
 
 _version() {
@@ -77,6 +81,60 @@ checkInternetConnection() {
 	ping -c 1 -q xerolinux.xyz >&/dev/null; if [[ $? != 0 ]]; then
 	echo "${fgRed}Not connected to the internet${txReset}! Fix that and try again."
 	exit
+	fi
+}
+
+deleteBuildDir() {
+	buildDir=$1
+	skip=0
+	while [ $skip -eq 0 ]; do
+	read -p "Would you like to delete the build dir after the install? (y/n): " ans
+	case $ans in
+		y | Y | yes | Yes )
+			delAfter='1'
+			skip=1
+			;;
+		n | N | no | No )
+			delAfter='0'
+			skip=1
+			;;
+		*  )
+			echo "yes or no plz"
+			;;
+	esac
+	done
+	while [ $skip -eq 1 ]; do
+	read -p "Would you like to delete the source dir after the install? (y/n): " ans
+	case $ans in
+		y | Y | yes | Yes )
+			delAfterS='1'
+			skip=0
+			;;
+		n | N | no | No )
+			delAfterS='0'
+			skip=0
+			;;
+		*  )
+			echo "yes or no plz"
+			;;
+	esac
+	done
+}
+
+buildDirDeleter() {
+	if [[ $delAfter = 1 && $delAfterS = 1 ]]; then
+		echo "Deleting Source and Build directories. This could take some time"
+	elif [[ $delAfter = 1 ]]; then
+		echo "Deleting Build directory. This could take some time"
+	elif [[ $delAfterS = 1 ]]; then
+		echo "Deleting Source directory. This could take some time"
+	fi
+	if [[ $delAfter = 1 ]]; then
+		sudo rm -rf $buildDir
+	fi
+	if [[ $delAfterS = 1 ]]; then
+		dir=$(pwd)
+		cd ../ && rm -rf $dir
 	fi
 }
 
@@ -126,6 +184,7 @@ cloneGit() {
 				else
 					git clone https://github.com/xerolinux/xero_iso.git ~/xero_iso
 				fi
+				cd ~/xero_iso
 			elif [[ $sourceGit == "XeroG" ]]; then
 				if [[ -d ~/xero_g_iso ]]; then
 					rm -rf ~/xero_g_iso
@@ -133,6 +192,15 @@ cloneGit() {
 				else
 					git clone https://github.com/xerolinux/xero_g_iso.git ~/xero_g_iso
 				fi
+				cd ~/xero_g_iso
+			elif [[ $sourceGit == "XeroCE" ]]; then
+				if [[ -d ~/xero_xfce_iso ]]; then
+					rm -rf ~/xero_xfce_iso
+					git clone https://github.com/xerolinux/xero_xfce_iso.git ~/xero_xfce_iso
+				else
+					git clone https://github.com/xerolinux/xero_xfce_iso.git ~/xero_xfce_iso
+				fi
+				cd ~/xero_xfce_iso
 			else
 				echo "This never happens. Congrats"
 			fi
@@ -140,8 +208,9 @@ cloneGit() {
 			echo "Done."
 			;;
 		n | N | no | No | NO )
-			echo "Oki. abs will not clone. Please run abs in the directory containing the xero profile"
+			echo "Oki. abs will not clone. Please run abs in the directory containing the ${sourceGit} profile"
 			finished="1"
+			exit
 			;;
 		* )
 			echo "abs does not understand your response. Please try again. ${fgGreen}Y${txReset} or ${fgRed}N${txReset}."
@@ -151,20 +220,21 @@ cloneGit() {
 	done
 }
 
-#listOptions() {
-#	echo "${txBold}${fgBlue}Usage${txReset}:"
-#	echo "    ${app_name} [OPTIONS]"
-#	printf "${txBold}${fgBlue}Options${txReset}:\n"
-#	printf "    ${app_name} can be called with no options and an interactive menu will start\n"
-#	printf "    -c,     \tBuild an Arch ISO using a custom profile.\n"
-#	printf "    -h,     \tDisplay help message and exit.\n"
-#	printf "    --help, \tDisplay more detailed help message and exit.\n"
-#	printf "    -V,     \tDisplay current abs version.\n"
-#	printf "    -v,     \tBuild an official Vanilla Arch Monthly ISO.\n"
-#	printf "    -vb,    \tBuild an official Vanilla Arch Monthly ISO but with only whats needed to boot.\n"
-#	printf "    -x,     \tBuild a XeroLinux Arch ISO using latest source.\n"
-#	printf "    -xg,    \tBuild a XeroLinux Gnome Arch ISO using latest source.\n"
-#}
+listOptions() {
+	echo "${txBold}${fgBlue}Usage${txReset}:"
+	echo "    ${app_name} [OPTIONS]"
+	printf "${txBold}${fgBlue}Options${txReset}:\n"
+	printf "    ${app_name} can be called with no options and an interactive menu will start\n"
+	printf "    -c,     \tBuild an Arch ISO using a custom profile.\n"
+	printf "    -h,     \tDisplay help message and exit.\n"
+	printf "    --help, \tDisplay more detailed help message and exit.\n"
+	printf "    -V,     \tDisplay current abs version.\n"
+	printf "    -v,     \tBuild an official Vanilla Arch Monthly ISO.\n"
+	printf "    -vb,    \tBuild an official Vanilla Arch Monthly ISO but with only whats needed to boot.\n"
+	printf "    -x,     \tBuild a XeroLinux Arch ISO using latest source.\n"
+	printf "    -xg,    \tBuild a XeroLinux Gnome Arch ISO using latest source.\n"
+	printf "    -xf,    \tBuild a XeroLinux XFCE Arch ISO using latest source.\n"
+}
 
 searchForSourceGit() {
 	sourceGit=$1
