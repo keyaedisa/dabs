@@ -56,7 +56,7 @@ if [[ -n $1 ]]; then
 		-xf | --xeroce | --xerof | xerof | XeroF ) xeroce \ fin='1' ;;
 		* )
 			if [[ ${app_name} = "dabs" ]]; then
-				_$(app_name}TUI $1
+				_dabsTUI $1
 			else
 				echo "${1} is not a valid ${app_name} option. Try again."
 				_interactive
