@@ -15,4 +15,4 @@ if [[ $app_name = "dabs" ]]; then
 fi
 
 
-_${app_name}TUI $1
+_absTUI $1
