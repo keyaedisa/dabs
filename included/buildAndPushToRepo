@@ -94,9 +94,9 @@ case $YN  in
 esac
 
 if [[ $destRepo = "$devRepo" ]]; then
-	sudo sed -i  "0,/buildVersion/s/.*buildVersion.*/buildVersion=${cPkgVer}-${cPkgRel}/" /etc/dabs/included/.functions
+	sudo sed -i  "0,/buildVersion/s/.*buildVersion.*/buildVersion=${cPkgVer}-${cPkgRel}/" included/.functions
 else
-	sudo sed -i  "0,/buildVersion/s/.*buildVersion.*/buildVersion=${cPkgVer}-${cPkgRel}/" /etc/abs/include/.functions
+	sudo sed -i  "0,/buildVersion/s/.*buildVersion.*/buildVersion=${cPkgVer}-${cPkgRel}/" include/.functions
 fi
 
 echo "Pushing latest ${cPkgName} changes to ${cPkgName}'s git repo before creating a new ${cPkgName} pkg tar!"
