@@ -94,7 +94,7 @@ case $YN  in
 esac
 
 if [[ $destRepo = "$devRepo" ]]; then
-	sudo sed -i  "0,/buildVersion/s/.*buildVersion.*/buildVersion=${cPkgVer}-${cPkgRel}/" /etc/dab/dev/.functions
+	sudo sed -i  "0,/buildVersion/s/.*buildVersion.*/buildVersion=${cPkgVer}-${cPkgRel}/" /etc/dabs/included/.functions
 else
 	sudo sed -i  "0,/buildVersion/s/.*buildVersion.*/buildVersion=${cPkgVer}-${cPkgRel}/" /etc/abs/misc/.functions
 fi
