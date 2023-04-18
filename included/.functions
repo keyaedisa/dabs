@@ -21,9 +21,9 @@ _interactiveD() {
 #echo
 #read -p "What option would you like to select? : " opt
 case $1 in
-		-g | -gitpush ) _pushToGit ;;
-		-m | -mergeDevToProd ) _mergeDevToProd ;;
-		-b | -buildAndPush | -buildAndPushToRepo ) _buildAndPushToRepo ;;
+		-g | g | -gitpush ) _pushToGit ;;
+		-m | m | -mergeDevToProd ) _mergeDevToProd ;;
+		-b | b | -buildAndPush | -buildAndPushToRepo ) _buildAndPushToRepo ;;
 		* ) echo
 			echo "${1} is not a valid ${app_name} option. Try again."
 			echo
