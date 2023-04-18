@@ -49,7 +49,7 @@ fi
 }
 
 
-_version() {
+_versionD() {
 buildVersion=3.5-21
 
 	echo "${txBold}${fgBlue}Version${txReset}:"
