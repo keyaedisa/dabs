@@ -6,7 +6,7 @@
 # Maintainer: Your Name <keyaedisa>
 pkgname="dabs"
 pkgver=3.6
-pkgrel=33
+pkgrel=34
 epoch=
 pkgdesc="Developer Version of abs. CLI tool to automate the customization and build of custom and built in distros such as Vanilla Arch and XeroLinux."
 arch=('x86_64')
