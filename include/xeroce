@@ -7,11 +7,11 @@
 checkSudo
 
 echo
-echo "${fgCyan}Step 1${txReset}: Getting ready to build ${fgCyan}XeroLinux Gnome${txReset}!"
+echo "${fgCyan}Step 1${txReset}: Getting ready to build ${fgCyan}XeroLinux CE${txReset}!"
 echo
 
 	sudo sed -i 's/quiet="y"/quiet="n"/g' /usr/bin/mkarchiso
-	profile=XeroG
+	profile=XeroCE
 	profiledef=$profile/profiledef.sh
 	buildDir=$HOME"/${profile}-Build"
 	outDir=$HOME"/${profile}-Out"
@@ -44,7 +44,7 @@ echo "Checking your profiles pacman.conf and adding ${BT} package repo if not al
 echo
 echo "${fgCyan}Step 3.5${txReset}: Optionally updating ${fgCyan}references${txReset} and ${fgCyan}profiledef.sh${txReset}!"
 echo
-
+	
 	currentName=$(sed -n 's/\(^iso_name=\)//p' $profiledef | sed 's/\([^"]*\)./\1/gi')
 	currentLabel=$(sed -n 's/\(^iso_label=\)//p' $profiledef | sed 's/\([^"]*\)./\1/gi')
 	currentPublisher=$(sed -n 's/\(^iso_publisher=\)//p' $profiledef | sed 's/\([^"]*\)./\1/gi')
@@ -182,9 +182,9 @@ echo "Build ${fgCyan}starts${txReset} in ${fgRed}5 seconds${txReset}!"
 sleep 5
 
 sudo mkarchiso -v -w $buildDir -o $outDir $profile
-sudo chown -R $user ~/XeroG-Build/
+sudo chown -R $user ~/XeroCE-Build/
 sudo chown -R $user $outDir
-cp ~/XeroG-Build/iso/arch/pkglist.x86_64.txt  $outDir/xerolinux-gnome-$(date +%Y.%m)-pkglist.txt
+cp ~/XeroCE-Build/iso/arch/pkglist.x86_64.txt  $outDir/xerolinux-ce-$(date +%Y.%m)-pkglist.txt
 buildDirDeleter $buildDir
 
 echo
