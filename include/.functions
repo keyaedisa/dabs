@@ -247,9 +247,9 @@ listOptions() {
 	printf "    -xg,    \tBuild a XeroLinux Gnome Arch ISO using latest source.\n"
 	printf "    -xf,    \tBuild a XeroLinux XFCE Arch ISO using latest source.\n"
 	if [[ $1 = "dabs" ]]; then
-		printf "	-b		\tBuild and push to repo.\n"
-		printf "	-m		\tMerge Dev repo to Production.\n"
-		printf "	-g		\tGit Push.\n"
+	printf "	-b		\tBuild and push to repo.\n"
+	printf "	-m		\tMerge Dev repo to Production.\n"
+	printf "	-g		\tGit Push.\n"
 	fi
 }
 
