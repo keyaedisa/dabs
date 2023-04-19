@@ -1,4 +1,4 @@
-3;9!/bin/bash
+#!/bin/bash
 # https://keyaedisa.github.io/ !!
 
 echo "Oki! Preparing to build a Vanilla Arch ISO using latest monthly ${fgCyan}Baseline${txReset} profile!"

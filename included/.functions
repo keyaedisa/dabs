@@ -50,7 +50,7 @@ fi
 
 
 _versionD() {
-buildVersion=3.6-37
+buildVersion=3.6-38
 
 	echo "${txBold}${fgBlue}Version${txReset}:"
 	echo "    ${txBold}${fgMagenta}${app_name}${txReset} v${fgCyan}${buildVersion}${txReset}!"
