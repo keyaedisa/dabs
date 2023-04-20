@@ -37,7 +37,7 @@ else
 	echo
 fi
 
-cd Arch-Vanilla-Baseline
+cd ~/arch-Vanilla-Baseline
 deleteBuildDir $buildDir
 
 echo "${app_name} will now check if you have the latest archiso so that we only build the ${fgCyan}newest${txReset} ISO possible."
