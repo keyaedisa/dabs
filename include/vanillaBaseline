@@ -26,9 +26,11 @@ if [[ -d ~/Arch-Vanilla-Baseline ]]; then
 	sudo rm -rf Arch-Vanilla-Baseline/Build && mkdir Arch-Vanilla-Baseline/Build
 else
 	echo "${app_name} could ${fgRed}not${txReset} locate the directory this option uses. ${app_name} will now create it."
-	mkdir Arch-Vanilla-Baseline
-	mkdir Arch-Vanilla-Baseline-Out
-	mkdir Arch-Vanilla-Baseline/Build
+	mkdir ~/arch-Vanilla-Baseline
+	if [[ ! -d ~/Arch-Vanilla-Baseline-Out ]]; then
+		mkdir ~/Arch-Vanilla-Baseline-Out
+	fi
+	mkdir ~.Arch-Vanilla-Baseline/Build
 	echo "${fgCyan}Arch-Vanilla-Baseline${txReset} directory has been created and within it exist folders labeled ${fgCyan}ISO${txReset} and ${fgCyan}Build${txReset}."
 	echo "${app_name} will now change into the ${fgCyan}Arch-Vanilla-Baseline${txReset} directory and move onto the next step."
 	echo
