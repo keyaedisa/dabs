@@ -11,6 +11,7 @@ echo
 	buildDir=Build
 
 cd
+isArchisoUpToDate
 
 echo "First ${app_name} will check to see if you have used this option before."
 echo "Should ${app_name} find the directory this option uses, ${app_name} will preserve it so that any older ISO's will not be lost."
@@ -23,7 +24,7 @@ if [[ -d Arch-Vanilla ]]; then
 	echo
 	sudo rm -rf Arch-Vanilla/Build && mkdir Arch-Vanilla/Build
 else
-	echo "${app_name} could ${fgRed}not${txReset} locate the directory this option uses. abs will now create it."
+	echo "${app_name} could ${fgRed}not${txReset} locate the directory this option uses. ${app_name} will now create it."
 	mkdir Arch-Vanilla
 	mkdir Arch-Vanilla-Out
 	mkdir Arch-Vanilla/Build
@@ -39,7 +40,6 @@ echo "${app_name} will now check if you have the latest archiso so that ${app_na
 echo
 
 checkInternetConnection
-isArchisoUpToDate
 
 echo "${app_name} will now copy over the Latest Monthly ${fgCyan}Releng${txReset} Arch Profile into this directory."
 echo

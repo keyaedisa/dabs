@@ -12,6 +12,7 @@ echo
 	buildDir=Build
 
 cd
+isArchisoUpToDate
 
 echo "First ${app_name} will check to see if you have used this option before."
 echo "Should ${app_name} find the directory this option uses, ${app_name} will preserve it so that any older ISO's will not be lost."
@@ -39,7 +40,6 @@ deleteBuildDir $buildDir
 echo "${app_name} will now check if you have the latest archiso so that we only build the ${fgCyan}newest${txReset} ISO possible."
 
 checkInternetConnection
-isArchisoUpToDate
 
 echo "${app_name} will now copy over the Latest Monthly ${fgCyan}Baseline${txReset} Arch Profile into this directory."
 
