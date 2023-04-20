@@ -22,7 +22,7 @@ if [[ -d ~/Arch-Vanilla ]]; then
 	echo "${app_name} has ${fgCyan}found${txReset} the ${fgCyan}Arch-Vanilla${txReset} directory this option uses!"
 	echo "${app_name} will now change into that directory and empty the build folder before moving forward."
 	echo
-	sudo rm -rf Arch-Vanilla/Build && mkdir Arch-Vanilla/Build
+	sudo rm -rf ~/Arch-Vanilla/Build && mkdir ~/Arch-Vanilla/Build
 else
 	echo "${app_name} could ${fgRed}not${txReset} locate the directory this option uses. ${app_name} will now create it."
 	mkdir ~/Arch-Vanilla
@@ -36,7 +36,7 @@ else
 	echo
 fi
 
-cd ~/arch-Vanilla
+cd ~/Arch-Vanilla
 deleteBuildDir $buildDir
 
 echo "${app_name} will now check if you have the latest archiso so that ${app_name} only builds the ${fgCyan}newest${txReset} ISO possible."
