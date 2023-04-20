@@ -31,9 +31,9 @@ else
 		mkdir ~/Arch-Vanilla-Baseline-Out
 	fi
 	mkdir ~.Arch-Vanilla-Baseline/Build
-	echo "${fgCyan}Arch-Vanilla-Baseline${txReset} directory has been created and within it exists the ${fgCyan}Build${txReset} directory."
+	echo "${fgCyan}~/Arch-Vanilla-Baseline${txReset} directory has been created and within it exists the ${fgCyan}Build${txReset} directory."
 	echo "Your ${fgCyan}ISO${txReset} will be found in ${fgCyan}~/Arch-Vanilla-Baseline-Out${txReset}!"
-	echo "${app_name} will now change into the ${fgCyan}Arch-Vanilla-Baseline${txReset} directory and move onto the next step."
+	echo "${app_name} will now change into the ${fgCyan}~/Arch-Vanilla-Baseline${txReset} directory and move onto the next step."
 	echo
 fi
 
