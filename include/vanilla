@@ -12,7 +12,6 @@ echo
 
 
 echo "${app_name} will now check if you have the latest archiso so that ${app_name} only builds the ${fgCyan}newest${txReset} ISO possible."
-echo
 cd
 isArchisoUpToDate
 
